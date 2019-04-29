@@ -3,6 +3,11 @@
 # change dir to the script's containing dir
 cd "$(dirname "$(realpath "$0")")";
 
+# export all sourced vars
+set -a
+source  /home/zfadli/my_scripts/paths
+set +a
+
 work_list=(
 common/base_i3_config
 common/workspace_i3_generic_bindings
@@ -28,4 +33,11 @@ else
   list=${work_list[@]}
 fi
 
-cat ${list[@]} > generated_i3config.i3_config
+rm generated_i3config.i3_config
+
+echo $LOCK_SCRIPT
+
+for F in ${list[@]} ; do
+envsubst < $F >> generated_i3config.i3_config
+done
+
