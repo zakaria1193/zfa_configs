@@ -18,7 +18,7 @@ exec_always xautolock -time 5 -locker fuzzy_lock -notify 20 -notifier 'xset dpms
 exec --no-startup-id nm-appplet
 exec --no-startup-id volumeicon
 exec --no-startup-id blueman-applet
-exec yes |/home/zfadli/my_scripts/wallpaper.sh
+exec yes | /home/zfadli/my_scripts/wallpaper.sh
 exec --no-startup-id /home/zfadli/my_scripts/ram_monitor.sh
 exec_always compton # compton is needed for transparency
 
