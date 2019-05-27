@@ -13,16 +13,22 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext  exec playerctl next
 bindsym XF86AudioPrev  exec playerctl previous
 
+
+# logout i3 (logs you out of your X session)
+bindsym $mod+Shift+l exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# Lock
+bindsym $mod+l exec $LOCK_SCRIPT
+
 # exec at startup
-exec_always xautolock -time 5 -locker fuzzy_lock -notify 20 -notifier 'xset dpms force off && /home/zfadli/my_scripts/i3lock-custom' &
-exec --no-startup-id nm-appplet
+exec_always xautolock -time 5 -locker fuzzy_lock -notify 20 -notifier 'xset dpms force off && $LOCK_SCRIPT' &
+
 exec --no-startup-id volumeicon
-exec --no-startup-id blueman-applet
-exec yes | /home/zfadli/my_scripts/wallpaper.sh
-exec --no-startup-id /home/zfadli/my_scripts/ram_monitor.sh
+# exec --no-startup-id blueman-applet
+exec --no-startup-id nm-appplet
+exec yes | $WALLPAPER_SCRIPT
+# exec --no-startup-id /home/zfadli/my_scripts/ram_monitor.sh
 exec_always compton # compton is needed for transparency
 
 # always remove dunst (keep default notifications)
 # for always remove appmenu-qt5 (keep barre de menu)
 # no desktop with nautilus: gsettings set org.gnome.desktop.background show-desktop-icons false
-

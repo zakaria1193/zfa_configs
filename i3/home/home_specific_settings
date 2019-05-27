@@ -1,3 +1,4 @@
+set $workspace0 "10"
 set $workspace1 "1"
 set $workspace2 "2"
 set $workspace3 "3"

@@ -1,1 +1,2 @@
-*.i3_config
+config
+common/i3_config_env_vars

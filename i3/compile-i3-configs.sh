@@ -5,10 +5,11 @@ cd "$(dirname "$(realpath "$0")")";
 
 # export all sourced vars
 set -a
-source  /home/zfadli/my_scripts/paths
+source ../paths
 set +a
 
 work_list=(
+common/i3_config_env_vars
 common/base_i3_config
 common/workspace_i3_generic_bindings
 common/i3bar_config
@@ -17,6 +18,7 @@ common/common_default_apps_i3
 )
 
 home_list=(
+common/i3_config_env_vars
 common/base_i3_config
 common/workspace_i3_generic_bindings
 common/i3bar_config
@@ -33,11 +35,15 @@ else
   list=${work_list[@]}
 fi
 
-rm generated_i3config.i3_config
+rm common/i3_config_env_vars
+while IFS='=' read -r -d '' n v; do
+    line=$(printf "set $%s '%s'" "$n" "$v" | tr '\n' ' ')
+    echo $line >> common/i3_config_env_vars
+done < <(env -0)
 
-echo $LOCK_SCRIPT
 
+rm config
 for F in ${list[@]} ; do
-envsubst < $F >> generated_i3config.i3_config
+cat $F >> config
 done
 

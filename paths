@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# directories
+HOME="/home/zfadli"
+REPOS="$HOME/repos"
+EMBEDDED="$REPOS/embedded"
+CORE="$REPOS/core"
+LEGRAND="$REPOS/legrand"
+FIRMWARE_BITCLOUD="$EMBEDDED/firmware-bitcloud"
+FIRMWARE="$EMBEDDED/firmware"
+MAGELLAN_RELEASES="$EMBEDDED/magellan-releases"
+EMBEDDED_TOOLS="$CORE/embedded-tools"
+PYTHON_EMBEDDED_TOOLS="$CORE/python-emb-tools"
+FIRMWARE_BINARY="$LEGRAND/firmware-binary"
+
+ZFA_CONFIGS="$HOME/my_repos/zfa_configs"
+
+NLX_PATH_IN_FIRMWARE="Applications/Netatmo/Magellan"
+NLX_PATH_IN_FIRMWARE="Applications/Netatmo"
+
+# scripts
+LOCK_SCRIPT="$ZFA_CONFIGS/scripts/lock.sh"
+WALLPAPER_SCRIPT="$ZFA_CONFIGS/scripts/wallpaper.sh"
+
+# tools
+GDB="$FIRMWARE_BITCLOUD/toolchain/arm-none-eabi/bin/arm-none-eabi-gdb-py"
+FLASHER="$EMBEDDED_TOOLS/Linux/flasher/flasher"
+NLX_FLASHER="$PYTHON_EMBEDDED_TOOLS/lib/testing/nlx_flasher.py"
+STM32_DFU="$EMBEDDED_TOOLS/generic-embedded/stm32_dfu/stm32_dfu"
+GENERATE_RELEASE="$FIRMWARE_BITCLOUD/support/scripts/generate-release" # -p NLX -v 42
+ANDROID_TOOLS="$MY_SCRIPTS/android/android-tools"
+
+GDB_SCRIPT="$MY_SCRIPTS/tmp/gdb_script.gdb"
+FLASH_SCRIPT="$MY_SCRIPTS/tmp/flash_script.jlink"
+RESET_SCRIPT="$MY_SCRIPTS/tmp/reset_script.jlink"
+DUMP_SCRIPT="$MY_SCRIPTS/tmp/dump_script.jlink"
+
+# NLX files with different last letter (NLF NLT NLP ..) without gateway
+NLX_products=NL[FLMPTVCD]
+

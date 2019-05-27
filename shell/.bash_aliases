@@ -1,9 +1,6 @@
 #!/bin/bash
 
 # REPOS
-source  $MY_SCRIPTS/paths
-
-
 #####################################
 #      scripts and aliases        #
 #####################################

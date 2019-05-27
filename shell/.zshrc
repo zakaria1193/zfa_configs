@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/zfadli/.oh-my-zsh
+  export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -99,12 +99,18 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Enable my scripts and aliases
-export MY_SCRIPTS="$HOME/my_scripts"
-export PATH="$MY_SCRIPTS:$PATH"
-
-if [ -f ~/.bash_aliases ]; then
-  source ~/.bash_aliases
+if [ -f .zshrc_paths ]; then
+  source .zshrc_paths
+else
+  echo ".zshrc_paths wasn't found  (dir = $(pwd))"
 fi
+
+if [ -f $SHELL_CONFIGS/custom.zshrc ]; then
+  source $SHELL_CONFIGS/custom.zshrc
+else
+  echo "$SHELL_CONFIGS/custom.zshrc wasn't found  (dir = $(pwd))"
+fi
+
 
 ##############################################################################
 # History Configuration

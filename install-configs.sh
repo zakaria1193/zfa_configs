@@ -9,29 +9,25 @@ function symbolic-link()
   local file_=$1
   local from=$2
   local to=$3
-
   rm $to/$file_ -r
   ln -s $from/$file_ $to
-  echo "symbolic link of $file from $from/$file to $to/$file"
+  echo "symbolic link of $file from $from/$file_ to $to/$file_"
 }
 
 # ZSH config
 
-function pull_shell_config()
-{
-  symbolic-link $1 $SHELL_CONFIGS $HOME
-}
-
 function pull_zsh_config()
 {
-  symbolic-link '.zshrc' $SHELL_CONFIGS $HOME
-  symbolic-link '.oh-my-zsh' $SHELL_CONFIGS $HOME
+  echo "SHELL_CONFIGS=$SHELL_CONFIGS" > $HOME/.zshrc_paths
+  symbolic-link '.zshrc'     $SHELL_CONFIGS           $HOME
+  symbolic-link '.oh-my-zsh' $SHELL_CONFIGS/oh-my-zsh $HOME
 }
 
 function install_zsh()
 {
   sudo apt-get install zsh
   # set zsh as default shell
+  echo "setting zshs default shell"
   chsh -s /usr/bin/zsh
   echo ">>> Logout and login to your ubuntu session"
 }
@@ -40,16 +36,22 @@ function install_zsh()
 function pull_i3_config()
 {
   $I3_CONFIGS/compile-i3-configs.sh
+  symbolic-link 'config' $I3_CONFIGS "$HOME/.config/i3"
 }
 
 function install_i3()
 {
-  sudo apt-get remove dunst
+  sudo apt remove dunst
+  sudo apt install i3
+
 }
 
 function main()
 {
-  pull_i3_config
+  # install_zsh
+  pull_zsh_config
+  # install_i3
+  # pull_i3_config
 }
 
 main $@
