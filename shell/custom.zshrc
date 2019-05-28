@@ -5,21 +5,20 @@ cd "$(dirname "$(realpath "$0")")";
 
 PATHS='../paths'
 
+files_to_source=(
+  $PATHS
+  *.sh
+)
+
 function source_file
 {
   local file=$1
   if [ -f $file ]; then
-    echo $file
     source $file
   else
     echo "$file wasn't found (current_dir = $(pwd))"
   fi
 }
-
-files_to_source=(
-  $PATHS
-  *.sh
-)
 
 function main()
 {
@@ -29,3 +28,5 @@ function main()
 }
 
 main $@
+
+cd $HOME

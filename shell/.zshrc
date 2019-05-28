@@ -102,13 +102,13 @@ fi
 if [ -f .zshrc_paths ]; then
   source .zshrc_paths
 else
-  echo ".zshrc_paths wasn't found  (dir = $(pwd))"
+  echo ".zshrc_paths wasn't found in $HOME (cur dir = $(pwd)), run install_configs.sh to get it"
 fi
 
 if [ -f $SHELL_CONFIGS/custom.zshrc ]; then
   source $SHELL_CONFIGS/custom.zshrc
 else
-  echo "$SHELL_CONFIGS/custom.zshrc wasn't found  (dir = $(pwd))"
+  echo "$SHELL_CONFIGS/custom.zshrc wasn't found  (SHELL_CONFIGS = $SHELL_CONFIGS)"
 fi
 
 
