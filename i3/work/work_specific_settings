@@ -8,27 +8,22 @@ set $workspace3 "3. Test terminal"
 workspace $workspace3 output DP2
 set $workspace4 "4. Chrome"
 workspace $workspace4 output DP2
-set $workspace5 "5. Teams"
+set $workspace5 "5."
 workspace $workspace5 output DP2
-set $workspace6 "6. Spotify"
+set $workspace6 "6."
 workspace $workspace6 output DP2
-set $workspace7 "7. gitg"
+set $workspace7 "7."
 workspace $workspace7 output DP2
 set $workspace8 "8. Wireshark"
 workspace $workspace8 output DP2
 set $workspace9 "9. files"
 workspace $workspace9 output DP1
 
-# use xprop to get window class
-# assign [class="Sublime_text"] → $workspace1
-# exec --no-startup-id subl
-exec --no-startup-id i3-msg "workspace $workspace1; exec --no-startup-id subl;"
 exec --no-startup-id i3-msg "workspace $workspace1; layout tabbed"
 
 for_window [class="meld"] fullscreen enable
 for_window [class="^(?i)google-chrome"] border pixel 1
 
-assign [class="Gitg"] → $workspace7
 assign [class="Wireshark"] → $workspace8
 assign [class="Nautilus"] → $workspace9
 assign [class="Filezilla"] → $workspace9

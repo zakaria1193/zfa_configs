@@ -1,4 +1,4 @@
-set $workspace0 "10"
+set $workspace0 "0"
 set $workspace1 "1"
 set $workspace2 "2"
 set $workspace3 "3"
@@ -8,3 +8,5 @@ set $workspace6 "6"
 set $workspace7 "7"
 set $workspace8 "8"
 set $workspace9 "9"
+
+exec --no-startup-id i3-msg "workspace $workspace1; layout tabbed"
