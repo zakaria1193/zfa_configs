@@ -1,3 +1,9 @@
 [submodule "shell/oh-my-zsh/.oh-my-zsh/plugins/zsh-autosuggestions"]
 	path = shell/oh-my-zsh/.oh-my-zsh/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "shell/oh-my-zsh/.oh-my-zsh/--depth=1"]
+	path = shell/oh-my-zsh/.oh-my-zsh/--depth=1
+	url = https://github.com/powerline/fonts.git
+[submodule "shell/oh-my-zsh/.oh-my-zsh/fonts"]
+	path = shell/oh-my-zsh/.oh-my-zsh/fonts
+	url = https://github.com/powerline/fonts.git

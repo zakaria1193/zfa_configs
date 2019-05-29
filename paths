@@ -52,7 +52,7 @@ ZFA_SCRIPTS="$HOME/my_repos/zfa_scripts"
 ## third party
 FORKS="$HOME/my_repos/forks"
 ANDROID_TOOLS="$MY_REPOS/android-tools"
-export_dir_to_path_recursively "$ANDROID_TOOLS"
+# export_dir_to_path_recursively "$ANDROID_TOOLS"
 
 ## misc
 GDB_SCRIPT="$ZFA_SCRIPTS/tmp/gdb_script.gdb"

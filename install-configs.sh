@@ -29,6 +29,8 @@ function install_zsh()
   # set zsh as default shell
   echo "setting zshs default shell"
   chsh -s /usr/bin/zsh
+  echo "installing fonts"
+  $ZFA_CONFIGS/shell/oh-my-zsh/.oh-my-zsh/fonts/install.sh
   echo ">>> Logout and login to your ubuntu session"
 }
 
