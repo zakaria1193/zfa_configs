@@ -40,6 +40,8 @@ MY_REPOS="$HOME/my_repos"
 
 ## paths in zfa configs
 ZFA_CONFIGS="$HOME/my_repos/zfa_configs"
+export_dir_to_path "$ZFA_CONFIGS/"
+export_dir_to_path "$ZFA_CONFIGS/i3/"
 export_dir_to_path_recursively "$ZFA_CONFIGS/scripts/"
 ## scripts when needed as shell vars (for i3)
 LOCK_SCRIPT="$ZFA_CONFIGS/scripts/lock.sh"
