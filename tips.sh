@@ -214,7 +214,7 @@ the "www" in host names is not always necessary because hostnames dedicated to w
 $IP/$SUBNETTING
 IP adresses are 32 bits, with 255.255.255.0 mask, you have 8 bits for host adressing 24bits for network adress it will be written as /24
 only two machines on same sub network can talk directly (IP layer checks if target IP * subnet mask matches own subnet)
-if not on same subnet, message is sent to default gateway, then default gateway etc.. until it goes to ISP routers that know where the routers actually are.
+if not on same subnet, message is sent to default gateway, then default gateway etc.. until it goes to ISP routers that know where the routers (with routing tables) actually are.
 private IP adresses are not accesbile on the net cause not unique. (NAT is mandatory for outgoing comunnication andport forwarding to have a server always accessible from outside)
 private adresses netbloccks are 10.0.0.0/8 172.16.0.0/12 192.168.0.0/16
 $ip addr show or $ifconfig to see the network interfaces

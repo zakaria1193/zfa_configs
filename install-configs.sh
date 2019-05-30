@@ -33,6 +33,7 @@ function install_zsh()
   $ZFA_CONFIGS/shell/oh-my-zsh/.oh-my-zsh/fonts/install.sh
   echo "installing fuzzy seach"
   $ZFA_CONFIGS/tools/fzf/install
+  echo "find how to install bat"
   echo ">>> Logout and login to your ubuntu session"
 }
 

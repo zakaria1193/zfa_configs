@@ -62,19 +62,29 @@ plugins=(
   history
   zsh-syntax-highlighting
   colored-man-pages
-  web-search
-  wd
-  zsh-autosuggestions
   z
 )
 
 plugins_completions=(
+  zsh-autosuggestions
   docker
   python
+  pip
   git
+  gitfast
+  common-aliases
 )
 
-plugins=(${plugins[@]} ${plugins_completions[@]})
+plugins_tools=(
+  extract
+  web-search
+)
+
+plugins=(
+  ${plugins[@]}
+  ${plugins_completions[@]}
+  ${plugins_tools[@]}
+)
 
 # User configuration
 
