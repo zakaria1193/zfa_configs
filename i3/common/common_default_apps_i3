@@ -20,11 +20,10 @@ bindsym $mod+Shift+l exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+l exec $LOCK_SCRIPT
 
 # exec at startup
-exec_always xautolock -time 5 -locker fuzzy_lock -notify 20 -notifier 'xset dpms force off && $LOCK_SCRIPT' &
 
 exec --no-startup-id volumeicon
 # exec --no-startup-id blueman-applet
-exec --no-startup-id nm-appplet
+exec_always --no-startup-id nm-appplet
 exec yes | $WALLPAPER_SCRIPT
 # exec --no-startup-id /home/zfadli/my_scripts/ram_monitor.sh
 exec_always compton # compton is needed for transparency
