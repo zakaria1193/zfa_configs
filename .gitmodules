@@ -7,3 +7,6 @@
 [submodule "shell/oh-my-zsh/.oh-my-zsh/fonts"]
 	path = shell/oh-my-zsh/.oh-my-zsh/fonts
 	url = https://github.com/powerline/fonts.git
+[submodule "tools/fzf"]
+	path = tools/fzf
+	url = https://github.com/junegunn/fzf.git

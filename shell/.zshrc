@@ -134,3 +134,5 @@ setopt    incappendhistory  #Immediately append to the history file, not just wh
 
 #Choose the default pager
 export PAGER="less -F -X"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
