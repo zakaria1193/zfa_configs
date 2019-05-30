@@ -1,0 +1,15 @@
+# udev rules for atmel devices using usb/tty/hid interfaces
+
+# Installation:
+# - Copy this file to /etc/udev/rules.d/
+# - Run the command:
+#       udevadm control --reload && udevadm trigger
+
+ACTION!="add|change", GOTO="atmel_rules_end"
+SUBSYSTEM!="usb|tty|hidraw|hiddev|usb-serial|usb_device", GOTO="atmel_rules_end"
+
+# Consider all Atmel products with PIDs starting with '21*' as CDC-ACM capable devices
+# (since most of them seems to be programmers), cf. http://www.linux-usb.org/usb.ids
+ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="21*", TAG+="uaccess", TAG+="udev-acl"
+
+LABEL="atmel_rules_end"

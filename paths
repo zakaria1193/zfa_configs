@@ -1,0 +1,98 @@
+#!/bin/bash
+
+# DEFINES & EXPORTS ALL CUSTOM ENV VARS
+# PUTS THEM in PATH variable when needed
+
+function export_dir_to_path()
+{
+  [[ -d  $1 ]] || return
+  #echo exporting $1
+  [[ -d  $1 ]] && export PATH=$PATH:$1
+}
+
+function export_dir_to_path_recursively()
+{
+  [[ -d  $1 ]] || return
+  local to_export=$( find $1 -type d -printf ":%p" )
+  #echo exporting_recuresively $1
+  export PATH=$PATH$to_export
+}
+
+# Export all new variables
+set -a
+
+export_dir_to_path $HOME/.local/bin
+
+
+## my directories
+MY_REPOS="$HOME/my_repos"
+
+## Paths in zfa configs
+ZFA_CONFIGS="$MY_REPOS/zfa_configs"
+export_dir_to_path "$ZFA_CONFIGS/"
+
+# Monitors xrandr configs
+export_dir_to_path "$ZFA_CONFIGS/monitors"
+
+# Shell & Shell aliases
+SHELL_CONFIGS="$ZFA_CONFIGS/shell"
+ZFA_GIT_ALIASES="$ZFA_CONFIGS/shell/git_aliases.sh"
+
+# Udev rules
+UDEV_RULES="$ZFA_CONFIGS/udev_rules"
+
+# Vim config
+VIM_CONFIGS="$ZFA_CONFIGS/vimlua/zfa_nvim"
+VIM_CONFIGS_FILE="$VIM_CONFIGS/init.lua"
+
+# Legacy vimscript based NVIM config
+#VIM_CONFIGS="$ZFA_CONFIGS/vim"
+#VIM_CONFIGS_FILE="$VIM_CONFIGS/init.vim"
+
+# Git configs
+GIT_CONFIGS="$ZFA_CONFIGS/git"
+export_dir_to_path "$GIT_CONFIGS"
+
+# Tools
+export ZFA_CONFIGS_TOOLS="$ZFA_CONFIGS/tools"
+MY_UDEV_NOTIFY_SH="$ZFA_CONFIGS_TOOLS/my-udev-notify/my-udev-notify.sh"
+export_dir_to_path "$ZFA_CONFIGS_TOOLS"
+export_dir_to_path "$ZFA_CONFIGS_TOOLS/git-autofixup"
+export_dir_to_path "$ZFA_CONFIGS_TOOLS/flake8_autofix/"
+
+# I3 config
+I3_CONFIGS="$ZFA_CONFIGS/i3"
+export_dir_to_path "$I3_CONFIGS"
+I3BLOCKS_CONFIG="$I3_CONFIGS/i3blocks"
+I3BLOCKS_REPO="$I3BLOCKS_CONFIG/i3blocks" # submodule
+I3BLOCKS_SCRIPTS_DIR="$I3BLOCKS_CONFIG/i3blocks-contrib" # submodule
+export_dir_to_path_recursively "$I3BLOCKS_SCRIPTS_DIR"
+COMPTON_CONFIG=$ZFA_CONFIGS
+
+# Scripts
+ZFA_CONFIGS_SCRIPTS=$ZFA_CONFIGS/scripts
+export_dir_to_path_recursively "$ZFA_CONFIGS/scripts/"
+## Scripts needed as shell vars (for i3)
+LOCK_SCRIPT="$ZFA_CONFIGS_SCRIPTS/lock.sh"
+WALLPAPER_SCRIPT="$ZFA_CONFIGS_SCRIPTS/wallpaper.sh"
+MONITORS_SCRIPT="$ZFA_CONFIGS_SCRIPTS/monitor.sh"
+COMPILE_I3_CONFIG_SCRIPT="$I3_CONFIGS/compile-i3-configs.sh"
+
+# GDB Helpers
+GDB_CONFIGS_DIR="$ZFA_CONFIGS/gdb"
+GDB_SCRIPT="$GDB_CONFIGS_DIR/gdbinit"
+
+## Paths in zfa_work_tools repo
+ZFA_WORK_TOOLS="$MY_REPOS/zfa_work_tools"
+export_dir_to_path $ZFA_WORK_TOOLS
+# Hide work paths in
+source $ZFA_WORK_TOOLS/paths
+
+export_dir_to_path $GDB_CONFIGS_DIR
+# Extra GDB scripts for work only
+GDB_WORK_CONFIGS_DIR="$ZFA_WORK_TOOLS/gdb_work"
+WIRESHARK_KEYS=/home/zfadli/.wireshark/profiles/Default/zigbee_pc_keys
+
+# Stop exporting all new variables
+set +a
+

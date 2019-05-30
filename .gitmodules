@@ -1,0 +1,66 @@
+[submodule "shell/zsh_custom/plugins/zsh-autosuggestions"]
+  path = shell/zsh_custom/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "shell/oh-my-zsh/.oh-my-zsh/--depth=1"]
+	path = shell/oh-my-zsh/.oh-my-zsh/--depth=1
+	url = https://github.com/powerline/fonts.git
+[submodule "shell/oh-my-zsh/.oh-my-zsh/fonts"]
+	path = shell/oh-my-zsh/.oh-my-zsh/fonts
+	url = https://github.com/powerline/fonts.git
+[submodule "tools/fzf"]
+	path = tools/fzf
+	url = https://github.com/junegunn/fzf.git
+[submodule "i3/i3blocks/i3blocks"]
+	path = i3/i3blocks/i3blocks
+	url = https://github.com/vivien/i3blocks
+[submodule "shell/oh-my-zsh/.oh-my-zsh/custom/plugins/navi"]
+	path = shell/oh-my-zsh/.oh-my-zsh/custom/plugins/navi
+	url = https://github.com/denisidoro/navi
+[submodule "tools/git-autofixup"]
+	path = tools/git-autofixup
+	url = https://github.com/torbiak/git-autofixup.git
+[submodule "shell/oh-my-zsh/.oh-my-zsh/plugins/navi"]
+	path = shell/oh-my-zsh/.oh-my-zsh/plugins/navi
+	url = https://github.com/denisidoro/navi
+[submodule "shell/oh-my-zsh/.oh-my-zsh/custom/plugins/k"]
+	path = shell/oh-my-zsh/.oh-my-zsh/custom/plugins/k
+	url = https://github.com/supercrabtree/k
+[submodule "shell/ohmyzsh"]
+	path = shell/ohmyzsh
+	url = git@github.com:ohmyzsh/ohmyzsh.git
+[submodule "shell/zsh_custom/zsh-z"]
+	path = shell/zsh_custom/zsh-z
+	url = git@github.com:agkozak/zsh-z.git
+[submodule "shell/zsh_custom/honukai-iterm-zsh"]
+	path = shell/zsh_custom/honukai-iterm-zsh
+	url = git@github.com:oskarkrawczyk/honukai-iterm-zsh.git
+[submodule "shell/zsh_custom/plugins/zsh-syntax-highlighting"]
+	path = shell/zsh_custom/plugins/zsh-syntax-highlighting
+	url = git@github.com:zsh-users/zsh-syntax-highlighting.git
+[submodule "tools/rofi-bluetooth"]
+	path = tools/rofi-bluetooth
+	url = git@github.com:ClydeDroid/rofi-bluetooth.git
+[submodule "tools/flake8_autofix"]
+	path = tools/flake8_autofix
+	url = https://github.com/sciencefreak500/flake8_autofix.git
+[submodule "shell/zsh_custom/plugins/zsh-vi-mode"]
+	path = shell/zsh_custom/plugins/zsh-vi-mode
+	url = https://github.com/jeffreytse/zsh-vi-mode
+[submodule "lvim/LunarVim"]
+	path = lvim/LunarVim
+	url = git@github.com:zakaria1193/LunarVim.git
+[submodule "lvim/lvim"]
+	path = lvim/lvim
+	url = git@github.com:zakaria1193/LunarVim.git
+[submodule "tools/rofi"]
+	path = tools/rofi
+	url = git@github.com:adi1090x/rofi.git
+[submodule "tools/rofi-contrib"]
+	path = tools/rofi-contrib
+	url = git@github.com:zakaria1193/rofi-contrib.git
+[submodule "i3/i3blocks/i3blocks-contrib"]
+	path = i3/i3blocks/i3blocks-contrib
+	url = git@github.com:zakaria1193/i3blocks-contrib.git
+[submodule "vimlua/zfa_nvim"]
+	path = vimlua/zfa_nvim
+	url = git@github.com:zakaria1193/zfa_nvim.git

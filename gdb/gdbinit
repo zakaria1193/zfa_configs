@@ -1,0 +1,135 @@
+set auto-load safe-path /
+
+# GDB Generic Configuration file (Embedded and on Host)
+
+# General settings
+set verbose off
+set python print-stack full
+
+# Log saving settings
+set logging overwrite on
+set logging file ~/.gdb_logs.txt
+set logging on
+# Show commands in log file
+set trace-commands on
+
+# Command history settinGs
+set history filename ~/.gdb_history.txt
+set history save on
+
+# View settings
+set pagination off
+set print pretty on
+
+# Array print
+set print array on
+#set print array off
+set print array-indexes on
+# Do not truncate long values
+set print elements 0 
+
+# Filename print
+set filename-display relative
+
+# Values print (Hex = 16 / Dec = 10)
+set output-radix 10
+# set output-radix 16
+
+python
+import os
+import sys
+
+print("Python version in GDB :", sys.version)
+
+# Useful python vars
+configs_dir = os.environ["GDB_CONFIGS_DIR"]
+work_configs_dir = os.environ["GDB_WORK_CONFIGS_DIR"]
+gdb_init_path = os.environ["GDB_SCRIPT"]
+end
+
+
+define clear_breaks_displays
+  del
+  undisplay
+end
+
+define i
+  info breakpoints
+end
+
+define save_b
+  save breakpoints ~/.gdb_breaks.txt
+end
+
+define source_b
+  source ~/.gdb_breaks.txt
+end
+
+define r
+  mon reset
+end
+
+define g
+  continue
+end
+
+# Remote target specific
+define l
+  shell rm -f ~/.gdb_breaks_temp.txt
+  save breakpoints ~/.gdb_breaks_temp.txt
+  mon reset
+  load
+  mon reset
+  clear_breaks_displays
+  source ~/.gdb_breaks_temp.txt
+end
+
+# Remote target specific
+define connect
+    # We assume the GDB targer is JLinkGDBServer
+    # In the case the port is:
+    target remote localhost:2331
+end
+
+define cn
+  connect
+end
+
+define svd
+python
+import os
+gdb.execute('source ', configs_dir + '/PyCortexMDebug'+ '/scripts' +'/gdb.py')
+gdb.execute('svd_load' + configs_dir + '/svds'+ '/ATSAMR21E18A.svd')
+end
+end
+
+# Resource gdb config
+define resource
+    python gdb.execute("source " + gdb_init_path)
+end
+
+python
+scripts_to_load = []
+work_scripts_to_load = ['samr21.gdb']
+
+# Load other scripts in ZFA_CONFIGS
+print("Loading GDB scripts from ", configs_dir)
+if os.path.exists(configs_dir):
+  for x in scripts_to_load:
+    gdb.execute('source ' + configs_dir + '/' + x)
+else:
+  print(configs_dir, " does not exist")
+
+# Load other scripts in ZFA_WORK_TOOLS
+print("Loading GDB scripts from ", work_configs_dir)
+if os.path.exists(work_configs_dir):
+  for x in work_scripts_to_load:
+    gdb.execute('source ' + work_configs_dir + '/' + x)
+else:
+  print(work_configs_dir, " does not exist.")
+
+end
+
+
+
+# Source target 

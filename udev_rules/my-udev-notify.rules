@@ -1,0 +1,7 @@
+#  - copy this file to /etc/udev/rules.d directory;
+#  - modify 2 paths below: they should match your real path to my-udev-notify.sh
+
+ACTION=="add",    RUN+="/bin/bash $$MY_UDEV_NOTIFY_SH$$ -a add    -p '%p' -b '$attr{busnum}' -d '$attr{devnum}'"
+
+ACTION=="remove", RUN+="/bin/bash $$MY_UDEV_NOTIFY_SH$$ -a remove -p '%p' -b '$attr{busnum}' -d '$attr{devnum}'"
+

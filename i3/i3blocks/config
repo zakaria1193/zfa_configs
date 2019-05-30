@@ -1,0 +1,204 @@
+# i3blocks config file
+#
+# Please see man i3blocks for a complete reference!
+# The man page is also hosted at http://vivien.github.io/i3blocks
+#
+# List of valid properties:
+#
+# align
+# color
+# command
+# full_text
+# instance
+# interval
+# label
+# min_width
+# name
+# separator
+# separator_block_width
+# short_text
+# signal
+# urgent
+
+# Global properties
+#
+# The top properties below are applied to every block, but can be overridden.
+# Each block command defaults to the script name to avoid boilerplate.
+# Change $SCRIPT_DIR to the location of your scripts!
+command=$SCRIPT_DIR/$BLOCK_NAME/$BLOCK_NAME
+separator_block_width=15
+markup=none
+
+
+[shutdown_menu]
+full_text=PowerOff
+# If you are using FontAwesome, we recommend the power-off icon:
+# http://fontawesome.io/icon/power-off/
+FG_COLOR=#bbbbbb
+BG_COLOR=#111111
+HLFG_COLOR=#111111
+HLBG_COLOR=#bbbbbb
+BORDER_COLOR=#222222
+ROFI_TEXT=Menu:
+ROFI_OPTIONS=-width 11 -location 6 -hide-scrollbar -bw 2
+ZENITY_TITLE=yap
+ZENITY_TEXT=Action:
+ZENITY_OPTIONS=--column= --hide-header
+# ENABLE_CONFIRMATIONS=true (must be true or false)
+# LAUNCHER=rofi # (must be rofi or zenity)
+# LOCKSCRIPT=i3lock --color=${BG_COLOR#"#"}
+
+
+#[openvpn2]
+#label=VPN to fix 
+#interval=20
+#PID_FILE_FORMAT='/run/openvpn/*.pid'
+
+#[usb]
+# markup=pango
+# signal=1
+# interval=10
+#IGNORE_LIST=[]
+#IGNORE_LIST=["sdd1", "mapper/sda1_crypt"]
+#INFO_TEXT_COLOR=white
+#MOUNTED_COLOR=green
+#PLUGGED_COLOR=gray
+#LOCKED_COLOR=gray
+#UNLOCKED_NOT_MOUNTED_COLOR=yellow
+#PARTITIONLESS_COLOR=red
+#PARTITIONLESS_TEXT=no partitions
+#SEPARATOR=<span color='gray'> | </span>
+#LOCKED_INDICATOR= 
+#UNLOCKED_INDICATOR= 
+#READONLY_INDICATOR=ro
+#TRUNCATE_FS_LABELS=[not set by default, accepts +/- integers]
+
+# Volume indicator
+#
+# The first parameter sets the step (and units to display)
+# The second parameter overrides the mixer selection
+# See the script for details.
+# [volume]
+# #label=♪
+# label=VOL 
+# interval=1
+# signal=once
+# #STEP=5%
+
+# CPU usage
+#
+# The script may be called with -w and -c switches to specify thresholds,
+# see the script for details.
+# [cpu_usage]
+# label=CPU
+# interval=10
+# min_width=CPU 100.00%
+#separator=false
+[load_average]
+label=LOAD 
+interval=10
+
+# Temperature
+#
+# Support multiple chips, though lm-sensors.
+# The script may be called with -w and -c switches to specify thresholds,
+# see the script for details.
+[temperature]
+interval=10
+
+# Memory usage
+#
+# The type defaults to "mem" if the instance is not specified.
+[memory]
+label=RAM 
+interval=30
+
+[memory]
+label=SWAP 
+instance=swap
+interval=30
+
+# Disk usage
+#
+# The directory defaults to $HOME if the instance is not specified.
+# The script may be called with a optional argument to set the alert
+# (defaults to 10 for 10%).
+[disk]
+label=Disk: 
+# DIR=/mnt/data
+interval=30
+
+# Network interface monitoring
+#
+# If the instance is not specified, use the interface used for default route.
+# The address can be forced to IPv4 or IPv6 with -4 or -6 switches.
+[iface]
+#IFACE=wlan0
+color=#00FF00
+interval=10
+
+[wifi]
+INTERFACE=wlp0s20f3
+label=Wifi: 
+interval=10
+
+[bandwidth2]
+#INTERFACE=eth0
+interval=5
+
+
+# Generic media player support
+#
+# This displays "ARTIST - SONG" if a music is playing.
+# Supported players are: spotify, vlc, audacious, xmms2, mplayer, and others.
+#[mediaplayer]
+#instance=spotify
+#interval=5
+#signal=10
+
+# OpenVPN support
+#
+# Support multiple VPN, with colors.
+#[openvpn]
+#interval=20
+
+# Key indicators
+[keyindicator]
+KEY=CAPS
+markup=pango
+interval=once
+signal=11
+
+[keyindicator]
+KEY=NUM
+markup=pango
+interval=once
+signal=11
+
+[weather]
+command=curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo
+interval=3600
+color=#A4C2F4
+
+[volume-pulseaudio]
+interval=1
+signal=10
+LONG_FORMAT="Volume ${SYMB}${VOL}%"
+SHORT_FORMAT="${SYMB}${VOL}%"
+DEFAULT_COLOR="#f3f4f5"
+USE_ALSA_NAME=1
+
+# Battery indicator
+#
+# The battery instance defaults to 0.
+[battery]
+label=⚡BAT : 
+interval=10
+
+# Date Time
+#
+[time]
+command=date '+%Y-%m-%d %H:%M:%S'
+interval=5
+
+

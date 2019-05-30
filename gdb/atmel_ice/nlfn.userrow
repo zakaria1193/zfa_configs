@@ -1,0 +1,71 @@
+Device information:
+
+Name:       ATSAMR21E19A
+JtagId:     N/A
+Revision:   D
+Chip ID:    0x10010318
+CPU arch.:  CORTEX-M0PLUS
+Series:     SAMR21
+
+Memory Information:
+
+Address Space    StartAddress            Size
+
+base                      0x0     0x100000000
+  FLASH                   0x0         0x40000
+  USER_PAGE          0x804000           0x100
+  AUX0               0x804000           0x100
+  AUX1               0x806000           0x100
+  HMCRAMC0         0x20000000          0x8000
+  HPB0             0x40000000         0x10000
+  HPB1             0x41000000         0x10000
+  HPB2             0x42000000         0x10000
+  PPB              0xe0000000        0x100000
+  SCS              0xe000e000          0x1000
+  PERIPHERALS      0x40000000      0x20000000
+
+fuses                0x800000         0x10000
+
+OTP4_WORD_2 (0b11111111111111111111111000000000 <-> 0xfffffe00):
+   DFLL48M_FINE_CAL 0x200
+
+OTP4_WORD_1 (0b10000001111101001010101001011100 <-> 0x81f4aa5c):
+   DFLL48M_COARSE_CAL 0x20
+   USB_TRIM      0x3
+   USB_TRANSP    0x1d
+   USB_TRANSN    0x5
+   OSC32K_CAL    0x29
+   ADC_BIASCAL   0x3
+   ADC_LINEARITY_1 0x4
+
+OTP4_WORD_0 (0b01000000000000000100000000000111 <-> 0x40004007):
+   ADC_LINEARITY_0 0x8
+
+TEMP_LOG_WORD_1 (0b11101001111110110011001111111100 <-> 0xe9fb33fc):
+   HOT_ADC_VAL   0xe9f
+   ROOM_ADC_VAL  0xb33
+   HOT_INT1V_VAL 0xfc
+
+TEMP_LOG_WORD_0 (0b00000010100101111100000000011110 <-> 0x0297c01e):
+   ROOM_INT1V_VAL 0x2
+   HOT_TEMP_VAL_DEC 0x9
+   HOT_TEMP_VAL_INT 0x7c
+   ROOM_TEMP_VAL_DEC 0x0
+   ROOM_TEMP_VAL_INT 0x1e
+
+USER_WORD_1 (0b11111111111111111111110101011101 <-> 0xfffffd5d):
+   NVMCTRL_REGION_LOCKS 0xffff
+   BOD33_HYST    1
+   WDT_WEN       0
+   WDT_EWOFFSET  0xb
+   WDT_WINDOW_1  0x5
+
+USER_WORD_0 (0b11011000111000001110000011111111 <-> 0xd8e0e0ff):
+   WDT_WINDOW_0  1
+   WDT_PER       0xb
+   WDT_ALWAYSON  0
+   WDT_ENABLE    0
+   BOD33_ACTION  0x1
+   BOD33_EN      1
+   BOD33USERLEVEL 0x20
+   NVMCTRL_EEPROM_SIZE 0x7

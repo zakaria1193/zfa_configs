@@ -1,0 +1,18 @@
+# udev rules for netatmo devices using usb/tty/hid interfaces
+
+# Installation:
+# - Copy this file to /etc/udev/rules.d/
+# - Run the command:
+#       udevadm control --reload && udevadm trigger
+
+ACTION!="add|change", GOTO="netatmo_rules_end"
+SUBSYSTEM!="usb|tty|hidraw|hiddev|usb-serial|usb_device|usbmisc", GOTO="netatmo_rules_end"
+
+# Products
+ATTRS{idVendor}=="25da", TAG+="uaccess", TAG+="udev-acl"
+SUBSYSTEM=="hiddev", ATTRS{idVendor}=="25da", MODE="0660"
+
+# Development tools
+ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", TAG+="uaccess", TAG+="udev-acl"
+
+LABEL="netatmo_rules_end"
