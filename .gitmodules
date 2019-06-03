@@ -14,5 +14,5 @@
 	path = i3/i3blocks/i3blocks-contrib
 	url = https://github.com/vivien/i3blocks-contrib
 [submodule "i3blocks-contrib"]
-	path = i3blocks-contrib
+	path = i3/i3blocks/i3blocks-contrib
 	url = https://github.com/vivien/i3blocks-contrib

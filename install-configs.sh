@@ -26,7 +26,7 @@ function pull_zsh_config()
 
 function install_zsh()
 {
-  sudo apt-get install zsh
+  sudo apt-get install zsh -y
   # set zsh as default shell
   echo "setting zshs default shell"
   chsh -s /bin/zsh
@@ -48,6 +48,11 @@ function pull_i3_config()
   $I3_CONFIGS/compile-i3-configs.sh
   mkdir $HOME/.config/i3
   symbolic-link 'config' $I3_CONFIGS "$HOME/.config/i3"
+  #remove i3 config if in home folder
+  if [[ -f "$HOME/.i3/config" ]]; then
+    mv $HOME/.i3/config $HOME/.i3/config_deleted_$(date +%Y%M%d%H%m%S)
+  fi
+
   mkdir $HOME/.config/i3blocks
   symbolic-link 'config' $I3BLOCKS_CONFIG "$HOME/.config/i3blocks"
 }
@@ -55,7 +60,8 @@ function pull_i3_config()
 function install_i3()
 {
   sudo apt remove dunst
-  sudo apt install i3
+  sudo apt install i3 -y
+  sudo apt install i3blocks -y
 
 }
 
