@@ -78,6 +78,8 @@ plugins_completions=(
 plugins_tools=(
   extract
   web-search
+  sprunge  # uploads piped content to sprung.us
+  copyfile # copies file into clipboard
 )
 
 plugins=(
