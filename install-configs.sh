@@ -3,6 +3,7 @@
 ZFA_CONFIGS="$HOME/my_repos/zfa_configs"
 SHELL_CONFIGS="$ZFA_CONFIGS/shell"
 I3_CONFIGS="$ZFA_CONFIGS/i3"
+I3BLOCKS_CONFIG="$I3_CONFIGS/i3blocks"
 
 function symbolic-link()
 {
@@ -28,20 +29,27 @@ function install_zsh()
   sudo apt-get install zsh
   # set zsh as default shell
   echo "setting zshs default shell"
-  chsh -s /usr/bin/zsh
+  chsh -s /bin/zsh
+  echo ">>> Logout and login to your ubuntu session"
+}
+
+function install_shell_tools()
+{
   echo "installing fonts"
   $ZFA_CONFIGS/shell/oh-my-zsh/.oh-my-zsh/fonts/install.sh
   echo "installing fuzzy seach"
   $ZFA_CONFIGS/tools/fzf/install
   echo "find how to install bat"
-  echo ">>> Logout and login to your ubuntu session"
 }
 
 # i3 config
 function pull_i3_config()
 {
   $I3_CONFIGS/compile-i3-configs.sh
+  mkdir $HOME/.config/i3
   symbolic-link 'config' $I3_CONFIGS "$HOME/.config/i3"
+  mkdir $HOME/.config/i3blocks
+  symbolic-link 'config' $I3BLOCKS_CONFIG "$HOME/.config/i3blocks"
 }
 
 function install_i3()
@@ -54,9 +62,9 @@ function install_i3()
 function main()
 {
   # install_zsh
-  pull_zsh_config
   # install_i3
-  # pull_i3_config
+  pull_zsh_config
+  pull_i3_config
 }
 
 main $@
