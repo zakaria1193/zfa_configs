@@ -47,6 +47,7 @@ export_dir_to_path_recursively "$ZFA_CONFIGS/scripts/"
 ## scripts when needed as shell vars (for i3)
 LOCK_SCRIPT="$ZFA_CONFIGS/scripts/lock.sh"
 WALLPAPER_SCRIPT="$ZFA_CONFIGS/scripts/wallpaper.sh"
+I3BLOCKS_SCRIPTS_DIR="$ZFA_CONFIGS/i3/i3blocks/i3blocks-contrib"
 
 ## paths in zfa configs
 ZFA_SCRIPTS="$HOME/my_repos/zfa_scripts"

@@ -15,7 +15,7 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 
 bar {
   # status_command i3status
-  status_command i3blocks
+  status_command i3blocks SCRIPT_DIR=$I3BLOCKS_SCRIPTS_DIR
   colors {
     # separator          #268bd2
     # background         #002b36
