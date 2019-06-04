@@ -10,7 +10,7 @@ function symbolic-link()
   local file_=$1
   local from=$2
   local to=$3
-  rm $to/$file_ -r
+  rm $to/$file_ -r -f
   ln -s $from/$file_ $to
   echo "symbolic link of $file from $from/$file_ to $to/$file_"
 }
@@ -19,6 +19,7 @@ function symbolic-link()
 
 function pull_zsh_config()
 {
+  printf ">> Pulling zsh config from repo to system \n"
   echo "SHELL_CONFIGS=$SHELL_CONFIGS" > $HOME/.zshrc_paths
   symbolic-link '.zshrc'     $SHELL_CONFIGS           $HOME
   symbolic-link '.oh-my-zsh' $SHELL_CONFIGS/oh-my-zsh $HOME
@@ -45,15 +46,16 @@ function install_shell_tools()
 # i3 config
 function pull_i3_config()
 {
+  printf "\n>> Pulling i3 config from repo to system \n"
   $I3_CONFIGS/compile-i3-configs.sh
-  mkdir $HOME/.config/i3
+  mkdir -p $HOME/.config/i3
   symbolic-link 'config' $I3_CONFIGS "$HOME/.config/i3"
   #remove i3 config if in home folder
   if [[ -f "$HOME/.i3/config" ]]; then
     mv $HOME/.i3/config $HOME/.i3/config_deleted_$(date +%Y%M%d%H%m%S)
   fi
 
-  mkdir $HOME/.config/i3blocks
+  mkdir -p $HOME/.config/i3blocks
   symbolic-link 'config' $I3BLOCKS_CONFIG "$HOME/.config/i3blocks"
 }
 
@@ -68,6 +70,7 @@ function install_i3()
 function main()
 {
   # install_zsh
+  # install_shell_tools
   # install_i3
   pull_zsh_config
   pull_i3_config

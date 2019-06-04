@@ -1,12 +1,14 @@
-function refresh_configs
+function reload_configs
 {
   #clear env vars and everything else
   cd $HOME
+  install-configs.sh
   exec zsh
   # FIXME go back to old directory
 }
 
 alias c="clear"
+alias r="reload_configs"
 
 alias make_path_arm="PATH=$PATH:$FIRMWARE_BITCLOUD/toolchain/arm-none-eabi/bin make"
 alias make_preproc='CFLAGS=-E make'
