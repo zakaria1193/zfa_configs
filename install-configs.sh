@@ -64,6 +64,7 @@ function install_i3()
   sudo apt remove dunst
   sudo apt install i3 -y
   sudo apt install i3blocks -y
+  sudo apt install rofi -y
 
 }
 
