@@ -43,6 +43,20 @@ signal=once
 #STEP=5%
 
 
+# CPU usage
+#
+# The script may be called with -w and -c switches to specify thresholds,
+# see the script for details.
+# [cpu_usage]
+# label=CPU
+# interval=10
+# min_width=CPU 100.00%
+#separator=false
+
+[load_average]
+label=LOAD 
+interval=10
+
 
 # Memory usage
 #
@@ -86,20 +100,6 @@ interval=10
 # #INTERFACE=eth0
 # interval=5
 
-# CPU usage
-#
-# The script may be called with -w and -c switches to specify thresholds,
-# see the script for details.
-# [cpu_usage]
-# label=CPU
-# interval=10
-# min_width=CPU 100.00%
-#separator=false
-
-[load_average]
-label=LOAD 
-interval=10
-
 # Battery indicator
 #
 # The battery instance defaults to 0.
@@ -107,11 +107,6 @@ interval=10
 label=⚡ 
 interval=10
 
-# Date Time
-#
-[time]
-command=date '+%Y-%m-%d %H:%M:%S'
-interval=5
 
 # Generic media player support
 #
@@ -137,6 +132,14 @@ interval=5
 # label=TEMP
 # interval=10
 
+# backlight
+[keyindicator]
+label=Backlight 
+command=cat /sys/class/backlight/intel_backlight/brightness
+markup=pango
+interval=once
+signal=11
+
 # Key indicators
 [keyindicator]
 KEY=CAPS
@@ -149,6 +152,13 @@ KEY=NUM
 markup=pango
 interval=once
 signal=11
+
+
+# Date Time
+#
+[time]
+command=date '+%Y-%m-%d %H:%M:%S'
+interval=5
 
 [weather]
 command=curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo

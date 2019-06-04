@@ -15,7 +15,7 @@
 	url = https://github.com/vivien/i3blocks-contrib
 [submodule "i3blocks-contrib"]
 	path = i3/i3blocks/i3blocks-contrib
-	url = https://github.com/vivien/i3blocks-contrib
+	url = https://github.com/zakaria1193/i3blocks-contrib.git
 [submodule "i3/i3blocks/i3blocks"]
 	path = i3/i3blocks/i3blocks
 	url = https://github.com/vivien/i3blocks
