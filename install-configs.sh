@@ -3,6 +3,7 @@
 ZFA_CONFIGS="$HOME/my_repos/zfa_configs"
 SHELL_CONFIGS="$ZFA_CONFIGS/shell"
 I3_CONFIGS="$ZFA_CONFIGS/i3"
+I3BLOCKS_REPO="$ZFA_CONFIGS/i3/i3blocks/i3blocks"
 I3BLOCKS_CONFIG="$I3_CONFIGS/i3blocks"
 
 function symbolic-link()
@@ -63,9 +64,15 @@ function install_i3()
 {
   sudo apt remove dunst
   sudo apt install i3 -y
-  sudo apt install i3blocks -y
   sudo apt install rofi -y
 
+  echo 'installing i3 blocks from submodule repo'
+  cd $I3BLOCKS_REPO
+  ./autogen.sh
+  ./configure
+  make
+  sudo make install
+  cd -
 }
 
 function main()

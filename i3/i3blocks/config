@@ -63,10 +63,10 @@ interval=30
 # The directory defaults to $HOME if the instance is not specified.
 # The script may be called with a optional argument to set the alert
 # (defaults to 10 for 10%).
-[disk]
-label=HOME
-#DIR=/mnt/data
-interval=30
+# [disk]
+# label=HOME
+# DIR=/mnt/data
+# interval=30
 
 # Network interface monitoring
 #
@@ -141,20 +141,20 @@ interval=5
 # interval=10
 
 # Key indicators
-#
-# Add the following bindings to i3 config file:
-#
-# bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
-# bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
-# [keyindicator]
-# # KEY=CAPS
-# # markup=pango
-# # interval=once
-# signal=11
+[keyindicator]
+command=KEY=CAPS $SCRIPT_DIR/keyindicator/keyindicator
 
-#[keyindicator]
-#KEY=NUM
-#markup=pango
-#interval=once
-#signal=11
+markup=pango
+interval=once
+signal=11
 
+[keyindicator]
+command=KEY=NUM $SCRIPT_DIR/keyindicator/keyindicator
+markup=pango
+interval=once
+signal=11
+
+# [weather]
+# command=curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo
+# interval=3600
+# color=#A4C2F4
