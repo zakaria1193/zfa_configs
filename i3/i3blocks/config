@@ -79,7 +79,7 @@ interval=10
 separator=false
 
 [wifi]
-#INTERFACE=wlp3s0
+INTERFACE=wlo1
 label=wifi:
 interval=10
 separator=false
@@ -142,19 +142,18 @@ interval=5
 
 # Key indicators
 [keyindicator]
-command=KEY=CAPS $SCRIPT_DIR/keyindicator/keyindicator
-
+KEY=CAP
 markup=pango
 interval=once
 signal=11
 
 [keyindicator]
-command=KEY=NUM $SCRIPT_DIR/keyindicator/keyindicator
+KEY=NUM
 markup=pango
 interval=once
 signal=11
 
-# [weather]
-# command=curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo
-# interval=3600
-# color=#A4C2F4
+[weather]
+command=curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo
+interval=3600
+color=#A4C2F4
