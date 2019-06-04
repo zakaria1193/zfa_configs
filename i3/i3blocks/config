@@ -38,9 +38,10 @@ markup=none
 [volume]
 #label=♪
 label=VOL
-interval=once
-signal=10
+interval=1
+signal=once
 #STEP=5%
+
 
 
 # Memory usage
@@ -119,10 +120,10 @@ interval=5
 #
 # This displays "ARTIST - SONG" if a music is playing.
 # Supported players are: spotify, vlc, audacious, xmms2, mplayer, and others.
-#[mediaplayer]
-#instance=spotify
-#interval=5
-#signal=10
+# [mediaplayer]
+# instance=spotify
+# interval=5
+# signal=10
 
 # OpenVPN support
 #
@@ -135,9 +136,9 @@ interval=5
 # Support multiple chips, though lm-sensors.
 # The script may be called with -w and -c switches to specify thresholds,
 # see the script for details.
-#[temperature]
-#label=TEMP
-#interval=10
+# [temperature]
+# label=TEMP
+# interval=10
 
 # Key indicators
 #
@@ -145,11 +146,11 @@ interval=5
 #
 # bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
 # bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
-#[keyindicator]
-#KEY=CAPS
-#markup=pango
-#interval=once
-#signal=11
+# [keyindicator]
+# # KEY=CAPS
+# # markup=pango
+# # interval=once
+# signal=11
 
 #[keyindicator]
 #KEY=NUM
