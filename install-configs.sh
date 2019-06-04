@@ -42,6 +42,8 @@ function install_shell_tools()
   echo "installing fuzzy seach"
   $ZFA_CONFIGS/tools/fzf/install
   echo "find how to install bat"
+  echo "install monitor backlight control (will work after reboot)"
+  symbolic-link 20-intel.conf $I3_CONFIGS/backlight_intel_hp /usr/share/X11/xorg.conf.d
 }
 
 # i3 config
