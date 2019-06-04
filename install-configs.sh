@@ -64,7 +64,8 @@ function install_i3()
 {
   sudo apt remove dunst
   sudo apt install i3 -y
-  sudo apt install rofi -y
+  sudo apt install rofi -y # launcher
+  sudo apt install acpi -y # battery reader
 
   echo 'installing i3 blocks from submodule repo'
   cd $I3BLOCKS_REPO

@@ -37,7 +37,7 @@ markup=none
 
 [volume]
 #label=♪
-label=VOL
+label=VOL 
 interval=1
 signal=once
 #STEP=5%
@@ -48,12 +48,12 @@ signal=once
 #
 # The type defaults to "mem" if the instance is not specified.
 [memory]
-label=MEM
+label=RAM 
 separator=false
 interval=30
 
 [memory]
-label=SWAP
+label=SWAP 
 instance=swap
 separator=false
 interval=30
@@ -63,10 +63,10 @@ interval=30
 # The directory defaults to $HOME if the instance is not specified.
 # The script may be called with a optional argument to set the alert
 # (defaults to 10 for 10%).
-# [disk]
-# label=HOME
+[disk]
+# label=HOME 
 # DIR=/mnt/data
-# interval=30
+interval=30
 
 # Network interface monitoring
 #
@@ -76,39 +76,36 @@ interval=30
 #IFACE=wlan0
 color=#00FF00
 interval=10
-separator=false
 
 [wifi]
 INTERFACE=wlo1
-label=wifi:
+# label=wifi:
 interval=10
-separator=false
 
-[bandwidth]
-#INTERFACE=eth0
-interval=5
+# [bandwidth]
+# #INTERFACE=eth0
+# interval=5
 
 # CPU usage
 #
 # The script may be called with -w and -c switches to specify thresholds,
 # see the script for details.
-[cpu_usage]
-label=CPU
-interval=10
-min_width=CPU 100.00%
+# [cpu_usage]
+# label=CPU
+# interval=10
+# min_width=CPU 100.00%
 #separator=false
 
 [load_average]
-label=LOAD
+label=LOAD 
 interval=10
 
 # Battery indicator
 #
 # The battery instance defaults to 0.
 [battery]
-label=BAT
-#label=⚡
-interval=30
+label=⚡ 
+interval=10
 
 # Date Time
 #
@@ -142,7 +139,7 @@ interval=5
 
 # Key indicators
 [keyindicator]
-KEY=CAP
+KEY=CAPS
 markup=pango
 interval=once
 signal=11
