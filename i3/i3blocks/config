@@ -57,6 +57,13 @@ signal=once
 label=LOAD 
 interval=10
 
+# Temperature
+#
+# Support multiple chips, though lm-sensors.
+# The script may be called with -w and -c switches to specify thresholds,
+# see the script for details.
+[temperature]
+interval=10
 
 # Memory usage
 #
@@ -123,23 +130,6 @@ interval=10
 #[openvpn]
 #interval=20
 
-# Temperature
-#
-# Support multiple chips, though lm-sensors.
-# The script may be called with -w and -c switches to specify thresholds,
-# see the script for details.
-# [temperature]
-# label=TEMP
-# interval=10
-
-# backlight
-[keyindicator]
-label=Backlight 
-command=cat /sys/class/backlight/intel_backlight/brightness
-markup=pango
-interval=once
-signal=11
-
 # Key indicators
 [keyindicator]
 KEY=CAPS
@@ -153,7 +143,6 @@ markup=pango
 interval=once
 signal=11
 
-
 # Date Time
 #
 [time]
@@ -164,3 +153,4 @@ interval=5
 command=curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo
 interval=3600
 color=#A4C2F4
+

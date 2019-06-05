@@ -42,8 +42,11 @@ function install_shell_tools()
   echo "installing fuzzy seach"
   $ZFA_CONFIGS/tools/fzf/install
   echo "find how to install bat"
-  echo "install monitor backlight control (will work after reboot)"
-  symbolic-link 20-intel.conf $I3_CONFIGS/backlight_intel_hp /usr/share/X11/xorg.conf.d
+
+  if [[ $HOST -eq 'zfadli-HP-Notebook' ]]; then
+    echo "install monitor backlight control (will work after reboot)"
+    symbolic-link 20-intel.conf $I3_CONFIGS/backlight_intel_hp /usr/share/X11/xorg.conf.d
+  fi
 }
 
 # i3 config
@@ -68,6 +71,7 @@ function install_i3()
   sudo apt install i3 -y
   sudo apt install rofi -y # launcher
   sudo apt install acpi -y # battery reader
+  sudo apt install lm-sensors -y # temperature reader
 
   echo 'installing i3 blocks from submodule repo'
   cd $I3BLOCKS_REPO
