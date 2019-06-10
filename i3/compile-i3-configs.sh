@@ -27,11 +27,11 @@ common/common_default_apps_i3
 )
 
 # given host name choose config (fall back to a default config)
-if [[ $HOST -eq 'zfadli-HP-Notebook' ]]; then
-  echo 'generating i3 config for home'
+if [[ $HOST == 'zfadli-HP-Notebook' ]]; then
+  echo -e "generating i3 config for home (host: $HOST)"
   list=${home_list[@]}
 else
-  echo 'generating i3 config for work (host: $HOST)'
+  echo -e "generating i3 config for work (host: $HOST)"
   list=${work_list[@]}
 fi
 
