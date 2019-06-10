@@ -76,10 +76,11 @@ plugins_completions=(
 )
 
 plugins_tools=(
-  extract
-  web-search
-  sprunge  # uploads piped content to sprung.us
+  extract # extract $any_archive_file
+  web-search # use it as google $something
+  sprunge  # uploads piped content to sprung.us and gives you link
   copyfile # copies file into clipboard
+  gitignore # generates git ignore file (usage:  gi list, gi python >> .gitignore)
 )
 
 plugins=(
