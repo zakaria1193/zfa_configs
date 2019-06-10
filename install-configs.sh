@@ -74,6 +74,7 @@ function install_i3()
   sudo apt install lm-sensors -y # temperature reader
 
   echo 'installing i3 blocks from submodule repo'
+  sudo apt remove i3-blocks
   cd $I3BLOCKS_REPO
   ./autogen.sh
   ./configure
