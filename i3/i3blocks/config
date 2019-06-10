@@ -35,12 +35,12 @@ markup=none
 # The second parameter overrides the mixer selection
 # See the script for details.
 
-[volume]
-#label=♪
-label=VOL 
-interval=1
-signal=once
-#STEP=5%
+# [volume]
+# #label=♪
+# label=VOL 
+# interval=1
+# signal=once
+# #STEP=5%
 
 
 # CPU usage
@@ -143,14 +143,21 @@ markup=pango
 interval=once
 signal=11
 
+[weather]
+command=curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo
+interval=3600
+color=#A4C2F4
+
 # Date Time
 #
 [time]
 command=date '+%Y-%m-%d %H:%M:%S'
 interval=5
 
-[weather]
-command=curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo
-interval=3600
-color=#A4C2F4
-
+[volume-pulseaudio]
+interval=1
+signal=10
+LONG_FORMAT="${SYMB}${VOL}%"
+SHORT_FORMAT="${SYMB}${VOL}%"
+DEFAULT_COLOR="#f3f4f5"
+USE_ALSA_NAME=1

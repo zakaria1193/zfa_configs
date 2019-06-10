@@ -28,7 +28,6 @@ bindsym $mod+l exec $LOCK_SCRIPT
 
 # exec at startup
 
-exec --no-startup-id volumeicon
 # exec --no-startup-id blueman-applet
 exec_always --no-startup-id nm-appplet
 exec_always yes | $WALLPAPER_SCRIPT
