@@ -41,7 +41,8 @@ function install_shell_tools()
   $ZFA_CONFIGS/shell/oh-my-zsh/.oh-my-zsh/fonts/install.sh
   echo "installing fuzzy seach"
   $ZFA_CONFIGS/tools/fzf/install
-  echo "find how to install bat"
+  echo "installing bat"
+  sudo dpkg -i $ZFA_CONFIG/tools/bat_0.11.0_i386.deb
 
   if [[ $HOST -eq 'zfadli-HP-Notebook' ]]; then
     echo "install monitor backlight control (will work after reboot)"
