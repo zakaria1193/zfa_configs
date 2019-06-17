@@ -70,3 +70,7 @@ DUMP_SCRIPT="$ZFA_SCRIPTS/tmp/dump_script.jlink"
 # NLX files with different last letter (NLF NLT NLP ..) without gateway
 NLX_products=NL[FLMPTVCD]
 
+
+
+#TO DELETE
+export_dir_to_path "$HOME/my_scripts"
