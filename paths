@@ -29,8 +29,8 @@ PYTHON_EMBEDDED_TOOLS="$CORE/python-emb-tools"
 export_dir_to_path_recursively "$PYTHON_EMBEDDED_TOOLS/bin"
 export_dir_to_path_recursively "$PYTHON_EMBEDDED_TOOLS/lib"
 FIRMWARE_BINARY="$LEGRAND/firmware-binary"
-# NLX_PATH_IN_FIRMWARE="Applications/Netatmo/Magellan"
-NLX_PATH_IN_FIRMWARE="Applications/Netatmo"
+NLX_PATH_IN_FIRMWARE="Applications/Netatmo/Magellan"
+# NLX_PATH_IN_FIRMWARE="Applications/Netatmo"
 ## tools that are not exported
 GDB_BTC_PY="$FIRMWARE_BITCLOUD/toolchain/arm-none-eabi/bin/arm-none-eabi-gdb-py"
 
@@ -50,7 +50,7 @@ LOCK_SCRIPT="$ZFA_CONFIGS/scripts/lock.sh"
 WALLPAPER_SCRIPT="$ZFA_CONFIGS/scripts/wallpaper.sh"
 COMPILE_I3_CONFIG_SCRIPT="$ZFA_CONFIGS/i3/compile-i3-configs.sh"
 I3BLOCKS_SCRIPTS_DIR="$ZFA_CONFIGS/i3/i3blocks/i3blocks-contrib"
-# export_dir_to_path_recursively "$I3BLOCKS_SCRIPTS_DIR" # simply for debug from terminal
+export_dir_to_path_recursively "$I3BLOCKS_SCRIPTS_DIR"
 
 ## paths in zfa configs
 ZFA_SCRIPTS="$HOME/my_repos/zfa_scripts"
@@ -62,7 +62,7 @@ ANDROID_TOOLS="$MY_REPOS/android-tools"
 # export_dir_to_path_recursively "$ANDROID_TOOLS"
 
 ## misc
-GDB_SCRIPT="$ZFA_SCRIPTS/tmp/gdb_script.gdb"
+GDB_SCRIPT="$ZFA_CONFIGS/scripts/gdb_scripts/main.gdb"
 FLASH_SCRIPT="$ZFA_SCRIPTS/tmp/flash_script.jlink"
 RESET_SCRIPT="$ZFA_SCRIPTS/tmp/reset_script.jlink"
 DUMP_SCRIPT="$ZFA_SCRIPTS/tmp/dump_script.jlink"
