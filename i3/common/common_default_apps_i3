@@ -37,3 +37,6 @@ exec_always compton # compton is needed for transparency
 # always remove dunst (keep default notifications)
 # for always remove appmenu-qt5 (keep barre de menu)
 # no desktop with nautilus: gsettings set org.gnome.desktop.background show-desktop-icons false
+
+#enable numpad
+exec setxkbmap -option keypad:pointerkeys
