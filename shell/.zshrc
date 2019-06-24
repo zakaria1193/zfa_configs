@@ -70,8 +70,6 @@ plugins_completions=(
   docker
   python
   pip
-  git
-  gitfast
   common-aliases
 )
 

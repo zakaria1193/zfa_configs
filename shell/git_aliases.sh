@@ -49,7 +49,7 @@ alias gsub='git submodule update --init --recursive'
 alias gsubfix='git submodule deinit -f --all && gsub'
 alias gpullm='gmaster && git pull --prune && gsub && git checkout -'
 alias gpull='git pull --prune origin $(gcurrentbranch)' #pulls current branch
-alias gf='git fetch --prune'
+alias gf='git fetch --prune --all --tags'
 
 alias grebi='git rebase -i --keep-empty'
 alias grebim='git rebase -i --keep-empty master && gsub'
