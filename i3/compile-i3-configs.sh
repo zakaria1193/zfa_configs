@@ -26,12 +26,14 @@ home/home_specific_settings
 common/common_default_apps_i3
 )
 
+device_name=$(cat /sys/devices/virtual/dmi/id/product_name)
+
 # given host name choose config (fall back to a default config)
-if [[ $HOST == 'zfadli-HP-Notebook' ]]; then
-  echo -e "generating i3 config for home (host: $HOST)"
+if [[ $device_name == 'HP Notebook' ]]; then
+  echo -e "generating i3 config for home (device_name: $device_name)"
   list=${home_list[@]}
 else
-  echo -e "generating i3 config for work (host: $HOST)"
+  echo -e "generating i3 config for work (device_name: $device_name)"
   list=${work_list[@]}
 fi
 
