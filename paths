@@ -45,6 +45,12 @@ export_dir_to_path "$ZFA_CONFIGS/"
 export_dir_to_path "$ZFA_CONFIGS/i3/"
 export_dir_to_path "$ZFA_CONFIGS/tools/"
 export_dir_to_path_recursively "$ZFA_CONFIGS/scripts/"
+
+SHELL_CONFIGS="$ZFA_CONFIGS/shell"
+I3_CONFIGS="$ZFA_CONFIGS/i3"
+I3BLOCKS_CONFIG="$I3_CONFIGS/i3blocks"
+I3BLOCKS_REPO="$I3BLOCKS_CONFIG/i3blocks"
+
 ## scripts needed as shell vars (for i3)
 LOCK_SCRIPT="$ZFA_CONFIGS/scripts/lock.sh"
 WALLPAPER_SCRIPT="$ZFA_CONFIGS/scripts/wallpaper.sh"

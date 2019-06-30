@@ -1,10 +1,6 @@
 #!/bin/bash
 
-ZFA_CONFIGS="$HOME/my_repos/zfa_configs"
-SHELL_CONFIGS="$ZFA_CONFIGS/shell"
-I3_CONFIGS="$ZFA_CONFIGS/i3"
-I3BLOCKS_REPO="$ZFA_CONFIGS/i3/i3blocks/i3blocks"
-I3BLOCKS_CONFIG="$I3_CONFIGS/i3blocks"
+source paths
 
 function symbolic-link()
 {
