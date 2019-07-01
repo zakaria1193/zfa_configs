@@ -83,3 +83,5 @@ alias gskipci='git commit --allow-empty -m "[skip ci]"'
 grep_blame() {
     git grep -n $1 | while IFS=: read i j k; do git blame -L $j,$j $i | grep $1; done;
 }
+
+alias gbfg="java -jar $ZFA_CONFIGS_TOOLS/bfg-1.13.0.jar"

@@ -3,12 +3,6 @@
 # change dir to the script's containing dir
 cd "$(dirname "$(realpath "$0")")";
 
-PATHS='../paths'
-
-files_to_source=(
-  $PATHS
-  *.sh
-)
 
 function source_file
 {
@@ -19,6 +13,16 @@ function source_file
     echo "$file wasn't found (current_dir = $(pwd))"
   fi
 }
+
+PATHS='../paths'
+
+source_file $PATHS
+
+files_to_source=(
+  *.sh
+  $WORK_SHELL/*_aliases.sh
+)
+
 
 function main()
 {

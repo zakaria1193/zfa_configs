@@ -1,0 +1,13 @@
+# udev rules for st devices using usb/tty/hid interfaces
+
+# Installation:
+# - Copy this file to /etc/udev/rules.d/
+# - Run the command:
+#       udevadm control --reload && udevadm trigger
+
+ACTION!="add|change", GOTO="st_rules_end"
+SUBSYSTEM!="usb|tty|hidraw|hiddev|usb-serial|usb_device", GOTO="st_rules_end"
+
+ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", TAG+="uaccess", TAG+="udev-acl"
+
+LABEL="st_rules_end"

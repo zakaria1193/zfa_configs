@@ -1,0 +1,16 @@
+# udev rules for atmel devices using usb/tty/hid interfaces
+
+# Installation:
+# - Copy this file to /etc/udev/rules.d/
+# - Run the command:
+#       udevadm control --reload && udevadm trigger
+
+ACTION!="add|change", GOTO="atmel_rules_end"
+SUBSYSTEM!="usb|tty|hidraw|hiddev|usb-serial|usb_device", GOTO="atmel_rules_end"
+
+ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2111", TAG+="uaccess", TAG+="udev-acl"
+ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2111", TAG+="uaccess", TAG+="udev-acl"
+
+ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="214a", TAG+="uaccess", TAG+="udev-acl"
+
+LABEL="atmel_rules_end"

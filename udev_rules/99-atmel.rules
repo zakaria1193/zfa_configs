@@ -1,0 +1,4 @@
+KERNEL=="hidraw*", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2111", MODE="0666"
+KERNEL=="hiddev*", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2111", MODE="0666"
+KERNEL=="hidraw*", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2169", MODE="0666"
+KERNEL=="hiddev*", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2169", MODE="0666"
