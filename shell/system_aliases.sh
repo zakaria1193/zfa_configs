@@ -26,7 +26,8 @@ function find_and_replace()
 {
   from=$1
   to=$2
-  grep -l $from | xargs sed -i s/$from/$to/g
+  echo $1 $2
+  ag -l $from | xargs sed -i s/$from/$to/g
 }
 
 alias swap="sudo swapoff /dev/sda5 && sync && sleep 5 && sudo swapon /dev/sda5"
