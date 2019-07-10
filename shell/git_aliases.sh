@@ -87,4 +87,13 @@ grep_blame() {
     git grep -n $1 | while IFS=: read i j k; do git blame -L $j,$j $i | grep $1; done;
 }
 
+
 alias gbfg="java -jar $ZFA_CONFIGS_TOOLS/bfg-1.13.0.jar"
+git_purge_file_from_repo()
+{
+  target_file=$1
+  target_repo=$2
+  git rm --cached $target_file
+  gbfg --delete-files $target_file $target_repo
+  git push -f origin
+}
