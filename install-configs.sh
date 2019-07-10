@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source paths
+device_name=$(cat /sys/devices/virtual/dmi/id/product_name)
 
 function symbolic-link()
 {
@@ -40,7 +41,8 @@ function install_shell_tools()
   echo "installing bat"
   sudo dpkg -i $ZFA_CONFIG/tools/bat_0.11.0_i386.deb
 
-  if [[ $HOST -eq 'zfadli-HP-Notebook' ]]; then
+  # given host name choose config (fall back to a default config)
+  if [[ $device_name == 'HP Notebook' ]]; then
     echo "install monitor backlight control (will work after reboot)"
     symbolic-link 20-intel.conf $I3_CONFIGS/backlight_intel_hp /usr/share/X11/xorg.conf.d
   fi
