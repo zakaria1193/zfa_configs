@@ -82,6 +82,22 @@ function install_i3()
   cd -
 }
 
+function pull_git_config
+{
+  # refresh all my repos to gita
+  find $MY_REPOS -name ".git" -type d | sed s/'\/.git'// > /tmp/gita_repos
+  find $REPOS -name ".git" -type d | sed s/'\/.git'// >> /tmp/gita_repos
+  BLACKLIST=(
+    openocd,
+    )
+  for x in $BLACKLIST; do
+    sed -i "/$x/d" /tmp/gita_repos
+  done
+  cat /tmp/gita_repos | xargs gita add
+  echo gita ls:
+  gita ls
+}
+
 function main()
 {
   # install_zsh

@@ -97,3 +97,5 @@ git_purge_file_from_repo()
   gbfg --delete-files $target_file $target_repo
   git push -f origin
 }
+
+alias super-fetch='gita super fetch'
