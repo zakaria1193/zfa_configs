@@ -85,7 +85,4 @@ DUMP_SCRIPT="$ZFA_SCRIPTS/tmp/dump_script.jlink"
 # NLX files with different last letter (NLF NLT NLP ..) without gateway
 NLX_products=NL[FLMPTVCD]
 
-GIT_REPOS=(
-  ZFA_CONFIGS
-  ZFA_WORK_TOOLS
-  )
+# Todo ADD TESTING of all paths
