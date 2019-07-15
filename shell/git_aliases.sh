@@ -95,7 +95,8 @@ git_purge_file_from_repo()
   target_repo=$2
   git rm --cached $target_file
   gbfg --delete-files $target_file $target_repo
-  git push -f origin
+  git reflog expire --expire=now --all && git gc --prune=now --aggressive
+  echo -e "\e[31;47m you might need to 'git push -f origin' \e[m" && git push -f origin
 }
 
 alias super-fetch='gita super fetch'
