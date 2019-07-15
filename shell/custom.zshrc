@@ -21,6 +21,7 @@ source_file $PATHS
 files_to_source=(
   *.sh
   $WORK_SHELL/*_aliases.sh
+  $WORK_SHELL/api_helpers.sh
 )
 
 
