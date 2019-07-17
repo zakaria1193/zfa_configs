@@ -93,10 +93,24 @@ git_purge_file_from_repo()
 {
   target_file=$1
   target_repo=$2
-  git rm --cached $target_file
-  gbfg --delete-files $target_file $target_repo
+  git rm --cached $target_file -rf
+  return
+  if [ -d "$target_file" ]; then
+    gbfg --no-blob-protection --delete-folders $target_file $target_repo
+  else
+    gbfg --no-blob-protection --delete-files   $target_file $target_repo
+  fi
   git reflog expire --expire=now --all && git gc --prune=now --aggressive
-  echo -e "\e[31;47m you might need to 'git push -f origin' \e[m" && git push -f origin
+  echo -e "\e[31;47m you might need to 'git push -f origin' \e[m"
+}
+git_purge_folder_from_repo()
+{
+  target_file=$1
+  target_repo=$2
+  git rm --cached $target_file
+
+  git reflog expire --expire=now --all && git gc --prune=now --aggressive
+  echo -e "\e[31;47m you might need to 'git push -f origin' \e[m"
 }
 
 alias super-fetch='gita super fetch'
