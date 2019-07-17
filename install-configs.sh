@@ -82,6 +82,14 @@ function install_i3()
   cd -
 }
 
+function install_git
+{
+  # install gita
+  pip3 install gita --user
+
+  # add git rebase editor installer
+}
+
 function pull_git_config
 {
   # refresh all my repos to gita
@@ -93,7 +101,7 @@ function pull_git_config
   for x in $BLACKLIST; do
     sed -i "/$x/d" /tmp/gita_repos
   done
-  cat /tmp/gita_repos | xargs gita add
+  cat /tmp/gita_repos | xargs python3 -m gita add
   echo gita ls:
   gita ls
 }
