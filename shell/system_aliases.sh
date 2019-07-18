@@ -2,7 +2,7 @@ function reload_configs
 {
   #clear env vars and everything else
   cd $HOME
-  install-configs.sh
+  installers.sh
   exec zsh
 
   # FIXME go back to old directory

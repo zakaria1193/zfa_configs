@@ -26,7 +26,7 @@ function install_zsh()
   echo ">>> Logout and login to your ubuntu session"
 }
 
-function install_shell_tools()
+function install_tools()
 {
   echo "installing fonts"
   $ZFA_CONFIGS/shell/oh-my-zsh/.oh-my-zsh/fonts/install.sh
