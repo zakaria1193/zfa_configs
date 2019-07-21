@@ -86,6 +86,8 @@ export_dir_to_path_recursively "$ANDROID_TOOLS"
 
 ## my projects
 PROJECTS="$MY_REPOS/projects"
+# export_dir_to_path_recursively $PROJECTS
+
 
 
 # NLX files with different last letter (NLF NLT NLP ..) without gateway

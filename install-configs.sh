@@ -116,8 +116,10 @@ function install_sublime
 
 function pull_sublime_config
 {
+  printf "\n>> Pulling sublime from repo to system \n"
   symbolic-link 'User' $SUBLIME_CONFIG_REPO "$HOME/.config/sublime-text-3/Packages"
 }
+
 
 function main()
 {
@@ -128,7 +130,7 @@ function main()
     install_sublime
   fi
 
-  pull_zsh_config
+  # pull_zsh_config
   pull_i3_config
   pull_git_config
   pull_sublime_config
