@@ -77,9 +77,6 @@ alias gsh='git show'
 
 alias gd='git diff'
 alias gds='git diff --staged'
-#       Bitcloud - branches Specific      #
-alias grelay='git checkout zfa/relay_driver && gsub'
-alias gnlfs='git checkout zfa/drop-sync-stab && gsub'
 
 alias gskipci='git commit --allow-empty -m "[skip ci]"'
 
