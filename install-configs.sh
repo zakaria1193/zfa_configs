@@ -13,16 +13,10 @@ function symbolic-link()
   echo "symbolic link of $file from $from/$file_ to $to/$file_"
 }
 
-# ZSH config
 
-function pull_zsh_config()
-{
-  printf ">> Pulling zsh config from repo to system \n"
-  echo "SHELL_CONFIGS=$SHELL_CONFIGS" > $HOME/.zshrc_paths
-  symbolic-link '.zshrc'     $SHELL_CONFIGS           $HOME
-  symbolic-link '.oh-my-zsh' $SHELL_CONFIGS/oh-my-zsh $HOME
-}
-
+################################################################################
+                                # zsh and shell tools #
+################################################################################
 function install_zsh()
 {
   sudo apt-get install zsh -y
@@ -48,22 +42,17 @@ function install_shell_tools()
   fi
 }
 
-# i3 config
-function pull_i3_config()
+function pull_zsh_config()
 {
-  printf "\n>> Pulling i3 config from repo to system \n"
-  $I3_CONFIGS/compile-i3-configs.sh
-  mkdir -p $HOME/.config/i3
-  symbolic-link 'config' $I3_CONFIGS "$HOME/.config/i3"
-  #remove i3 config if in home folder
-  if [[ -f "$HOME/.i3/config" ]]; then
-    mv $HOME/.i3/config $HOME/.i3/config_deleted_$(date +%Y%M%d%H%m%S)
-  fi
-
-  mkdir -p $HOME/.config/i3blocks
-  symbolic-link 'config' $I3BLOCKS_CONFIG "$HOME/.config/i3blocks"
+  printf ">> Pulling zsh config from repo to system \n"
+  echo "SHELL_CONFIGS=$SHELL_CONFIGS" > $HOME/.zshrc_paths
+  symbolic-link '.zshrc'     $SHELL_CONFIGS           $HOME
+  symbolic-link '.oh-my-zsh' $SHELL_CONFIGS/oh-my-zsh $HOME
 }
 
+################################################################################
+                                # i3 config #
+################################################################################
 function install_i3()
 {
   sudo apt remove dunst
@@ -81,11 +70,29 @@ function install_i3()
   sudo make install
   cd -
 }
+function pull_i3_config()
+{
+  printf "\n>> Pulling i3 config from repo to system \n"
+  $I3_CONFIGS/compile-i3-configs.sh
+  mkdir -p $HOME/.config/i3
+  symbolic-link 'config' $I3_CONFIGS "$HOME/.config/i3"
+  #remove i3 config if in home folder
+  if [[ -f "$HOME/.i3/config" ]]; then
+    mv $HOME/.i3/config $HOME/.i3/config_deleted_$(date +%Y%M%d%H%m%S)
+  fi
 
+  mkdir -p $HOME/.config/i3blocks
+  symbolic-link 'config' $I3BLOCKS_CONFIG "$HOME/.config/i3blocks"
+}
+
+################################################################################
+                                # git tools #
+################################################################################
 function install_git
 {
-  # install gita
+  #gita for command line
   pip3 install gita --user
+  pip3 install gitpython --user
 
   # add git rebase editor installer
 }
