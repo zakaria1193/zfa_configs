@@ -130,7 +130,7 @@ function main()
     install_sublime
   fi
 
-  # pull_zsh_config
+  pull_zsh_config
   pull_i3_config
   pull_git_config
   pull_sublime_config

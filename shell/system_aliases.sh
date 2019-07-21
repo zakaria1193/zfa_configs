@@ -4,7 +4,10 @@ function reload_configs
   cd $HOME
   install-configs.sh
   exec zsh
+
   # FIXME go back to old directory
+  # or find a better way to do this by editing PATH in ~/profile? instead of zshrc
+  # and run simply a light script for zshrc that doesn't source paths but only reloades aliases
 }
 
 alias c="clear"

@@ -2,12 +2,15 @@
 
 function export_dir_to_path()
 {
+  # echo exporting $1
   export PATH=$PATH:$1
 }
 
 function export_dir_to_path_recursively()
 {
-  export PATH=$PATH$( find $1 -type d -printf ":%p" )
+  to_export=$( find $1 -type d -printf ":%p" )
+  # echo exporting_recuresively $to_export
+  export PATH=$PATH$to_export
 }
 
 # work directories
@@ -86,7 +89,7 @@ export_dir_to_path_recursively "$ANDROID_TOOLS"
 
 ## my projects
 PROJECTS="$MY_REPOS/projects"
-# export_dir_to_path_recursively $PROJECTS
+export_dir_to_path_recursively $PROJECTS
 
 
 

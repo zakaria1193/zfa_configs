@@ -41,6 +41,7 @@ rm common/i3_config_env_vars
 while IFS='=' read -r -d '' n v; do
     line=$(printf "set $%s '%s'" "$n" "$v" | tr '\n' ' ')
     echo $line >> common/i3_config_env_vars
+    # echo $line
 done < <(env -0)
 
 
