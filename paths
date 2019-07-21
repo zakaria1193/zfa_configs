@@ -58,6 +58,20 @@ I3BLOCKS_REPO="$I3BLOCKS_CONFIG/i3blocks" # submodule
 I3BLOCKS_SCRIPTS_DIR="$I3BLOCKS_CONFIG/i3blocks-contrib" # submodule
 export_dir_to_path_recursively "$I3BLOCKS_SCRIPTS_DIR"
 
+## paths in zfa sublime config
+SUBLIME_CONFIG_REPO="$MY_REPOS/zfa_sublime_text"
+
+## paths in zfa work tools
+ZFA_WORK_TOOLS="$MY_REPOS/zfa_work_tools"
+export_dir_to_path $ZFA_WORK_TOOLS
+GDB_SCRIPT="$ZFA_WORK_TOOLS/gdb_scripts/main.gdb"
+WORK_SHELL="$ZFA_WORK_TOOLS/shell"
+
+FLASH_SCRIPT="$ZFA_WORK_TOOLS/tmp/flash_script.jlink"
+RESET_SCRIPT="$ZFA_WORK_TOOLS/tmp/reset_script.jlink"
+DUMP_SCRIPT="$ZFA_WORK_TOOLS/tmp/dump_script.jlink"
+
+
 ## scripts needed as shell vars (for i3)
 LOCK_SCRIPT="$ZFA_CONFIGS/scripts/lock.sh"
 WALLPAPER_SCRIPT="$ZFA_CONFIGS/scripts/wallpaper.sh"
@@ -70,17 +84,9 @@ FORKS="$COOL_PUBLIC_REPOS/forks"
 ANDROID_TOOLS="$COOL_PUBLIC_REPOS/android"
 export_dir_to_path_recursively "$ANDROID_TOOLS"
 
+## my projects
 PROJECTS="$MY_REPOS/projects"
 
-ZFA_WORK_TOOLS="$MY_REPOS/zfa_work_tools"
-export_dir_to_path $ZFA_WORK_TOOLS
-GDB_SCRIPT="$ZFA_WORK_TOOLS/gdb_scripts/main.gdb"
-WORK_SHELL="$ZFA_WORK_TOOLS/shell"
-
-## misc
-FLASH_SCRIPT="$ZFA_SCRIPTS/tmp/flash_script.jlink"
-RESET_SCRIPT="$ZFA_SCRIPTS/tmp/reset_script.jlink"
-DUMP_SCRIPT="$ZFA_SCRIPTS/tmp/dump_script.jlink"
 
 # NLX files with different last letter (NLF NLT NLP ..) without gateway
 NLX_products=NL[FLMPTVCD]

@@ -90,36 +90,48 @@ function pull_i3_config()
 ################################################################################
 function install_git
 {
-  #gita for command line
+  # gita for command line
   pip3 install gita --user
   pip3 install gitpython --user
 
-  # add git rebase editor installer
+  # TODO add git rebase editor installer
 }
 
 function pull_git_config
 {
-  # refresh all my repos to gita
-  find $MY_REPOS -name ".git" -type d | sed s/'\/.git'// > /tmp/gita_repos
-  find $REPOS -name ".git" -type d | sed s/'\/.git'// >> /tmp/gita_repos
-  BLACKLIST=(
-    openocd,
-    )
-  for x in $BLACKLIST; do
-    sed -i "/$x/d" /tmp/gita_repos
-  done
-  cat /tmp/gita_repos | xargs python3 -m gita add
-  echo gita ls:
-  gita ls
+  # TODO copy config from work and symlink to it
+  return
+}
+################################################################################
+                                # sumblime text #
+################################################################################
+function install_sublime
+{
+  echo 'Installing sublime text'
+  wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+  echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+  sudo apt-get update
+  sudo apt-get install sublime-text
+}
+
+function pull_sublime_config
+{
+  symbolic-link 'User' $SUBLIME_CONFIG_REPO "$HOME/.config/sublime-text-3/Packages"
 }
 
 function main()
 {
-  # install_zsh
-  # install_shell_tools
-  # install_i3
+  if [[ $1 == '-i' ]]; then
+    install_zsh
+    install_shell_tools
+    install_i3
+    install_sublime
+  fi
+
   pull_zsh_config
   pull_i3_config
+  pull_git_config
+  pull_sublime_config
 }
 
 main $@
