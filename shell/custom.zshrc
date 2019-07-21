@@ -16,6 +16,10 @@ function source_file
 
 PATHS='../paths'
 
+PATHS=$(readlink -m $PATHS)
+
+export PATHS="$PATHS"
+
 source_file $PATHS
 
 files_to_source=(
