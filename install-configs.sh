@@ -95,6 +95,7 @@ function install_git
   pip3 install gitpython --user
 
   # TODO add git rebase editor installer
+  # TODO add git autofixup installer
 }
 
 function pull_git_config
