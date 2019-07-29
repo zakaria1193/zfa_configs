@@ -37,7 +37,7 @@ alias swap="sudo swapoff /dev/sda5 && sync && sleep 5 && sudo swapon /dev/sda5"
 
 alias update="sudo apt update && sudo apt upgrade -y"
 
-alias list="typeset -f find_and_replace" # show function implems
+alias list="typeset -f" # show function implems
 
 alias path='echo -e ${PATH//:/\\n}'
 alias path_len="expr length $PATH"

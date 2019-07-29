@@ -91,7 +91,6 @@ git_purge_file_from_repo()
   target_file=$1
   target_repo=$2
   git rm --cached $target_file -rf
-  return
   if [ -d "$target_file" ]; then
     gbfg --no-blob-protection --delete-folders $target_file $target_repo
   else
