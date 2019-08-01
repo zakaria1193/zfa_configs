@@ -80,10 +80,10 @@ alias gds='git diff --staged'
 
 alias gskipci='git commit --allow-empty -m "[skip ci]"'
 
-grep_blame() {
+grep_blame()
+{
     git grep -n $1 | while IFS=: read i j k; do git blame -L $j,$j $i | grep $1; done;
 }
-
 
 alias gbfg="java -jar $ZFA_CONFIGS_TOOLS/bfg-1.13.0.jar"
 git_purge_file_from_repo()
@@ -102,3 +102,5 @@ git_purge_file_from_repo()
 
 alias gita='python3 -m gita'
 alias gita-super-fetch='gita super fetch'
+
+alias tig='tig --submodule=diff'
