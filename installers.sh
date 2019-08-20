@@ -91,11 +91,15 @@ function pull_i3_config()
 function install_git
 {
   # gita for command line
-  pip3 install gita --user
-  pip3 install gitpython --user
+  # pip3 install gita --user
+  # pip3 install gitpython --user
+
+  # mgitstatus and gitbreather are the chosen solution for now
 
   # TODO add git rebase editor installer
   # TODO add git autofixup installer
+
+  return
 }
 
 function pull_git_config

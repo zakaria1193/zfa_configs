@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 function export_dir_to_path()
@@ -89,9 +90,12 @@ export_dir_to_path_recursively "$ANDROID_TOOLS"
 
 ## my projects
 PROJECTS="$MY_REPOS/projects"
+
 GIT_BREATHER="$PROJECTS/git-breather"
 export_dir_to_path $GIT_BREATHER
 
+PREF_RENDEZ_VOUS="$PROJECTS/rendezvous-pref"
+export_dir_to_path $PREF_RENDEZ_VOUS
 
 
 # NLX files with different last letter (NLF NLT NLP ..) without gateway
