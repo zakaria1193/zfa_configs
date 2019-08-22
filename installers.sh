@@ -51,6 +51,23 @@ function pull_zsh_config()
 }
 
 ################################################################################
+                                # udev rules #
+################################################################################
+function install_udev_rules
+{
+  echo "copying user udev rules"
+  sudo ln -sf $UDEV_RULES/*.rules /etc/udev/rules.d
+
+
+  # find and replace for paths
+  from='\$\$MY_UDEV_NOTIFY_SH\$\$'
+  to='$MY_UDEV_NOTIFY_SH'
+  sudo sed -i s/$from/$to/g /etc/udev/rules.d/my-udev-notify.rules
+
+  # RELOAD UDEV RULES
+  sudo udevadm control --reload-rules && sudo udevadm trigger
+}
+################################################################################
                                 # i3 config #
 ################################################################################
 function install_i3()
@@ -134,6 +151,7 @@ function main()
     install_i3
     install_sublime
   fi
+  install_udev_rules
 
   pull_zsh_config
   pull_i3_config
