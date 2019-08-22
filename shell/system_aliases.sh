@@ -41,3 +41,26 @@ alias list="typeset -f" # show function implems
 
 alias path='echo -e ${PATH//:/\\n}'
 alias path_len="expr length $PATH"
+
+
+function xautolock_sleep_deamon
+{
+  time=$1
+  xautolock -disable
+  sleep $time
+  xautolock -enable
+}
+
+function xautolock_sleep
+{
+  time=$1
+  if [ -z $time ]
+  then
+    echo 'need sleep time in minutes as arg'
+    return
+  export -f xautolock_sleep_deamon
+  fi
+  nohup bash -c xautolock_sleep_deamon $time &
+}
+
+alias settings='env XDG_CURRENT_DESKTOP=GNOME gnome-control-center'
