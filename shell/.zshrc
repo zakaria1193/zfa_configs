@@ -63,6 +63,7 @@ plugins=(
   zsh-syntax-highlighting
   colored-man-pages
   z
+  wd
 )
 
 plugins_completions=(
