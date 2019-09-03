@@ -58,9 +58,11 @@ function xautolock_sleep
   then
     echo 'need sleep time in minutes as arg'
     return
-  export -f xautolock_sleep_deamon
+  bash export -f xautolock_sleep_deamon
   fi
   nohup bash -c xautolock_sleep_deamon $time &
 }
 
 alias settings='env XDG_CURRENT_DESKTOP=GNOME gnome-control-center'
+
+alias volumeset='pactl set-sink-volume 0' # then your value for 110% do 'volumeset 110'
