@@ -66,3 +66,7 @@ function xautolock_sleep
 alias settings='env XDG_CURRENT_DESKTOP=GNOME gnome-control-center'
 
 alias volumeset='pactl set-sink-volume 0' # then your value for 110% do 'volumeset 110'
+
+alias rotate_left="xrandr --output DP-2 --rotate left"
+alias rotate_normal="xrandr --output DP-2 --rotate normal"
+
