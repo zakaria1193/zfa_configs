@@ -90,7 +90,7 @@ plugins=(
 
 # User configuration
 
-# enable OH MY ZSH (plugin manage) 
+# enable OH MY ZSH (plugin manage)
 source $ZSH/oh-my-zsh.sh
 
 # export MANPATH="/usr/local/man:$MANPATH"

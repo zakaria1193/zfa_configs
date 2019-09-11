@@ -113,7 +113,10 @@ function install_git
 
   # mgitstatus and gitbreather are the chosen solution for now
 
-  # TODO add git rebase editor installer
+  # rebase editor installer
+  curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash - # installs NPM
+  sudo npm install -g rebase-editor
+  git config --global sequence.editor "rebase-editor -s -c -m '> ' --no-alternate-screen"
   # TODO add git autofixup installer
 
   return
@@ -150,8 +153,8 @@ function main()
     install_shell_tools
     install_i3
     install_sublime
+    install_udev_rules
   fi
-  install_udev_rules
 
   pull_zsh_config
   pull_i3_config

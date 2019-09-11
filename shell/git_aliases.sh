@@ -30,6 +30,7 @@ alias grl="git reflog --format='%C(auto)%h %<|(20)%gd %C(blue)%cr%C(reset) %gs (
 alias gamend='git commit --amend --no-edit'
 alias gamendmsg='git commit --amend'
 alias gcom='git commit -m'
+alias gcomdate="git commit -m \'Updated: \`date +\'%Y-%m-%d %H:%M:%S\'\`"
 alias g-hard='git reset --hard'
 alias g-hard^='git reset --hard HEAD^'
 alias gfixup='git commit --fixup'

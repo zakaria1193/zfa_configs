@@ -13,9 +13,11 @@ function reload_configs
 alias c="clear"
 alias r="reload_configs"
 
+alias cd="cd -P"
+
 alias make_path_arm="PATH=$PATH:$FIRMWARE_BITCLOUD/toolchain/arm-none-eabi/bin make"
 alias make_preproc='CFLAGS=-E make'
-MAKE_ERROR_PIPE="2>&1 | ccze -A | ag '\.c' | grep "error" | grep -v "pragma""
+MAKE_ERROR_PIPE='2>&1 | ccze -A | ag '\.c' | grep "error" | grep -v "pragma"'
 
 alias t="task"
 alias ta="task add"
