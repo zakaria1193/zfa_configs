@@ -14,6 +14,8 @@ function export_dir_to_path_recursively()
   export PATH=$PATH$to_export
 }
 
+set -a
+
 # work directories
 REPOS="$HOME/repos"
 EMBEDDED="$REPOS/embedded"
@@ -22,27 +24,31 @@ CORE="$REPOS/core"
 LEGRAND="$REPOS/legrand"
 FIRMWARE_BINARY="$LEGRAND/firmware-binary"
 
-FIRMWARE_BITCLOUD="$EMBEDDED/firmware-bitcloud"
-export_dir_to_path "$FIRMWARE_BITCLOUD/support/scripts"
-export_dir_to_path "$FIRMWARE_BITCLOUD/Applications/Netatmo/modules/netatmo-log"
-export_dir_to_path "$FIRMWARE_BITCLOUD/toolchain/arm-none-eabi/bin"
-NLX_PATH_IN_FIRMWARE="Applications/Netatmo/Magellan"
-# NLX_PATH_IN_FIRMWARE="Applications/Netatmo"
-## tools that are not exported
-GDB_BTC_PY="$FIRMWARE_BITCLOUD/toolchain/arm-none-eabi/bin/arm-none-eabi-gdb-py"
-
 FIRMWARE="$EMBEDDED/firmware"
 MAGELLAN="$EMBEDDED/magellan"
 export_dir_to_path "$MAGELLAN/apps/user/nlg-stm32/model_parser"
+
+FIRMWARE_BITCLOUD="$MAGELLAN/modules/firmware-bitcloud"
+export_dir_to_path "$FIRMWARE_BITCLOUD/support/scripts"
+export_dir_to_path "$FIRMWARE_BITCLOUD/Applications/Netatmo/modules/netatmo-log"
+export_dir_to_path "$FIRMWARE_BITCLOUD/toolchain/arm-none-eabi/bin"
+## tools that are not exported
+GDB_BTC_PY="$FIRMWARE_BITCLOUD/toolchain/arm-none-eabi/bin/arm-none-eabi-gdb-py"
+
+OPENOCD_INSTALL="$EMBEDDED/firmware-bitcloud/doc/openocd-build/install"
+OPENOCD_SCRIPTS="$OPENOCD_INSTALL/usr/share/openocd/scripts"
 
 MAGELLAN_RELEASES="$EMBEDDED/magellan-releases"
 
 EMBEDDED_TOOLS="$CORE/embedded-tools"
 export_dir_to_path_recursively "$EMBEDDED_TOOLS/Linux"
+export_dir_to_path_recursively "$EMBEDDED_TOOLS/generic-embedded/stm32_dfu"
 
 PYTHON_EMBEDDED_TOOLS="$CORE/python-emb-tools"
 export_dir_to_path_recursively "$PYTHON_EMBEDDED_TOOLS/bin"
 export_dir_to_path_recursively "$PYTHON_EMBEDDED_TOOLS/lib"
+
+
 
 ## my directories
 MY_REPOS="$HOME/my_repos"
@@ -99,6 +105,8 @@ export_dir_to_path $GIT_BREATHER
 PREF_RENDEZ_VOUS="$PROJECTS/rendezvous-pref"
 export_dir_to_path $PREF_RENDEZ_VOUS
 
+
+set +a
 
 # NLX files with different last letter (NLF NLT NLP ..) without gateway
 NLX_products=NL[FLMPTVCD]

@@ -22,7 +22,6 @@ MAKE_ERROR_PIPE='2>&1 | ccze -A | ag '\.c' | grep "error" | grep -v "pragma"'
 alias t="task"
 alias ta="task add"
 
-alias wl="watch lsusb"
 alias opacity="gconftool-2 --set /apps/gnome-terminal/profiles/Default/background_darkness --type=float" # then a float btw 0 and 1
 
 alias cat="bat"
@@ -71,4 +70,15 @@ alias volumeset='pactl set-sink-volume 0' # then your value for 110% do 'volumes
 
 alias rotate_left="xrandr --output DP-2 --rotate left"
 alias rotate_normal="xrandr --output DP-2 --rotate normal"
+
+
+
+kill_port(){
+    if [ $# -eq 0 ]; then
+        echo "No arguments provided"
+        echo "provide port of service you wish to kill"
+        exit 1
+    fi
+    fuser -k $1/tcp
+}
 
