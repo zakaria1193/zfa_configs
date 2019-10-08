@@ -146,6 +146,22 @@ function pull_sublime_config
 }
 
 
+################################################################################
+                                # sumblime text #
+################################################################################
+function install_vim
+{
+  # TODO
+  true
+}
+
+function pull_vim_config
+{
+  printf "\n>> Pulling sublime from repo to system \n"
+  symbolic-link '.vimrc' $VIM_CONFIGS "$HOME/"
+}
+
+
 function main()
 {
   if [[ $1 == '-i' ]]; then
@@ -160,6 +176,7 @@ function main()
   pull_i3_config
   pull_git_config
   pull_sublime_config
+  pull_vim_config
 }
 
 main $@
