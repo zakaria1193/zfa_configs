@@ -158,7 +158,7 @@ function install_vim
 function pull_vim_config
 {
   printf "\n>> Pulling sublime from repo to system \n"
-  symbolic-link '.vimrc' $VIM_CONFIGS "$HOME/"
+  symbolic-link '.vimrc' $VIM_CONFIGS "$HOME"
 }
 
 
