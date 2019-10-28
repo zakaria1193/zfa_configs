@@ -122,10 +122,10 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Enable my scripts and aliases
-if [ -f .zshrc_paths ]; then
-  source .zshrc_paths
+if [ -f $HOME/.zshrc_paths ]; then
+  source $HOME/.zshrc_paths
 else
-  echo ".zshrc_paths wasn't found in $HOME (cur dir = $(pwd)), run install_configs.sh to get it"
+  echo ".zshrc_paths wasn't found in $HOME (run install_configs.sh to get it"
 fi
 
 if [ -f $SHELL_CONFIGS/custom.zshrc ]; then

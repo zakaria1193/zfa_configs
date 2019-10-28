@@ -1,13 +1,8 @@
 function reload_configs
 {
   #clear env vars and everything else
-  cd $HOME
   installers.sh
-  exec zsh
-
-  # FIXME go back to old directory
-  # or find a better way to do this by editing PATH in ~/profile? instead of zshrc
-  # and run simply a light script for zshrc that doesn't source paths but only reloades aliases
+  source $HOME/.zshrc
 }
 
 alias c="clear"

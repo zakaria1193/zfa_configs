@@ -39,4 +39,4 @@ for F in ${files_to_source[@]} ; do
   source_file $F
 done
 
-cd $HOME
+cd - > /dev/null
