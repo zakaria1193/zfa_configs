@@ -14,6 +14,7 @@ alias c="clear"
 alias r="reload_configs"
 
 alias cd="cd -P"
+alias ls="exa"
 
 alias make_path_arm="PATH=$PATH:$FIRMWARE_BITCLOUD/toolchain/arm-none-eabi/bin make"
 alias make_preproc='CFLAGS=-E make'
