@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source paths
+source ./paths
 device_name=$(cat /sys/devices/virtual/dmi/id/product_name)
 
 function symbolic-link()

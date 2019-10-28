@@ -1,11 +1,7 @@
 #!/usr/bin/env bash
 
-# change dir to the script's containing dir
-cd "$(dirname "$(realpath "$0")")";
-
-# reset path variable
-export PATH=''
-source /etc/environment
+# find the current script's containing dir
+SCRIPT_DIR="$(dirname "$(realpath "$0")")";
 
 function source_file
 {
@@ -14,29 +10,33 @@ function source_file
     # echo custom zshrc sourcing: $1
     source $file
   else
-    echo "$file wasn't found (current_dir = $(pwd))"
+    echo "$file wasn't found (SCRIPT_DIR = $(SCRIPT_DIR))"
   fi
 }
 
-PATHS='../paths'
+# path variable operations
+# ">> PATH variable"
+export PATH=''
+source /etc/environment
+# "  resetting PATH to /etc/environment"
 
-PATHS=$(readlink -m $PATHS)
+PATHS_FILE="${SCRIPT_DIR}/../paths"
+PATHS_FILE=$(readlink -m $PATHS_FILE)
+# ">> PATHS_FILE $PATHS_FILE"
+# export Paths for scripts that wanna go through the PATHS_FILE themselves
+# "  PATHS file location exported as PATHS = $PATHS_FILE"
+export PATHS="$PATHS_FILE"
+# "  sourcing PATHS_FILE file to fill and export custom env var and fill PATH variable"
+source_file $PATHS_FILE
 
-# export Paths for scripts that wanna go through the Paths file themselves
-export PATHS="$PATHS"
-
-# call the paths so my custom scripts files are in added into path (so can be called directly)
-source_file $PATHS
+# "TIP: run paths to see the PATH variable"
 
 # source other bash files for aliases and functions
 files_to_source=(
-  *_aliases.sh
+  $SCRIPT_DIR/*_aliases.sh
   $WORK_SHELL/*_aliases.sh
   $WORK_SHELL/api_helpers.sh
 )
-
 for F in ${files_to_source[@]} ; do
   source_file $F
 done
-
-cd - > /dev/null

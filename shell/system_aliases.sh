@@ -1,8 +1,14 @@
 function reload_configs
 {
   #clear env vars and everything else
+  echo "Running installers.sh..."
   installers.sh
+
+  echo ""
+  echo "Sourcing zshrc..."
   source $HOME/.zshrc
+
+  echo "Warning: PATH var is reset and refilled but environment vars may not be reset just refilled"
 }
 
 alias c="clear"
