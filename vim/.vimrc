@@ -168,3 +168,6 @@ Bundle 'gmist/vim-palette'
 " Finally the color scheme. Choose whichever you want from the list in the
 " link above (back up where we included the bundle of a ton of themes.)
 " colorscheme base16-monokai.vim
+
+" install fzf
+set rtp+=~/.fzf

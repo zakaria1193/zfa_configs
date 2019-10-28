@@ -39,7 +39,7 @@ HYPHEN_INSENSITIVE="true"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+# COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -67,11 +67,11 @@ plugins=(
 )
 
 plugins_completions=(
-  zsh-autosuggestions
   docker
   python
   pip
   common-aliases
+  zsh-autosuggestions
 )
 
 plugins_tools=(
@@ -102,7 +102,8 @@ source $ZSH/oh-my-zsh.sh
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='subl -w -n'
+  export EDITOR='vim'
+  # export EDITOR='subl -w -n'
 fi
 
 # Compilation flags

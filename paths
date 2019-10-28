@@ -18,6 +18,7 @@ set -a
 
 # work directories
 REPOS="$HOME/repos"
+# NETATMO_WORK_DIR=$REPOS
 EMBEDDED="$REPOS/embedded"
 CORE="$REPOS/core"
 
@@ -45,9 +46,8 @@ export_dir_to_path_recursively "$EMBEDDED_TOOLS/Linux"
 export_dir_to_path_recursively "$EMBEDDED_TOOLS/generic-embedded/stm32_dfu"
 
 PYTHON_EMBEDDED_TOOLS="$CORE/python-emb-tools"
-export_dir_to_path_recursively "$PYTHON_EMBEDDED_TOOLS/bin"
-export_dir_to_path_recursively "$PYTHON_EMBEDDED_TOOLS/lib"
-
+export_dir_to_path_recursively "$PYTHON_EMBEDDED_TOOLS/python/bin"
+export_dir_to_path_recursively "$PYTHON_EMBEDDED_TOOLS/python/lib"
 
 
 ## my directories

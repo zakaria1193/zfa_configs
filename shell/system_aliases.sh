@@ -81,4 +81,3 @@ kill_port(){
     fi
     fuser -k $1/tcp
 }
-
