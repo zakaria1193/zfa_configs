@@ -33,7 +33,9 @@ source_file $PATHS_FILE
 
 # source other bash files for aliases and functions
 files_to_source=(
-  $SCRIPT_DIR/*_aliases.sh
+  $SCRIPT_DIR/system_aliases.sh
+  $SCRIPT_DIR/git_aliases.sh
+  $SCRIPT_DIR/fzf_aliases.sh
   $WORK_SHELL/*_aliases.sh
   $WORK_SHELL/api_helpers.sh
 )
