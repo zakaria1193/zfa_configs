@@ -64,6 +64,7 @@ plugins=(
   colored-man-pages
   z
   wd
+  forgit
 )
 
 plugins_completions=(
@@ -156,7 +157,6 @@ export PAGER="less -F -X"
 __git_files () {
     _wanted files expl 'local files' _files
 }
-
 
 ############################### VIM INPUT ######################################r
 # # Activate vim mode.
