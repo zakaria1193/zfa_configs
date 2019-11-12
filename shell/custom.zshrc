@@ -36,6 +36,7 @@ files_to_source=(
   $SCRIPT_DIR/system_aliases.sh
   $SCRIPT_DIR/git_aliases.sh
   $SCRIPT_DIR/fzf_aliases.sh
+  $SCRIPT_DIR/remote_aliases.sh
   $WORK_SHELL/*_aliases.sh
   $WORK_SHELL/api_helpers.sh
 )
