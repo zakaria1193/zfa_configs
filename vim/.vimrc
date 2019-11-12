@@ -169,5 +169,61 @@ Bundle 'gmist/vim-palette'
 " link above (back up where we included the bundle of a ton of themes.)
 " colorscheme base16-monokai.vim
 
+
+" Fixes common backspace problems
+set backspace=indent,eol,start
+
+
+" Display options
+set showmode
+set showcmd
+
+
+
+" Highlight matching pairs of brackets. Use the '%' character to jump between them.
+set matchpairs+=<:>
+
+" Display different types of white spaces.
+set list
+set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
+
+" Show line numbers
+set number
+
+" Set status line display
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ [BUFFER=%n]\ %{strftime('%c')}
+
+" Encoding
+set encoding=utf-8
+
+" Highlight matching search patterns
+set hlsearch
+" Enable incremental search
+set incsearch
+
+" Store info from no more than 100 files at a time, 9999 lines of text, 100kb of data. Useful for copying large amounts of data between files.
+set viminfo='100,<9999,s100
+
+" Map the <Space> key to toggle a selected fold opened/closed.
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
+
+" Automatically save and load folds
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview"
+
+
+
+" Invisible characters
+set list
+set listchars=eol:¬,tab:··,trail:·,extends:>,precedes:<,space:·
+highlight SpecialKey ctermfg=238
+highlight NonText ctermfg=238
+" Line numbers
+highlight LineNr ctermfg=8
+highlight CursorLineNr ctermfg=7
+highlight CursorLine ctermbg=235 cterm=NONE
+
 " install fzf
 set rtp+=~/.fzf
+
