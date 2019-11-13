@@ -156,11 +156,17 @@ __git_files () {
     _wanted files expl 'local files' _files
 }
 
-
 ############################### VIM INPUT ######################################r
 # # Activate vim mode.
-#bindkey -v
+bindkey -v
 
 # Remove mode switching delay.
 #KEYTIMEOUT=1
+
+# needed to not break fzf buttons
+set -o vi
 ###############################################################################
+# run fzf if found
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
