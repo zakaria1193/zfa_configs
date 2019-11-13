@@ -65,6 +65,7 @@ plugins=(
   z
   wd
   forgit
+  navi # to fix
 )
 
 plugins_completions=(
@@ -157,6 +158,12 @@ export PAGER="less -F -X"
 __git_files () {
     _wanted files expl 'local files' _files
 }
+
+
+# KEY BINDINGS
+
+# ctrl del to erase prev word
+bindkey -M emacs '^[[3;5~' kill-word
 
 ############################### VIM INPUT ######################################r
 # # Activate vim mode.

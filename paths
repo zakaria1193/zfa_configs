@@ -20,7 +20,7 @@ set -a
 
 # work directories
 REPOS="$HOME/repos"
-# NETATMO_WORK_DIR=$REPOS
+NETATMO_WORK_DIR=$REPOS
 EMBEDDED="$REPOS/embedded"
 CORE="$REPOS/core"
 
@@ -79,7 +79,8 @@ SUBLIME_CONFIG_REPO="$MY_REPOS/zfa_sublime_text"
 ## paths in zfa work tools
 ZFA_WORK_TOOLS="$MY_REPOS/zfa_work_tools"
 export_dir_to_path $ZFA_WORK_TOOLS
-GDB_SCRIPT="$ZFA_WORK_TOOLS/gdb_scripts/main.gdb"
+# GDB_SCRIPT="$ZFA_WORK_TOOLS/gdb_scripts/main.gdb"
+GDB_SCRIPT="$HOME/.gdbinit"
 WORK_SHELL="$ZFA_WORK_TOOLS/shell"
 
 FLASH_SCRIPT="$ZFA_WORK_TOOLS/tmp/flash_script.jlink"

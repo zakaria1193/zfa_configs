@@ -177,6 +177,10 @@ function main()
   pull_git_config
   pull_sublime_config
   pull_vim_config
+
+  if [[ $1 == '-i' ]]; then
+    vim +PluginInstall +qall
+  fi
 }
 
 main $@

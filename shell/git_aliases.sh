@@ -105,3 +105,9 @@ alias gita='python3 -m gita'
 alias gita-super-fetch='gita super fetch'
 
 alias tig='tig --submodule=diff'
+
+function gbf
+{
+  git branch -f $1
+  git checkout $1
+}

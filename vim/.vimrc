@@ -74,6 +74,15 @@ Bundle 'groenewege/vim-less'
 " Coffee-script syntax.
 Bundle 'kchmck/vim-coffee-script'
 
+Bundle 'gmist/vim-palette'
+
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
 
 " We have to turn this stuff back on if we want all of our features.
 filetype plugin indent on " Filetype auto-detection
@@ -163,8 +172,6 @@ let g:ctrlp_max_height = 30
 
 
 " install vimrc
-Bundle 'gmist/vim-palette'
-
 " Finally the color scheme. Choose whichever you want from the list in the
 " link above (back up where we included the bundle of a ton of themes.)
 " colorscheme base16-monokai.vim
@@ -224,6 +231,17 @@ highlight LineNr ctermfg=8
 highlight CursorLineNr ctermfg=7
 highlight CursorLine ctermbg=235 cterm=NONE
 
-" install fzf
-set rtp+=~/.fzf
+
+" Enable CursorLine
+set cursorline
+
+" Default Colors for CursorLine
+highlight  CursorLine ctermbg=Blue ctermfg=None
+
+" Change Color when entering Insert Mode
+autocmd InsertEnter * highlight  CursorLine ctermbg=Green ctermfg=Red
+
+" Revert Color to default when leaving Insert Mode
+autocmd InsertLeave * highlight  CursorLine ctermbg=Blue ctermfg=None
+
 
