@@ -192,7 +192,6 @@ set matchpairs+=<:>
 
 " Display different types of white spaces.
 set list
-set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
 
 " Show line numbers
 set number
@@ -243,5 +242,3 @@ autocmd InsertEnter * highlight  CursorLine ctermbg=Green ctermfg=Red
 
 " Revert Color to default when leaving Insert Mode
 autocmd InsertLeave * highlight  CursorLine ctermbg=Blue ctermfg=None
-
-
