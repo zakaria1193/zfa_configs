@@ -183,4 +183,20 @@ function main()
   fi
 }
 
+function main_no_graphics()
+{
+  if [[ $1 == '-i' ]]; then
+    install_zsh
+    install_shell_tools
+  fi
+
+  pull_zsh_config
+  pull_git_config
+  pull_vim_config
+
+  if [[ $1 == '-i' ]]; then
+    vim +PluginInstall +qall
+  fi
+}
+
 main $@
