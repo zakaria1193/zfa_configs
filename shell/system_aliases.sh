@@ -46,24 +46,23 @@ alias path='echo -e ${PATH//:/\\n}'
 alias path_len="expr length $PATH"
 
 
-function xautolock_sleep_deamon
-{
-  time=$1
-  xautolock -disable
-  sleep $time
-  xautolock -enable
-}
 
 function xautolock_sleep
 {
-  time=$1
-  if [ -z $time ]
+  time_s=$1
+  if [ -z $time_s ]
   then
     echo 'need sleep time in minutes as arg'
     return
-  bash export -f xautolock_sleep_deamon
   fi
-  nohup bash -c xautolock_sleep_deamon $time &
+  time=$(($time_s*60))
+
+    command="
+    xautolock -disable;
+    sleep $time;
+    xautolock -enable;
+    "
+  nohup bash -x -c "$command" > .xautolog_sleep &
 }
 
 alias settings='env XDG_CURRENT_DESKTOP=GNOME gnome-control-center'
