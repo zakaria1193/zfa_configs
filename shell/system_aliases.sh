@@ -46,7 +46,7 @@ alias path='echo -e ${PATH//:/\\n}'
 alias path_len="expr length $PATH"
 
 
-
+alias xautolock='xautolock -time 10 -locker "systemctl suspend" &'
 function xautolock_sleep
 {
   time_s=$1
