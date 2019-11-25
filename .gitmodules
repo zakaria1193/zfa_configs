@@ -22,3 +22,6 @@
 [submodule "tools/fzf"]
 	path = tools/fzf
 	url = git@github.com:junegunn/fzf.git
+[submodule "shell/oh-my-zsh/.oh-my-zsh/custom/plugins/navi"]
+	path = shell/oh-my-zsh/.oh-my-zsh/custom/plugins/navi
+	url = https://github.com/denisidoro/navi
