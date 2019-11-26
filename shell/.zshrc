@@ -152,35 +152,49 @@ export PAGER="less -F -X"
 
 # GIT completion # make it faster # see this
 # https://stackoverflow.com/questions/9810327/zsh-auto-completion-for-git-takes-significant-amount-of-time-can-i-turn-it-off/9810485#9810485
-__git_files () {
-    _wanted files expl 'local files' _files
-}
+# __git_files () {
+#     _wanted files expl 'local files' _files
+# }
+
 
 ############################### VIM INPUT ######################################r
-# # Activate vim mode. (from https://dougblack.io/words/zsh-vi-mode.html)
-bindkey -v
 
-# Remove mode switching delay.
-KEYTIMEOUT=1
+function set_vim
+{
+    # Activate vim mode. (from https://dougblack.io/words/zsh-vi-mode.html)
+    bindkey -v
 
-# needed to not break fzf buttons
-set -o vi
+    # Remove mode switching delay.
+    KEYTIMEOUT=1
 
-# show vi mode
-# Updates editor information when the keymap changes.
-function zle-line-init zle-keymap-select {
-    VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]% %{$reset_color%}"
-    RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
-    zle reset-prompt
+    # needed to not break fzf buttons
+    set -o vi
+
+    # show vi mode
+    # Updates editor information when the keymap changes.
+    function zle-line-init zle-keymap-select {
+        VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]% %{$reset_color%}"
+        RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
+        zle reset-prompt
+    }
+
+    zle -N zle-line-init
+    zle -N zle-keymap-select
+
+    bindkey '^[[A' up-line-or-search
+    bindkey '^[[B' down-line-or-search
 }
-zle -N zle-line-init
-zle -N zle-keymap-select
 
-bindkey '^[[A' up-line-or-search
-bindkey '^[[B' down-line-or-search
+function setemacs
+{
+  bindkey -v
+  set -o emacs
+  bindkey '^H' backward-kill-word
+  bindkey '~' backward-kill-word
+  bindkey '^[[3;5~' kill-word
+}
+setemacs
 
 ###############################################################################
 # run fzf if found
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-

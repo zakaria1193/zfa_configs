@@ -151,14 +151,35 @@ function pull_sublime_config
 ################################################################################
 function install_vim
 {
-  # TODO
-  true
+  sudo apt install vim
+  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 }
 
 function pull_vim_config
 {
   printf "\n>> Pulling sublime from repo to system \n"
   symbolic-link '.vimrc' $VIM_CONFIGS "$HOME"
+}
+
+################################################################################
+                                # urxvt #
+################################################################################
+function install_urxvt
+{
+  # TODO
+  true
+  sudo update-alternatives --set x-terminal-emulator /usr/bin/urxvt
+
+  # prepare dir for plugins
+  mkdir ~/.urxvt/
+  mkdir ~/.urxvt/ext/
+}
+
+function pull_urxvt_config
+{
+  printf "\n>> Pulling urxvt from repo to system \n"
+  symbolic-link '.Xresources' $SHELL_CONFIGS "$HOME"
+  xrdb -merge ~/.Xresources
 }
 
 
@@ -170,6 +191,7 @@ function main()
     install_i3
     install_sublime
     install_udev_rules
+    install_urxvt
   fi
 
   pull_zsh_config
@@ -177,6 +199,7 @@ function main()
   pull_git_config
   pull_sublime_config
   pull_vim_config
+  pull_urxvt_config
 
   if [[ $1 == '-i' ]]; then
     vim +PluginInstall +qall
