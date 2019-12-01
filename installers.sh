@@ -166,8 +166,7 @@ function pull_vim_config
 ################################################################################
 function install_urxvt
 {
-  # TODO
-  true
+  apt-get install rxvt-unicode
   sudo update-alternatives --set x-terminal-emulator /usr/bin/urxvt
 
   # prepare dir for plugins
