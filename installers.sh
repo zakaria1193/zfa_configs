@@ -13,27 +13,49 @@ function symbolic-link()
   echo "symbolic link of $file from $from/$file_ to $to/$file_"
 }
 
+function is_installed()
+{
+  local program=$1
+  return $(command -v $program >/dev/null)
+}
+
 
 ################################################################################
                                 # zsh and shell tools #
 ################################################################################
 function install_zsh()
 {
+  if is_installed zsh; then
+    return
+  fi
+
   sudo apt-get install zsh -y
   # set zsh as default shell
   echo "setting zshs default shell"
   chsh -s /bin/zsh
   echo ">>> Logout and login to your ubuntu session"
+
+  echo "installing fonts"
+  $ZFA_CONFIGS/shell/oh-my-zsh/.oh-my-zsh/fonts/install.sh
 }
 
 function install_tools()
 {
-  echo "installing fonts"
-  $ZFA_CONFIGS/shell/oh-my-zsh/.oh-my-zsh/fonts/install.sh
-  echo "installing fuzzy seach"
-  $ZFA_CONFIGS/tools/fzf/install
-  echo "installing bat"
-  sudo dpkg -i $ZFA_CONFIG/tools/bat_0.11.0_i386.deb
+  if is_installed fzf; then
+    echo fzf installed
+  else
+    echo "installing fuzzy seach"
+    $ZFA_CONFIGS/tools/fzf/install
+  fi
+
+
+  if is_installed bat; then
+    echo bat installed
+  else
+    echo "installing bat"
+    sudo dpkg -i $ZFA_CONFIG/tools/bat_0.11.0_i386.deb
+  fi
+
 
   # given host name choose config (fall back to a default config)
   if [[ $device_name == 'HP Notebook' ]]; then
@@ -72,6 +94,11 @@ function install_udev_rules
 ################################################################################
 function install_i3()
 {
+  if is_installed i3; then
+    echo i3 instaleld installed
+    return
+  fi
+
   sudo apt remove dunst
   sudo apt install i3 -y
   sudo apt install rofi -y # launcher
@@ -132,6 +159,11 @@ function pull_git_config
 ################################################################################
 function install_sublime
 {
+  if is_installed subl; then
+    echo subl installed installed
+    return
+  fi
+
   echo 'Installing sublime text'
   wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
   echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
@@ -151,6 +183,11 @@ function pull_sublime_config
 ################################################################################
 function install_vim
 {
+  if is_installed vim; then
+    echo vim installed installed
+    return
+  fi
+
   sudo apt install vim
   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 }
@@ -166,6 +203,11 @@ function pull_vim_config
 ################################################################################
 function install_urxvt
 {
+  if is_installed urxvt; then
+    echo urxvt installed installed
+    return
+  fi
+
   apt-get install rxvt-unicode
   sudo update-alternatives --set x-terminal-emulator /usr/bin/urxvt
 
