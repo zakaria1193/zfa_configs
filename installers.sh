@@ -227,7 +227,7 @@ function pull_urxvt_config
 
 function install_general
 {
-  sudo apt install make scrot curl feh git libxml2-utils jq -y
+  sudo apt install make scrot curl feh git tig libxml2-utils jq -y
 }
 
 function install_apps
