@@ -95,7 +95,7 @@ function install_udev_rules
 function install_i3()
 {
   if is_installed i3; then
-    echo i3 instaleld installed
+    echo i3 installed
     return
   fi
 
@@ -223,13 +223,19 @@ function pull_urxvt_config
   xrdb -merge ~/.Xresources
 }
 
+function install_general
+{
+  sudo apt install curl feh git
+}
+
 
 function main()
 {
   if [[ $1 == '-i' ]]; then
+    intall_general
     install_zsh
     install_vim
-    install_shell_tools
+    install_tools
     install_i3
     install_sublime
     install_udev_rules
