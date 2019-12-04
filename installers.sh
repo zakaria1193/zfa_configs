@@ -16,7 +16,8 @@ function symbolic-link()
 function is_installed()
 {
   local program=$1
-  return $(command -v $program >/dev/null)
+  # return $(command -v $program >/dev/null)
+  return
 }
 
 
