@@ -100,7 +100,7 @@ function install_i3()
   #   return
   # fi
 
-  sudo apt remove dunst
+  sudo apt remove dunst -y
   sudo apt install i3 i3status -y
   sudo apt install rofi -y # launcher
   sudo apt install acpi -y # battery reader
@@ -109,6 +109,7 @@ function install_i3()
   echo 'installing i3 blocks from submodule repo'
   sudo apt remove i3-blocks
   cd $I3BLOCKS_REPO
+  sudo apt install autoreconf -y
   ./autogen.sh
   ./configure
   make
@@ -226,7 +227,7 @@ function pull_urxvt_config
 
 function install_general
 {
-  sudo apt install curl feh git libxml2-utils jq -y
+  sudo apt install make scrot curl feh git libxml2-utils jq -y
 }
 
 function install_apps
