@@ -229,6 +229,12 @@ function install_general
   sudo apt install curl feh git libxml2-utils jq -y
 }
 
+function install_apps
+{
+  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  sudo dpkg -i google-chrome-stable_current_amd64.deb
+}
+
 
 function main()
 {
@@ -241,6 +247,7 @@ function main()
     install_sublime
     install_udev_rules
     install_urxvt
+    install_apps
   fi
 
   pull_zsh_config
