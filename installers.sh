@@ -208,7 +208,7 @@ function install_urxvt
     return
   fi
 
-  apt-get install rxvt-unicode
+  sudo apt-get install rxvt-unicode
   sudo update-alternatives --set x-terminal-emulator /usr/bin/urxvt
 
   # prepare dir for plugins

@@ -29,6 +29,7 @@ FIRMWARE_BINARY="$LEGRAND/firmware-binary"
 
 FIRMWARE="$EMBEDDED/firmware"
 MAGELLAN="$EMBEDDED/magellan"
+M=$MAGELLAN
 export_dir_to_path "$MAGELLAN/apps/user/nlg-stm32/model_parser"
 
 FIRMWARE_BITCLOUD="$MAGELLAN/modules/firmware-bitcloud"
@@ -80,8 +81,8 @@ SUBLIME_CONFIG_REPO="$MY_REPOS/zfa_sublime_text"
 ## paths in zfa work tools
 ZFA_WORK_TOOLS="$MY_REPOS/zfa_work_tools"
 export_dir_to_path $ZFA_WORK_TOOLS
-# GDB_SCRIPT="$ZFA_WORK_TOOLS/gdb_scripts/main.gdb"
-GDB_SCRIPT="$HOME/.gdbinit"
+GDB_SCRIPT="$ZFA_WORK_TOOLS/gdb_scripts/main.gdb"
+#GDB_SCRIPT="$HOME/.gdbinit"
 WORK_SHELL="$ZFA_WORK_TOOLS/shell"
 
 FLASH_SCRIPT="$ZFA_WORK_TOOLS/tmp/flash_script.jlink"
