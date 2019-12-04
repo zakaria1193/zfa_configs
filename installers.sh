@@ -225,7 +225,7 @@ function pull_urxvt_config
 
 function install_general
 {
-  sudo apt install curl feh git
+  sudo apt install curl feh git libxml2-utils jq -y
 }
 
 
