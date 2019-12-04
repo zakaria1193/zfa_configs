@@ -228,6 +228,7 @@ function main()
 {
   if [[ $1 == '-i' ]]; then
     install_zsh
+    install_vim
     install_shell_tools
     install_i3
     install_sublime
