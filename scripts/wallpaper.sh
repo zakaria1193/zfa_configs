@@ -1,5 +1,14 @@
 #!/bin/bash
 
+wget -q --spider http://google.com
+
+if [ $? -eq 0 ]; then
+    true
+else
+    echo "no internet connection"
+    exit 1
+fi
+
 number_of_photos=1
 # more photos will just bring previous days photos
 day_index=$1

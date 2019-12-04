@@ -107,7 +107,7 @@ function install_i3()
   sudo apt install lm-sensors -y # temperature reader
 
   echo 'installing i3 blocks from submodule repo'
-  sudo apt remove i3-blocks
+  sudo apt remove i3-blocks -y
   cd $I3BLOCKS_REPO
   sudo apt install autoreconf -y
   ./autogen.sh
@@ -227,7 +227,7 @@ function pull_urxvt_config
 
 function install_general
 {
-  sudo apt install make scrot curl feh git tig libxml2-utils jq -y
+  sudo apt install make scrot curl feh git tig libxml2-utils jq xclip xsel -y
 }
 
 function install_apps
