@@ -94,13 +94,13 @@ function install_udev_rules
 ################################################################################
 function install_i3()
 {
-  if is_installed i3; then
-    echo i3 installed
-    return
-  fi
+  # if is_installed i3; then
+  #   echo i3 installed
+  #   return
+  # fi
 
   sudo apt remove dunst
-  sudo apt install i3 -y
+  sudo apt install i3 i3status -y
   sudo apt install rofi -y # launcher
   sudo apt install acpi -y # battery reader
   sudo apt install lm-sensors -y # temperature reader
