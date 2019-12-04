@@ -232,7 +232,7 @@ function install_general
 function main()
 {
   if [[ $1 == '-i' ]]; then
-    intall_general
+    install_general
     install_zsh
     install_vim
     install_tools
