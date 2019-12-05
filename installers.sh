@@ -112,6 +112,7 @@ function install_i3()
   sudo apt install rofi -y # launcher
   sudo apt install acpi -y # battery reader
   sudo apt install lm-sensors -y # temperature reader
+  sudo apt install compton -y # for transparency
 
   echo 'installing i3 blocks from submodule repo'
   sudo apt remove i3-blocks -y
