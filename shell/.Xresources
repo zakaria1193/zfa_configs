@@ -1,9 +1,14 @@
 URxvt.background: #1F1D19
 URxvt.foreground: #DEDEDE
-URxvt.font:     xft:DejaVu Sans Mono:pixelsize=12:antialias=true:hinting=true
-URxvt.boldFont:   xft:DejaVu Sans Mono:bold:pixelsize=12:antialias=true:hinting=true
+URxvt.font:            xft:DejaVu Sans Mono:pixelsize=12:antialias=true:hinting=true
+URxvt.boldFont:        xft:DejaVu Sans Mono:bold:pixelsize=12:antialias=true:hinting=true
+URxvt.boldItalicFont:  xft:DejaVu Sans Mono:italic:pixelsize=12:antialias=true:hinting=true
 URxvt.scrollBar:  false
 URxvt.saveLines:  65535
+
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
 URxvt.perl-ext-common: keyboard-select,url-select,clipboard
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
@@ -11,9 +16,6 @@ URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.keysym.M-c:   perl:clipboard:copy
 URxvt.keysym.M-v:   perl:clipboard:paste
 URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
-Xft*dpi:       96
-Xft*antialias: True
-Xft*hinting:   Full
 URxvt.keysym.KP_Add:    +
 URxvt.keysym.KP_Subtract: -
 URxvt.keysym.KP_Multiply: *
@@ -31,8 +33,8 @@ URxvt.keysym.KP_8:      8
 URxvt.keysym.KP_9:      9
 URxvt.keysym.KP_0:      0
 
-URxvt*transparent: true
-URxvt*shading: 20
+URxvt.transparent: true
+URxvt.shading: 20
 
 URxvt.keysym.Control-Up:     \033[1;5A
 URxvt.keysym.Control-Down:   \033[1;5B
@@ -44,5 +46,5 @@ URxvt.urlLauncher: google-chrome
 URxvt.matcher.button: 2
 URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&amp;@#-]*[\\w/-]
 
- rofi.theme:    /usr/share/rofi/themes/glue_pro_blue.rasi
+rofi.theme:    /usr/share/rofi/themes/glue_pro_blue.rasi
 

@@ -235,7 +235,8 @@ function pull_urxvt_config
 
 function install_general
 {
-  sudo apt install make scrot curl feh git tig libxml2-utils jq xclip xsel -y
+  sudo apt install make scrot curl feh git tig libxml2-utils jq xclip xsel ascii -y
+  sudo apt install wireshark -y
 }
 
 function install_apps

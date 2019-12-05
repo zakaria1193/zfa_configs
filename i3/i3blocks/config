@@ -50,7 +50,7 @@ ROFI_OPTIONS=-width 11 -location 6 -hide-scrollbar -bw 2
 
 
 [openvpn2]
-label=VPN 
+label=VPN to fix 
 interval=20
 PID_FILE_FORMAT='/run/openvpn/*.pid'
 
