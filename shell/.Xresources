@@ -43,3 +43,6 @@ URxvt.keysym.Control-BackSpace:    \033[33~
 URxvt.urlLauncher: google-chrome
 URxvt.matcher.button: 2
 URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&amp;@#-]*[\\w/-]
+
+ rofi.theme:    /usr/share/rofi/themes/glue_pro_blue.rasi
+
