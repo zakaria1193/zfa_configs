@@ -78,9 +78,9 @@ bindsym $mod+Shift+r exec $COMPILE_I3_CONFIG_SCRIPT; restart
 # bindsym $mod+Shift+q focus child
 
 # windows fun actions
+bindsym $mod+Shift+f floating toggle
 bindsym $mod+Shift+s sticky toggle
 bindsym $mod+f fullscreen
-bindsym $mod+Shift+f floating toggle
 
 # resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
@@ -128,3 +128,12 @@ client.focused          $bg-color           $bg-color          $text-color      
 client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color   #00ff00
 client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color   #00ff00
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color            #00ff00
+
+
+### Scratchpad
+# Make the currently focused window a scratchpad
+bindsym $mod+shift+p move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+p scratchpad show
+

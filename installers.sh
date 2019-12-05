@@ -58,6 +58,13 @@ function install_tools()
   fi
 
 
+  if is_installed ranger; then
+    echo bat installed
+  else
+    sudo apt install ranger
+  fi
+
+
   # given host name choose config (fall back to a default config)
   if [[ $device_name == 'HP Notebook' ]]; then
     echo "install monitor backlight control (will work after reboot)"

@@ -9,21 +9,21 @@ source ../paths
 set +a
 
 work_list=(
-common/i3_config_env_vars
-common/base_i3_config
-common/workspace_i3_generic_bindings
-common/i3bar_config
-work/work_specific_settings
-common/common_default_apps_i3
+common/i3_config_env_vars.sh
+common/base_i3_config.sh
+common/workspace_i3_generic_bindings.sh
+common/i3bar_config.sh
+work/work_specific_settings.sh
+common/common_default_apps_i3.sh
 )
 
 home_list=(
-common/i3_config_env_vars
-common/base_i3_config
-common/workspace_i3_generic_bindings
-common/i3bar_config
-home/home_specific_settings
-common/common_default_apps_i3
+common/i3_config_env_vars.sh
+common/base_i3_config.sh
+common/workspace_i3_generic_bindings.sh
+common/i3bar_config.sh
+home/home_specific_settings.sh
+common/common_default_apps_i3.sh
 )
 
 device_name=$(cat /sys/devices/virtual/dmi/id/product_name)
