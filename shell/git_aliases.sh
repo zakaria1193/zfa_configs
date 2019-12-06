@@ -32,7 +32,7 @@ alias gamendmsg='git commit --amend'
 alias gcom='git commit -m'
 alias gcomdate="git commit -m \'Updated: \`date +\'%Y-%m-%d %H:%M:%S\'\`"
 alias g-hard='git reset --hard'
-alias g-hard^='git reset --hard HEAD^'
+alias g-hard~='git reset --hard HEAD~'
 alias gfixup='git commit --fixup'
 alias gap='git add -p'
 alias gA='git add -A'
@@ -106,8 +106,15 @@ alias gita-super-fetch='gita super fetch'
 
 alias tig='tig --submodule=diff'
 
+# bring given branch tag to HEAD
 function gbf
 {
-  git branch -f $1
+  git branch -f $1 HEAD
   git checkout $1
+}
+
+# resets current branch to it's origin
+function gro
+{
+  git branch -f $(current_branch) origin/$(current_branch)
 }
