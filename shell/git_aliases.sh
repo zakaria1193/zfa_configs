@@ -78,6 +78,7 @@ alias gsh='git show'
 
 alias gd='git diff'
 alias gds='git diff --staged'
+alias gdo='git diff $(gcurrentbranch)'
 
 alias gskipci='git commit --allow-empty -m "[skip ci]"'
 
@@ -116,5 +117,5 @@ function gbf
 # resets current branch to it's origin
 function gro
 {
-  git branch -f $(current_branch) origin/$(current_branch)
+  git reset --hard origin/$(gcurrentbranch)
 }
