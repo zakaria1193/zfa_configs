@@ -190,7 +190,6 @@ function setemacs
   bindkey -v
   set -o emacs
   bindkey '^H' backward-kill-word
-  bindkey '~' backward-kill-word
   bindkey '^[[3;5~' kill-word
 }
 setemacs
