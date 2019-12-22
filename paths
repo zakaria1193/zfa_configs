@@ -18,6 +18,8 @@ function export_dir_to_path_recursively()
 
 set -a
 
+export_dir_to_path $HOME/.local/bin
+
 # work directories
 REPOS="$HOME/repos"
 NETATMO_WORK_DIR=$REPOS
