@@ -155,5 +155,5 @@ alias t_perso_perso_init="tscr_pull_cfg $MY_REPOS perso"
 function t_push_perso_perso
 {
   t_perso_perso_init
-  tsrc foreach -- git stash && git pull origin master && git stash apply && git add -A && git commit -m "$(date)" && git push
+  tsrc foreach --   git add -A && git commit -m "$(date)" && git push
 }
