@@ -119,3 +119,46 @@ function gro
 {
   git reset --hard origin/$(gcurrentbranch)
 }
+
+
+function tsrc_inhale
+{
+  [[ -z $1 ]] && echo give worktree && return
+
+  for workdir in "$@"
+  do
+  manifest=$workdir/.tsrc/manifest.yml
+  $ZFA_CONFIGS/git/tsrc_manifest_writer.py -i -r $workdir -o $ZFA_WORK_TOOLS/git
+  tsrc init --file $manifest
+
+  git -C $ZFA_WORK_TOOLS reset
+  git -C $ZFA_WORK_TOOLS add git
+  git -C $ZFA_WORK_TOOLS commit -m "tsrc manifest $orkdir update $(date)"
+  done
+}
+
+function tscr_pull_cfg
+{
+  local group=''
+  [[ -z $1 ]] && echo give worktree && return
+  workdir=$1
+  [[ ! -z $2 ]] && group="-g $2"
+  manifest=$workdir/.tsrc/manifest.yml
+  $ZFA_CONFIGS/git/tsrc_manifest_writer.py -r $workdir -o $ZFA_WORK_TOOLS/git
+
+  # for some reason groups arent found when tsrc run directlys
+  eval "tsrc init --file $manifest $group"
+}
+
+alias tsrc_work_init="tscr_pull_cfg $REPOS"
+alias tsrc_perso_init="tscr_pull_cfg $MY_REPOS"
+alias tsrc_perso_perso_init="tscr_pull_cfg $MY_REPOS perso"
+
+function tsrc_push_perso_perso
+{
+  tsrc_perso_perso_init
+  tsrc foreach -- git pull origin master
+  tsrc foreach -- git add -A
+  tsrc foreach -- git commit -m "$(date)"
+  tsrc foreach -- git push
+}

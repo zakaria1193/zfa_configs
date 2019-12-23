@@ -1,0 +1,11 @@
+repos:
+  - src: zfa_configs
+    url: git@github.com:zakaria1193/zfa_configs.git
+
+  - src: zfa_sublime_text
+    url: git@github.com:zakaria1193/zfa_sublime_text.git
+
+  - src: zfa_work_tools
+    url: git@github.com:zakaria1193/zfa_work_tools.git
+
+  

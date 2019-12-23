@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source ./paths
+
 device_name=$(cat /sys/devices/virtual/dmi/id/product_name)
 
 function symbolic-link()
@@ -145,10 +146,8 @@ function pull_i3_config()
 function install_git
 {
   # gita for command line
-  # pip3 install gita --user
-  # pip3 install gitpython --user
 
-  # mgitstatus and gitbreather are the chosen solution for now
+  pip3 install --user tsrc gitpython
 
   # rebase editor installer
   curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash - # installs NPM
@@ -162,7 +161,7 @@ function install_git
 function pull_git_config
 {
   # TODO copy config from work and symlink to it
-  return
+  true
 }
 ################################################################################
                                 # sumblime text #
@@ -235,9 +234,11 @@ function pull_urxvt_config
 
 function install_general
 {
+  sudo apt update
   sudo apt install make scrot curl feh git tig libxml2-utils jq xclip xsel ascii -y
   sudo apt install wireshark -y
   sudo apt install zathura -y
+  sudo apt install python3 python3-pip -y
 }
 
 function install_apps
@@ -245,7 +246,6 @@ function install_apps
   wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   sudo dpkg -i google-chrome-stable_current_amd64.deb
 }
-
 
 function main()
 {
@@ -259,6 +259,7 @@ function main()
     install_udev_rules
     install_urxvt
     install_apps
+    pull_repos
   fi
 
   pull_zsh_config
@@ -283,6 +284,7 @@ function main_no_graphics()
   pull_zsh_config
   pull_git_config
   pull_vim_config
+  clone_repos
 
   if [[ $1 == '-i' ]]; then
     vim +PluginInstall +qall
