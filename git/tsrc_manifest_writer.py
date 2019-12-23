@@ -88,17 +88,6 @@ def main(argv):
         cluster.inhale_repos(args.root_dirs)
         cluster.write_manifest(args.root_dirs, args.manifest_dir)
 
-    # deploy manifest files
-    for dir_ in args.root_dirs:
-        src = path.join(args.manifest_dir, path.basename(dir_), 'manifest.yml')
-        target_dir = path.join(dir_, '.tsrc')
-        target = path.join(target_dir, 'manifest.yml')
-        rmtree(target_dir) if os.path.exists(target_dir) else None
-        os.makedirs(path.join(dir_, '.tsrc'))
-        os.remove(target)  if os.path.exists(target) else None
-        os.link(src, target)
-        print('symlink from ', src, 'to', target)
-
 
 if __name__ == '__main__':
     main(sys.argv)

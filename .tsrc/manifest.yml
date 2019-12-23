@@ -1,6 +1,2 @@
-branch: master
-file_path: /home/zfadli/my_repos/.tsrc/manifest.yml
-groups: [perso]
-shallow: false
-tag: null
-url: null
+{branch: master, file_path: /home/zfadli/repos/.tsrc/manifest.yml, groups: null, shallow: false,
+tag: null, url: null}

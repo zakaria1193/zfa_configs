@@ -127,8 +127,10 @@ function tsrc_inhale
 
   for workdir in "$@"
   do
-  manifest=$workdir/.tsrc/manifest.yml
   $ZFA_CONFIGS/git/tsrc_manifest_writer.py -i -r $workdir -o $ZFA_WORK_TOOLS/git
+
+  manifest=$ZFA_WORK_TOOLS/git/$(basename $workdir)/manifest.yml
+  echo $manifest
   tsrc init --file $manifest
   done
 }
@@ -141,10 +143,10 @@ function tscr_pull_cfg
   [[ -z $1 ]] && echo give worktree && return
   workdir=$1
   [[ ! -z $2 ]] && group="-g $2"
-  manifest=$workdir/.tsrc/manifest.yml
   $ZFA_CONFIGS/git/tsrc_manifest_writer.py -r $workdir -o $ZFA_WORK_TOOLS/git
 
   # for some reason groups arent found when tsrc run directlys
+  manifest=$ZFA_WORK_TOOLS/git/$(basename $workdir)/manifest.yml
   eval "tsrc init --file $manifest $group"
 }
 
