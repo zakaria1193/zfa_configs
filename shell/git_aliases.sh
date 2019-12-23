@@ -130,12 +130,10 @@ function tsrc_inhale
   manifest=$workdir/.tsrc/manifest.yml
   $ZFA_CONFIGS/git/tsrc_manifest_writer.py -i -r $workdir -o $ZFA_WORK_TOOLS/git
   tsrc init --file $manifest
-
-  git -C $ZFA_WORK_TOOLS reset
-  git -C $ZFA_WORK_TOOLS add git
-  git -C $ZFA_WORK_TOOLS commit -m "tsrc manifest $orkdir update $(date)"
   done
 }
+
+alias t='tsrc'
 
 function tscr_pull_cfg
 {
@@ -150,12 +148,12 @@ function tscr_pull_cfg
   eval "tsrc init --file $manifest $group"
 }
 
-alias tsrc_work_init="tscr_pull_cfg $REPOS"
-alias tsrc_perso_init="tscr_pull_cfg $MY_REPOS"
-alias tsrc_perso_perso_init="tscr_pull_cfg $MY_REPOS perso"
+alias t_work_init="tscr_pull_cfg $REPOS"
+alias t_perso_init="tscr_pull_cfg $MY_REPOS"
+alias t_perso_perso_init="tscr_pull_cfg $MY_REPOS perso"
 
-function tsrc_push_perso_perso
+function t_push_perso_perso
 {
-  tsrc_perso_perso_init
-  tsrc foreach -- git stash && git pull origin master && git stash apply && git add -A && git commit -m "$(date)" &&   tsrc foreach -- git push
+  t_perso_perso_init
+  tsrc foreach -- git stash && git pull origin master && git stash apply && git add -A && git commit -m "$(date)" && git push
 }
