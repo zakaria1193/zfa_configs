@@ -158,6 +158,7 @@ export PAGER="less -F -X"
 
 
 ############################### VIM INPUT ######################################r
+<<<<<<< Updated upstream
 
 function set_vim
 {
@@ -193,6 +194,26 @@ function setemacs
   bindkey '^[[3;5~' kill-word
 }
 setemacs
+=======
+# # # Activate vim mode. (from https://dougblack.io/words/zsh-vi-mode.html)
+# bindkey -v
+
+# # Remove mode switching delay.
+# KEYTIMEOUT=1
+
+# # needed to not break fzf buttons
+# set -o vi
+
+# # show vi mode
+# # Updates editor information when the keymap changes.
+# function zle-line-init zle-keymap-select {
+#     VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]% %{$reset_color%}"
+#     RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
+#     zle reset-prompt
+# }
+# zle -N zle-line-init
+# zle -N zle-keymap-select
+>>>>>>> Stashed changes
 
 ###############################################################################
 # run fzf if found
