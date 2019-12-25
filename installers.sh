@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./paths
+source $ZFA_CONFIGS/paths || source ./paths
 
 device_name=$(cat /sys/devices/virtual/dmi/id/product_name)
 
@@ -18,7 +18,7 @@ function is_installed()
 {
   local program=$1
   # return $(command -v $program >/dev/null)
-  return
+  return 1
 }
 
 
@@ -55,7 +55,7 @@ function install_tools()
     echo bat installed
   else
     echo "installing bat"
-    sudo dpkg -i $ZFA_CONFIG/tools/bat_0.11.0_i386.deb
+    sudo dpkg -i $ZFA_CONFIGS/tools/bat_0.11.0_i386.deb
   fi
 
 
@@ -118,7 +118,7 @@ function install_i3()
   echo 'installing i3 blocks from submodule repo'
   sudo apt remove i3-blocks -y
   cd $I3BLOCKS_REPO
-  sudo apt install autoreconf -y
+  sudo apt install autoconf -y
   ./autogen.sh
   ./configure
   make
@@ -145,9 +145,10 @@ function pull_i3_config()
 ################################################################################
 function install_git
 {
-  # gita for command line
+  git config --global user.email "zakaria1193@gmail.com"
+  git config --global user.name "Zakaria Fadli"
 
-  pip3 install --user tsrc gitpython
+  pip3 install --user tsrc gitpython sh
 
   # rebase editor installer
   curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash - # installs NPM
@@ -169,7 +170,7 @@ function pull_git_config
 function install_sublime
 {
   if is_installed subl; then
-    echo subl installed installed
+    echo subl installed
     return
   fi
 
@@ -213,7 +214,7 @@ function pull_vim_config
 function install_urxvt
 {
   if is_installed urxvt; then
-    echo urxvt installed installed
+    echo urxvt installed
     return
   fi
 
@@ -250,9 +251,11 @@ function install_apps
 function main()
 {
   if [[ $1 == '-i' ]]; then
+    git -C $ZFA_CONFIGS submodule update --init
     install_general
     install_zsh
     install_vim
+    install_git
     install_tools
     install_i3
     install_sublime
