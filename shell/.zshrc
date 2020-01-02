@@ -196,3 +196,6 @@ setemacs
 ###############################################################################
 # run fzf if found
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+TERM='rxvt-unicode'
+COLORTERM='rxvt-unicode-256color'

@@ -33,6 +33,7 @@ FIRMWARE="$EMBEDDED/firmware"
 MAGELLAN="$EMBEDDED/magellan"
 M=$MAGELLAN
 export_dir_to_path "$MAGELLAN/apps/user/nlg-stm32/model_parser"
+export_dir_to_path_recursively "$MAGELLAN/scripts"
 
 FIRMWARE_BITCLOUD="$MAGELLAN/modules/firmware-bitcloud"
 export_dir_to_path "$FIRMWARE_BITCLOUD/support/scripts"
