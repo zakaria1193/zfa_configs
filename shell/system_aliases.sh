@@ -13,6 +13,7 @@ function reload_configs
 
 alias c="clear"
 alias r="reload_configs"
+alias sudo='sudo env "PATH=$PATH"'
 
 alias cd="cd -P"
 alias ls="exa"
