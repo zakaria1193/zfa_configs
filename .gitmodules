@@ -25,3 +25,6 @@
 [submodule "shell/oh-my-zsh/.oh-my-zsh/custom/plugins/navi"]
 	path = shell/oh-my-zsh/.oh-my-zsh/custom/plugins/navi
 	url = https://github.com/denisidoro/navi
+[submodule "tools/git-autofixup"]
+	path = tools/git-autofixup
+	url = https://github.com/torbiak/git-autofixup.git

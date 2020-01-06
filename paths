@@ -72,6 +72,7 @@ export_dir_to_path "$GIT_CONFIGS"
 ZFA_CONFIGS_TOOLS="$ZFA_CONFIGS/tools"
 MY_UDEV_NOTIFY_SH="$ZFA_CONFIGS_TOOLS/my-udev-notify/my-udev-notify.sh"
 export_dir_to_path "$ZFA_CONFIGS_TOOLS"
+export_dir_to_path "$ZFA_CONFIGS_TOOLS/git-autofixup"
 
 I3_CONFIGS="$ZFA_CONFIGS/i3"
 export_dir_to_path "$I3_CONFIGS"

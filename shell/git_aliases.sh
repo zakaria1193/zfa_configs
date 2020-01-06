@@ -55,9 +55,9 @@ alias gpullm='gmaster && git pull --prune && gsub && git checkout -'
 alias gpull='git pull --prune origin $(gcurrentbranch)' #pulls current branch
 alias gf='git fetch --prune --all --tags --force'
 
-alias grebi='git rebase -i --keep-empty'
-alias grebim='git rebase -i --keep-empty master && gsub'
-alias grebm='git rebase --keep-empty master && gsub'
+alias grebi='git rebase -i  --autosquash --keep-empty'
+alias grebim='git rebase -i --autosquash  --keep-empty master && gsub'
+alias grebm='git rebase --autosquash  --keep-empty master && gsub'
 alias gautofixup-on-master='git-autofixup master && grebim'
 alias gautofixup='git-autofixup'
 
