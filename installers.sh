@@ -253,6 +253,11 @@ function install_general
 
 function install_apps
 {
+
+  if is_installed google-chrome; then
+    echo chrome alreadyinstalled
+    return
+  fi
   wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   sudo dpkg -i google-chrome-stable_current_amd64.deb
 }
