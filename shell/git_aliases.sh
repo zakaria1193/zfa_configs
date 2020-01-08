@@ -40,7 +40,7 @@ alias grp='git reset -p'
 alias gr='git reset'
 alias gr^='git reset HEAD^'
 alias grp^='git reset -p HEAD^'
-alias gcf='git clean -fd'
+alias gcf='git clean -fd -f'
 alias gcu='git checkout -- .' # clean unstaged
 
 alias gdelete_merged='git branch --merged| egrep -v "(^\*|master)" | xargs --interactive git branch -d'
@@ -50,6 +50,7 @@ alias gpush="git push origin"
 alias gpushf="gpush -f"
 alias gpushskip="gskipci && gpush"
 alias gsub='git submodule update --init --recursive'
+alias gsubcf='git submodule foreach git clean -fd -f'
 alias gsubfix='git submodule deinit -f --all && gsub'
 alias gpullm='gmaster && git pull --prune && gsub && git checkout -'
 alias gpull='git pull --prune origin $(gcurrentbranch)' #pulls current branch
