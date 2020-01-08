@@ -148,7 +148,7 @@ function tscr_pull_cfg
 
   # for some reason groups arent found when tsrc run directlys
   manifest=$ZFA_WORK_TOOLS/git/$(basename $workdir)/manifest.yml
-  eval "tsrc init --file $manifest $group"
+  eval "tsrc init -w $HOME --file $manifest $group"
 }
 
 alias t_work_init="tscr_pull_cfg $REPOS"
