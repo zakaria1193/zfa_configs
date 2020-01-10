@@ -80,6 +80,7 @@ alias gsh='git show'
 alias gd='git diff'
 alias gds='git diff --staged'
 alias gdo='git diff origin/$(gcurrentbranch) $(gcurrentbranch)'
+alias gdsub='git diff --submodule=diff'
 
 alias gskipci='git commit --allow-empty -m "[skip ci]"'
 

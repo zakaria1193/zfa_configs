@@ -68,14 +68,13 @@ bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+q focus parent
+# focus the child container
+bindsym $mod+c focus child # doesnt work
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3) (might take two)
 bindsym $mod+Shift+r exec $COMPILE_I3_CONFIG_SCRIPT; restart
-
-# focus the child container
-# bindsym $mod+Shift+q focus child
 
 # windows fun actions
 bindsym $mod+Shift+f floating toggle

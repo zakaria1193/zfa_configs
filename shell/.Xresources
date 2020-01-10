@@ -17,7 +17,7 @@ URxvt.foreground: #ffffff
 URxvt.transparent: true
 ! URxvt.shading: 0 to 99 darkens, 101 to 200 lightens
 URxvt.shading: 5
-URxvt.fading: 50
+URxvt.fading: 25
 
 URxvt.urlLauncher: google-chrome-stable
 URxvt.matcher.button: 3
