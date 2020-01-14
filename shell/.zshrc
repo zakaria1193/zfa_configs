@@ -65,7 +65,7 @@ plugins=(
   z
   wd
   forgit
-  navi # to fix
+  navi
 )
 
 plugins_completions=(
