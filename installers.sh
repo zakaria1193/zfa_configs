@@ -152,6 +152,7 @@ function install_git
   git config --global user.email "zakaria1193@gmail.com"
   git config --global user.name "Zakaria Fadli"
 
+
   pip3 install --user tsrc gitpython sh
 
   # rebase editor installer
@@ -159,9 +160,9 @@ function install_git
   curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - # install yarn for npm
   echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
   sudo apt-get update && sudo apt-get install yarn
-
   sudo npm install -g rebase-editor
   git config --global sequence.editor "rebase-editor -s -c -m '> ' --no-alternate-screen"
+
   # TODO add git autofixup installer
 
   return
@@ -169,8 +170,7 @@ function install_git
 
 function pull_git_config
 {
-  # TODO copy config from work and symlink to it
-  true
+  symbolic-link '.gitconfig' "$ZFA_CONFIGS/git" "$HOME"
 }
 ################################################################################
                                 # sumblime text #
