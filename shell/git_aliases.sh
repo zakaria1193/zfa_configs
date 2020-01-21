@@ -132,9 +132,14 @@ function tsrc_inhale
   $ZFA_CONFIGS/git/tsrc_manifest_writer.py -i -r $workdir -o $ZFA_WORK_TOOLS/git
 
   manifest=$ZFA_WORK_TOOLS/git/$(basename $workdir)/manifest.yml
-  echo $manifest
-  tsrc init --file $manifest
+
+  git add -C $ZFA_WORK_TOOLS $manifest
   done
+
+  gck master
+  git commit -C $ZFA_WORK_TOOLS -m "tsrc: manifest update $(date)"
+  gpullm
+  gpush
 }
 
 alias t='tsrc'
@@ -156,8 +161,3 @@ alias t_work_init="tscr_pull_cfg $REPOS"
 alias t_perso_init="tscr_pull_cfg $MY_REPOS"
 alias t_perso_perso_init="tscr_pull_cfg $MY_REPOS perso"
 
-function t_push_perso_perso
-{
-  t_perso_perso_init
-  tsrc foreach -- git add -A && git commit -m "$(date)" && git push
-}

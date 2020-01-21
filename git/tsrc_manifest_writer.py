@@ -76,17 +76,13 @@ def main(argv):
                         type=str,
                         required=True,
                         default='.')
-    parser.add_argument("--inhale", "-i",
-                        dest='inhale',
-                        action='store_true')
     args = parser.parse_args()
     args.root_dirs = list(map(path.abspath, args.root_dirs))
     args.manifest_dir = path.abspath(args.manifest_dir)
 
     cluster = ReposCluster()
-    if args.inhale:
-        cluster.inhale_repos(args.root_dirs)
-        cluster.write_manifest(args.root_dirs, args.manifest_dir)
+    cluster.inhale_repos(args.root_dirs)
+    cluster.write_manifest(args.root_dirs, args.manifest_dir)
 
 
 if __name__ == '__main__':
