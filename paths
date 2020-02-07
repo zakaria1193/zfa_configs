@@ -22,7 +22,7 @@ export_dir_to_path $HOME/.local/bin
 
 # work directories
 REPOS="$HOME/repos"
-NETATMO_WORK_DIR=$REPOS
+# NETATMO_WORK_DIR=$REPOS
 EMBEDDED="$REPOS/embedded"
 CORE="$REPOS/core"
 
@@ -32,26 +32,33 @@ FIRMWARE_BINARY="$LEGRAND/firmware-binary"
 FIRMWARE="$EMBEDDED/firmware"
 MAGELLAN="$EMBEDDED/magellan"
 M=$MAGELLAN
+alias magellan=$MAGELLAN
 export_dir_to_path "$MAGELLAN/apps/user/nlg-stm32/model_parser"
 export_dir_to_path_recursively "$MAGELLAN/scripts"
 
-FIRMWARE_BITCLOUD="$MAGELLAN/modules/firmware-bitcloud"
-export_dir_to_path "$FIRMWARE_BITCLOUD/support/scripts"
-export_dir_to_path "$FIRMWARE_BITCLOUD/Applications/Netatmo/modules/netatmo-log"
-export_dir_to_path "$FIRMWARE_BITCLOUD/toolchain/arm-none-eabi/bin"
+FIRMWARE_BITCLOUD="$EMBEDDED/firmware-bitcloud"
+alias firmware-bitcloud=$FIRMWARE_BITCLOUD
+FIRMWARE_BITCLOUD_MAGELLAN="$MAGELLAN/modules/firmware-bitcloud"
+alias firmware-bitcloud-magellan=$FIRMWARE_BITCLOUD_MAGELLAN
+export_dir_to_path "$FIRMWARE_BITCLOUD_MAGELLAN/support/scripts"
+export_dir_to_path "$FIRMWARE_BITCLOUD_MAGELLAN/toolchain/arm-none-eabi/bin"
+
 ## tools that are not exported
 GDB_BTC_PY="$FIRMWARE_BITCLOUD/toolchain/arm-none-eabi/bin/arm-none-eabi-gdb-py"
 
-OPENOCD_INSTALL="$EMBEDDED/firmware-bitcloud/doc/openocd-build/install"
+OPENOCD_INSTALL="$FIRMWARE_BITCLOUD/doc/openocd-build/install"
 OPENOCD_SCRIPTS="$OPENOCD_INSTALL/usr/share/openocd/scripts"
 
 MAGELLAN_RELEASES="$EMBEDDED/magellan-releases"
+alias magellan-releases=$MAGELLAN_RELEASES
 
 EMBEDDED_TOOLS="$CORE/embedded-tools"
 export_dir_to_path_recursively "$EMBEDDED_TOOLS/Linux"
 export_dir_to_path_recursively "$EMBEDDED_TOOLS/generic-embedded/stm32_dfu"
 
 PYTHON_EMBEDDED_TOOLS="$CORE/python-emb-tools"
+alias python-emb-tools=$PYTHON_EMBEDDED_TOOLS
+alias pyet=$PYTHON_EMBEDDED_TOOLS
 export_dir_to_path_recursively "$PYTHON_EMBEDDED_TOOLS/python/bin"
 export_dir_to_path_recursively "$PYTHON_EMBEDDED_TOOLS/python/lib"
 
@@ -116,6 +123,8 @@ export_dir_to_path $GIT_BREATHER
 
 PREF_RENDEZ_VOUS="$PROJECTS/rendezvous-pref"
 export_dir_to_path $PREF_RENDEZ_VOUS
+
+WIRESHARK_KEYS=/home/zfadli/.wireshark/profiles/Zigbee\ \(copy\)\ \(copy\)\ \(copy\)\ \(copy\)\ \(copy\)\ \(copy\)\ \(copy\)\ \(copy\)/zigbee_pc_keys
 
 
 set +a

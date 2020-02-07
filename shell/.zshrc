@@ -193,13 +193,6 @@ function setemacs
 }
 setemacs
 
-function expand-alias() {
-  zle _expand_alias
-  zle self-insert
-}
-zle -N expand-alias
-bindkey -M main ' ' expand-alias
-
 ###############################################################################
 # run fzf if found
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
