@@ -15,6 +15,8 @@ alias c="clear"
 alias r="reload_configs"
 alias sudo='sudo env "PATH=$PATH"'
 
+alias init_work="rotate_left; setxkbmap us_qwerty-fr; wallpaper.sh 0"
+
 alias cd="cd -P"
 alias ls="exa"
 

@@ -7,7 +7,6 @@
 !stjerm.scrollbar: right
 !stjerm.font: monaco 10
 
-URxvt.scrollBar: none
 URxvt.font:            xft:DejaVu Sans Mono:pixelsize=12:antialias=true:hinting=true
 URxvt.perl-ext-common:default,matcher,vtwheel
 !URxvt.depth: 32
@@ -18,6 +17,9 @@ URxvt.transparent: true
 ! URxvt.shading: 0 to 99 darkens, 101 to 200 lightens
 URxvt.shading: 5
 URxvt.fading: 25
+
+urxvt.saveLines: 1000000
+urxvt.scrollBar: true
 
 URxvt.urlLauncher: google-chrome-stable
 URxvt.matcher.button: 3

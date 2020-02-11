@@ -22,7 +22,7 @@ export_dir_to_path $HOME/.local/bin
 
 # work directories
 REPOS="$HOME/repos"
-# NETATMO_WORK_DIR=$REPOS
+NETATMO_WORK_DIR=$REPOS
 EMBEDDED="$REPOS/embedded"
 CORE="$REPOS/core"
 
