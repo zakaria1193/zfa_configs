@@ -239,8 +239,20 @@ function pull_urxvt_config
   xrdb -merge ~/.Xresources
 }
 
+################################################################################
+                                # wireshark #
+################################################################################
+function pull_wireshark_config
+{
+  # do not use symbolic link function since sudo is needed
+  printf "\n>> Pulling wireshark from repo to system \n"
+  # rm $HOME/.wireshark -r -f
+  # ln -s $ZFA_WORK_TOOLS/.wireshark $HOME
+}
+
 function install_general
 {
+  sudo add-apt-repository ppa:wireshark-dev/stable -y
   sudo apt update
   sudo apt install make scrot curl feh git tig libxml2-utils jq xclip xsel ascii -y
   sudo apt install wireshark -y
@@ -274,7 +286,7 @@ function main()
     install_udev_rules
     install_urxvt
     install_apps
-    pull_repos
+    # pull_repos
   fi
 
   pull_zsh_config
@@ -283,6 +295,7 @@ function main()
   pull_sublime_config
   pull_vim_config
   pull_urxvt_config
+  pull_wireshark_config
 
   if [[ $1 == '-i' ]]; then
     vim +PluginInstall +qall

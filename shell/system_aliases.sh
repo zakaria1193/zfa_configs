@@ -15,7 +15,7 @@ alias c="clear"
 alias r="reload_configs"
 alias sudo='sudo env "PATH=$PATH"'
 
-alias init_work="rotate_left; setxkbmap us_qwerty-fr; wallpaper.sh 0"
+alias init_work="rotate_left; setxkbmap us_qwerty-fr; wallpaper.sh 0; ssh-add"
 
 alias cd="cd -P"
 alias ls="exa"
@@ -30,6 +30,11 @@ alias ta="task add"
 alias opacity="gconftool-2 --set /apps/gnome-terminal/profiles/Default/background_darkness --type=float" # then a float btw 0 and 1
 
 alias cat="bat"
+
+function backup
+{
+  cp $1 $1_backup
+}
 
 function find_and_replace()
 {

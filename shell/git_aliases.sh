@@ -27,6 +27,7 @@ alias gllong="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow
 alias glverb="git log --stat --graph --date=local --pretty=format:'%C(yellow)%h%Cblue %ad%Cgreen %an %Cred%d%n%Creset%x09%s%n'"
 alias glfind="git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -5 --grep"
 alias grl="git reflog --format='%C(auto)%h %<|(20)%gd %C(blue)%cr%C(reset) %gs (%s)'"
+alias tigrl="git reflog --pretty=raw | tig --pretty=raw"
 alias gamend='git commit --amend --no-edit'
 alias gamendmsg='git commit --amend'
 alias gcom='git commit -m'
