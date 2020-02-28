@@ -155,7 +155,7 @@ function install_git
   git config --global user.name "Zakaria Fadli"
 
 
-  pip3 install --user tsrc gitpython sh
+  pip3 install --user tsrc==0.9.2 gitpython sh
 
   # rebase editor installer
   curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash - # installs NPM
