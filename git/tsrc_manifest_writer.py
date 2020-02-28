@@ -8,6 +8,8 @@ from os import path
 import os
 from shutil import rmtree
 
+BLACKLIST = ['doc/openocd']
+
 class ReposCluster():
     def __init__(self):
         self.repos = None
@@ -16,9 +18,21 @@ class ReposCluster():
         found = []
         for root_dir in root_dirs:
             found += find(root_dir, '-type', 'd', '-name', '.git',)
-        found = list(found)
+
         found = [x.replace('.git\n', '') for x in found]
-        self.repos = [git.Repo(x) for x in found]
+
+        repos = list()
+        for x in found:
+            drop = False
+            for b in BLACKLIST:
+                if x.find(b) != -1:
+                    drop = True
+                    print('dropped', x)
+                    break
+            if not drop:
+                repos.append(x)
+
+        self.repos = [git.Repo(x) for x in repos]
 
     def write_manifest(self, root_dirs, manifest_dir):
         for root_dir in root_dirs:
@@ -39,7 +53,6 @@ class ReposCluster():
                         str_ += '\n'
 
                     yaml.write(str_)
-
                 personal_repos = list(filter(lambda x: 'zfa_' in x.working_dir, self.repos))
                 if len(personal_repos):
                     yaml.write('groups:\n')

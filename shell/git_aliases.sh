@@ -130,17 +130,12 @@ function tsrc_inhale
 
   for workdir in "$@"
   do
-  $ZFA_CONFIGS/git/tsrc_manifest_writer.py -i -r $workdir -o $ZFA_WORK_TOOLS/git
+  $ZFA_CONFIGS/git/tsrc_manifest_writer.py -r $workdir -o $ZFA_WORK_TOOLS/git
 
   manifest=$ZFA_WORK_TOOLS/git/$(basename $workdir)/manifest.yml
-
-  git add -C $ZFA_WORK_TOOLS $manifest
   done
 
-  gck master
-  git commit -C $ZFA_WORK_TOOLS -m "tsrc: manifest update $(date)"
-  gpullm
-  gpush
+  echo "you'll need to commit on $ZFA_WORK_TOOLS"
 }
 
 alias t='tsrc'
