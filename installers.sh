@@ -75,6 +75,8 @@ function install_tools()
     sudo mkdir /etc/share/X11/xorg.conf.d
     sudo ln -s $I3_CONFIGS/backlight_intel_hp/20-intel.conf /etc/share/X11/xorg.conf.d
   fi
+
+  sudo dpkg -i $ZFA_CONFIGS/tools/*.deb
 }
 
 function pull_zsh_config()
@@ -263,9 +265,8 @@ function install_general
 
 function install_apps
 {
-
-  if is_installed google-chrome; then
-    echo chrome alreadyinstalled
+  if $(command -v $google-chrome >/dev/null) ; then
+    echo chrome already installed
     return
   fi
   wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
