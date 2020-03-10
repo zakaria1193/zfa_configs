@@ -49,7 +49,6 @@ alias gdelete_merged_remote="git branch -r --merged | grep zfa | sed '/>|master/
 
 alias gpush="git push origin"
 alias gpushf="gpush -f"
-alias gpushskip="gskipci && gpush"
 alias gsub='git submodule update --init --recursive'
 alias gsubcf='git submodule foreach git clean -fd -f'
 alias gsubfix='git submodule deinit -f --all && gsub'
@@ -83,7 +82,17 @@ alias gds='git diff --staged'
 alias gdo='git diff origin/$(gcurrentbranch) $(gcurrentbranch)'
 alias gdsub='git diff --submodule=diff'
 
-alias gskipci='git commit --allow-empty -m "[skip ci]"'
+function gskipci
+{
+  if [[ -n $(git log --oneline -1 | grep '[skip ci]') ]]
+  then
+    echo "skip ci commit exists"; return
+  else
+    git commit --allow-empty -m "[skip ci]"
+  fi
+}
+
+alias gpushskip="gskipci && gpush"
 
 grep_blame()
 {

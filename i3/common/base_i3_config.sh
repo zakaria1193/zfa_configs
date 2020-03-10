@@ -102,7 +102,7 @@ mode "resize" {
 }
 
 # stay within output boundaries
-force_focus_wrapping yes
+force_focus_wrapping no
 
 # handle multiple outputs
 bindsym $mod+m focus output left

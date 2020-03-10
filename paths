@@ -113,7 +113,7 @@ COMPILE_I3_CONFIG_SCRIPT="$I3_CONFIGS/compile-i3-configs.sh"
 COOL_PUBLIC_REPOS="$MY_REPOS/cool_public_repos"
 FORKS="$COOL_PUBLIC_REPOS/forks"
 ANDROID_TOOLS="$COOL_PUBLIC_REPOS/android"
-export_dir_to_path_recursively "$ANDROID_TOOLS"
+# export_dir_to_path_recursively "$ANDROID_TOOLS"
 
 ## my projects
 PROJECTS="$MY_REPOS/projects"

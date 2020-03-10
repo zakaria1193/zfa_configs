@@ -151,7 +151,7 @@ function pull_i3_config()
 ################################################################################
 function install_git
 {
-  git config --global user.email "zakaria1193@gmail.com"
+  git config --global user.email "zakaria.fadli@netatmo.com"
   git config --global user.name "Zakaria Fadli"
 
 
@@ -254,12 +254,21 @@ function pull_wireshark_config
 
 function install_general
 {
-  sudo add-apt-repository ppa:wireshark-dev/stable -y
   sudo apt update
   sudo apt install make scrot curl feh git tig libxml2-utils jq xclip xsel ascii -y
+
+  sudo add-apt-repository ppa:wireshark-dev/stable -y
   sudo apt install wireshark -y
   sudo apt install zathura -y
   sudo apt install python3 python3-pip -y
+  sudo apt install gcc g++ make nodejs -y
+  sudo apt install minicom meld -y
+}
+
+function install_general
+{
+  sudo apt update
+  sudo apt install make curl git tig jq xclip  ascii minicom -y
   sudo apt install gcc g++ make nodejs -y
 }
 
@@ -307,13 +316,14 @@ function main_no_graphics()
 {
   if [[ $1 == '-i' ]]; then
     install_zsh
-    install_shell_tools
+    install_vim
+    install_git
+    install_tools
   fi
 
   pull_zsh_config
   pull_git_config
   pull_vim_config
-  clone_repos
 
   if [[ $1 == '-i' ]]; then
     vim +PluginInstall +qall

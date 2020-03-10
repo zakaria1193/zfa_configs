@@ -15,8 +15,4 @@ SUBSYSTEM=="hiddev", ATTRS{idVendor}=="25da", MODE="0660"
 # Development tools
 ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", TAG+="uaccess", TAG+="udev-acl"
 
-#USB connection to NLG ST
-KERNEL=="hidraw*", ATTRS{idVendor}=="25da", MODE="0666"
-KERNEL=="hiddev*", ATTRS{idVendor}=="25da", MODE="0666"
-
 LABEL="netatmo_rules_end"
