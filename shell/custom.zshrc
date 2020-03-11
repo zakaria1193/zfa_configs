@@ -17,11 +17,18 @@ function source_file
 # path variable operations
 # ">> PATH variable"
 export PATH=''
-source /etc/environment
+if [ -s /etc/environment ]; then
+    # get the default path from system
+    source /etc/environment
+else
+    # case for raspbian, use generic path
+    PATH='/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games'
+fi
+
 # "  resetting PATH to /etc/environment"
 
 PATHS_FILE="${SCRIPT_DIR}/../paths"
-PATHS_FILE=$(readlink -m $PATHS_FILE)
+# PATHS_FILE=$(readlink -m $PATHS_FILE)
 # ">> PATHS_FILE $PATHS_FILE"
 # export Paths for scripts that wanna go through the PATHS_FILE themselves
 # "  PATHS file location exported as PATHS = $PATHS_FILE"
