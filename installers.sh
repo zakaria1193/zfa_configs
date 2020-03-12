@@ -258,7 +258,7 @@ function install_general
   sudo apt install make scrot curl feh git tig libxml2-utils jq xclip xsel ascii -y
 
   sudo add-apt-repository ppa:wireshark-dev/stable -y
-  sudo apt install wireshark -y
+  sudo apt install wireshark tshark -y
   sudo apt install zathura -y
   sudo apt install python3 python3-pip -y
   sudo apt install gcc g++ make nodejs -y

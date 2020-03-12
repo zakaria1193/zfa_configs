@@ -7,7 +7,7 @@
 !stjerm.scrollbar: right
 !stjerm.font: monaco 10
 
-URxvt.font:            xft:DejaVu Sans Mono:pixelsize=12:antialias=true:hinting=true
+URxvt.font:            xft:DejaVu Sans Mono:pixelsize=11:antialias=true:hinting=true
 URxvt.perl-ext-common:default,matcher,vtwheel
 !URxvt.depth: 32
 !URxvt.background: [40]#000000
