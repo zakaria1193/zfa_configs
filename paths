@@ -69,6 +69,7 @@ MY_REPOS="$HOME/my_repos"
 ## paths in zfa configs
 ZFA_CONFIGS="$MY_REPOS/zfa_configs"
 export_dir_to_path "$ZFA_CONFIGS/"
+export_dir_to_path "$ZFA_CONFIGS/monitors"
 export_dir_to_path_recursively "$ZFA_CONFIGS/scripts/"
 SHELL_CONFIGS="$ZFA_CONFIGS/shell"
 export_dir_to_path "$SHELL_CONFIGS/oh-my-zsh/.oh-my-zsh/custom/plugins/navi"

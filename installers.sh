@@ -66,10 +66,10 @@ function install_tools()
   fi
 
 
+  sudo apt install xbacklight
   # given host name choose config (fall back to a default config)
   if [[ $device_name == 'HP Notebook' ]]; then
     echo "install monitor backlight control (will work after reboot)"
-    sudo apt install xbacklight
     sudo mkdir /usr/share/X11/xorg.conf.d
     sudo ln -s $I3_CONFIGS/backlight_intel_hp/20-intel.conf /usr/share/X11/xorg.conf.d
     sudo mkdir /etc/share/X11/xorg.conf.d

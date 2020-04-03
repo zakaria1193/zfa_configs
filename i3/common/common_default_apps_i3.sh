@@ -31,13 +31,13 @@ bindsym $mod+l exec $LOCK_SCRIPT
 
 # exec --no-startup-id blueman-applet
 exec_always --no-startup-id nm-appplet
-exec_always yes | $WALLPAPER_SCRIPT
+exec_always  --no-startup-id yes | $WALLPAPER_SCRIPT
 # exec --no-startup-id /home/zfadli/my_scripts/ram_monitor.sh
-exec_always compton # compton is needed for transparency
+exec_always  --no-startup-id  compton # compton is needed for transparency
 
 # always remove dunst (keep default notifications)
 # for always remove appmenu-qt5 (keep barre de menu)
 # no desktop with nautilus: gsettings set org.gnome.desktop.background show-desktop-icons false
 
 #enable numpad
-exec setxkbmap -option keypad:pointerkeys
+exec  --no-startup-id setxkbmap -option keypad:pointerkeys

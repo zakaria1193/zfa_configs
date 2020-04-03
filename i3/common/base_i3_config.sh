@@ -136,3 +136,5 @@ bindsym $mod+shift+p move scratchpad
 # Show the first scratchpad window
 bindsym $mod+p scratchpad show
 
+bindsym Print exec "scrot /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
+bindsym Shift+Print --release exec "scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"

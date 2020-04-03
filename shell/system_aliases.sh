@@ -15,7 +15,9 @@ alias c="clear"
 alias r="reload_configs"
 alias sudo='sudo env "PATH=$PATH"'
 
-alias init_work="rotate_left; setxkbmap us_qwerty-fr; wallpaper.sh 0; ssh-add"
+alias init_work="work_desk.sh; setxkbmap us_qwerty-fr; wallpaper.sh 0; ssh-add"
+alias init_home="home_desk.sh; setxkbmap us_qwerty-fr; wallpaper.sh 0; ssh-add"
+alias init_laptop="laptop.sh; setxkbmap us_qwerty-fr; wallpaper.sh 0; ssh-add"
 
 alias cd="cd -P"
 alias ls="exa"
@@ -76,6 +78,12 @@ function xautolock_sleep
 alias settings='env XDG_CURRENT_DESKTOP=GNOME gnome-control-center'
 
 alias volumeset='pactl set-sink-volume 0' # then your value for 110% do 'volumeset 110'
+function backlightset
+{
+   echo setting ${1}000 max is
+   command cat /sys/class/backlight/intel_backlight/max_brightness
+   echo ${1}000 | sudo tee /sys/class/backlight/intel_backlight/brightness
+}
 
 alias rotate_left="xrandr --output DP-2 --rotate left"
 alias rotate_normal="xrandr --output DP-2 --rotate normal"
