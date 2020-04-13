@@ -11,7 +11,6 @@ set $workspace9 "9"
 
 exec --no-startup-id i3-msg "workspace $workspace1; layout tabbed"
 
-bindsym $mod+j exec $MONITORS_SCRIPT
 exec_always $MONITORS_SCRIPT --external
 
 # exec_always xautolock -time 10 -locker "systemctl suspend" &

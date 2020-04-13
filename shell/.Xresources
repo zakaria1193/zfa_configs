@@ -26,40 +26,58 @@ URxvt.matcher.button: 3
 URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 URxvt.colorUL: #4682B4
 
-!*background: #000000
-!*foreground: #ffffff
+!! Colorscheme
 
-! Black
-*color0:  #353535
-*color8:  #555555
+! special
+*.foreground: #93a1a1
+*.background: #141c21
+*.cursorColor: #afbfbf
 
-! Red
-*color1:  #D11793
-*color9:  #E480C2
+! black
+*.color0: #263640
+*.color8: #4a697d
 
-! Green
-*color2:   #93D117
-*color10: #CCE698
+! red
+*.color1: #d12f2c
+*.color9: #fa3935
 
-! Yellow
-*color3:   #ECDC21
-*color11: #FFF78A
+! green
+*.color2: #819400
+*.color10: #a4bd00
 
-! Blue
-*color4:   #3B92FF
-*color12: #91D5F7
+! yellow
+*.color3: #b08500
+*.color11: #d9a400
 
-! Magneta
-*color5:   #9B17D1
-*color13: #D8BBE7
+! blue
+*.color4: #2587cc
+*.color12: #2ca2f5
 
-! Cyan
-*color6:   #1EC7AA
-*color14: #A0FEEE
+! magenta
+*.color5: #696ebf
+*.color13: #8086e8
 
-! White
-*color7:   #CACACA
-*color15: #FFFFFF
+! cyan
+*.color6: #289c93
+*.color14: #33c5ba
+
+! white
+*.color7: #bfbaac
+*.color15: #fdf6e3
+
+!! Copy Paste & Other Extensions
+URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select
+URxvt.copyCommand: xclip -i -selection clipboard
+URxvt.pasteCommand: xclip -o -selection clipboard
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.urlLauncher: firefox
+URxvt.underlineURLs: true
+URxvt.urlButton: 1
 
 
 ! Compile xft: Attempt to find a visual with the given bit depth; option -depth.

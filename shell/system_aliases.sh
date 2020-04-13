@@ -21,6 +21,7 @@ alias init_laptop="laptop.sh; setxkbmap us_qwerty-fr; wallpaper.sh 0; ssh-add"
 
 alias cd="cd -P"
 alias ls="exa"
+alias grep="rg"
 
 alias make_path_arm="PATH=$PATH:$FIRMWARE_BITCLOUD/toolchain/arm-none-eabi/bin make"
 alias make_preproc='CFLAGS=-E make'

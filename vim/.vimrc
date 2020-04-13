@@ -43,24 +43,13 @@ Bundle 'gmarik/vundle'
 " Just a shitload of color schemes.
 " https://github.com/flazz/vim-colorschemes#current-colorschemes
 Bundle 'flazz/vim-colorschemes'
-
-" Fuzzy finder -- absolutely must have.
-Bundle 'kien/ctrlp.vim'
+Bundle 'gmist/vim-palette'
 
 " Support for easily toggling comments.
-Bundle 'tpope/vim-commentary'
-
-" In addtion to the above plugins, you'll likely need some for individual
-" non-standard syntaxes that aren't pre-bundled with vim. Here are some I use,
-" these are required for me, but depending on what code you write, obviously
-" this may differ for you.
+Plugin 'preservim/nerdcommenter' " use the ,c<space> command for commenting
 
 " Proper JSON filetype detection, and support.
 Bundle 'leshill/vim-json'
-
-" vim already has syntax support for javascript, but the indent support is
-" horrid. This fixes that.
-Bundle 'pangloss/vim-javascript'
 
 " vim indents HTML very poorly on it's own. This fixes a lot of that.
 Bundle 'indenthtml.vim'
@@ -68,20 +57,26 @@ Bundle 'indenthtml.vim'
 " I write markdown a lot. This is a good syntax.
 Bundle 'tpope/vim-markdown'
 
-" LessCSS -- I use this every day.
-Bundle 'groenewege/vim-less'
-
-" Coffee-script syntax.
-Bundle 'kchmck/vim-coffee-script'
-
-Bundle 'gmist/vim-palette'
+Plugin 'preservim/nerdtree'
 
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
+nnoremap <leader>a :GFiles
 
 Plugin 'chrisbra/csv.vim'
 
 Plugin 'zxqfl/tabnine-vim'
+
+Plugin 'jremmen/vim-ripgrep'
+
+Plugin 'airblade/vim-gitgutter'
+
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+Plugin 'godlygeek/tabular' " adds the Tabularize command for alignement forcing
+
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -92,9 +87,9 @@ filetype plugin indent on    " required
 filetype plugin indent on " Filetype auto-detection
 syntax on " Syntax highlighting
 
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 set expandtab " use spaces instead of tabs.
 set smarttab " let's tab key insert 'tab stops', and bksp deletes tabs.
 set shiftround " tab / shifting moves to closest tabstop.
@@ -189,8 +184,6 @@ set backspace=indent,eol,start
 set showmode
 set showcmd
 
-
-
 " Highlight matching pairs of brackets. Use the '%' character to jump between them.
 set matchpairs+=<:>
 
@@ -238,11 +231,23 @@ highlight CursorLine ctermbg=235 cterm=NONE
 " Enable CursorLine
 set cursorline
 
-" Default Colors for CursorLine
-highlight  CursorLine ctermbg=Blue ctermfg=None
+" inspired from https://dougblack.io/words/a-good-vimrc.html#colors
+set wildmenu            " visual autocomplete for command menu
+"set lazyredraw          " redraw only when we need to.
 
-" Change Color when entering Insert Mode
-autocmd InsertEnter * highlight  CursorLine ctermbg=Green ctermfg=Red
+" fast escape of insert mode with esc his will break any sequences using escape in insert mode.
+:set esckeys
 
-" Revert Color to default when leaving Insert Mode
-autocmd InsertLeave * highlight  CursorLine ctermbg=Blue ctermfg=None
+" Nerd tree auto follow
+function MyNerdToggle()
+    if &filetype == 'nerdtree'
+        :NERDTreeToggle
+    else
+        :NERDTreeFind
+    endif
+endfunction
+
+nnoremap <C-n> :call MyNerdToggle()<CR>
+
+" close vim if the only window left open is a NERDTree?
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif

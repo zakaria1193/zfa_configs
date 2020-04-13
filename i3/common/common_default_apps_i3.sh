@@ -27,6 +27,8 @@ bindsym $mod+Shift+l exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # Lock
 bindsym $mod+l exec $LOCK_SCRIPT
 
+bindsym $mod+j exec $MONITORS_SCRIPT
+
 # exec at startup
 
 # exec --no-startup-id blueman-applet
