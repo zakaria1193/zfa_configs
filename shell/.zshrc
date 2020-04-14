@@ -196,6 +196,9 @@ setemacs
 ###############################################################################
 # run fzf if found
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# use ripgrep as default search engine
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+
 
 TERM='rxvt-unicode'
 COLORTERM='rxvt-unicode-256color'

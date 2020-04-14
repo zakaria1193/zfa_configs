@@ -41,9 +41,10 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Just a shitload of color schemes.
-" https://github.com/flazz/vim-colorschemes#current-colorschemes
-Bundle 'flazz/vim-colorschemes'
-Bundle 'gmist/vim-palette'
+Plugin 'flazz/vim-colorschemes'
+colorscheme deep-space
+
+Plugin 'gmist/vim-palette'
 
 " Support for easily toggling comments.
 Plugin 'preservim/nerdcommenter' " use the ,c<space> command for commenting
@@ -61,13 +62,14 @@ Plugin 'preservim/nerdtree'
 
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
-nnoremap <leader>a :GFiles
+nnoremap <C-f> :Rg<Cr>
+nnoremap <C-p> :GFiles<Cr>
+nnoremap <C-t> :Files<Cr>
+nnoremap <C-r> :Tags<Cr>
 
 Plugin 'chrisbra/csv.vim'
 
 Plugin 'zxqfl/tabnine-vim'
-
-Plugin 'jremmen/vim-ripgrep'
 
 Plugin 'airblade/vim-gitgutter'
 
@@ -76,6 +78,7 @@ Plugin 'vim-airline/vim-airline-themes'
 
 Plugin 'godlygeek/tabular' " adds the Tabularize command for alignement forcing
 
+Plugin 'nathanaelkane/vim-indent-guides' " visual help to show indent guidelines
 
 
 " All of your Plugins must be added before the following line
@@ -154,31 +157,8 @@ nnoremap <leader><leader> <c-^>
 noremap j gj
 noremap k gk
 
-" Plugin settings:
-" Below are some 'sane' (IMHO) defaults for a couple of the above plugins I
-" referenced.
-
-" Map the key for toggling comments with vim-commentary
-nnoremap <leader>c <Plug>CommentaryLine
-
-" Remap ctrlp to ctrl-t -- map it however you like, or stick with the
-" defaults. Additionally, in my OS, I remap caps lock to control. I never use
-" caps lock. This is highly recommended.
-let g:ctrlp_map = '<c-t>'
-
-" Let ctrlp have up to 30 results.
-let g:ctrlp_max_height = 30
-
-
-" install vimrc
-" Finally the color scheme. Choose whichever you want from the list in the
-" link above (back up where we included the bundle of a ton of themes.)
-" colorscheme base16-monokai.vim
-
-
 " Fixes common backspace problems
 set backspace=indent,eol,start
-
 
 " Display options
 set showmode
@@ -233,7 +213,7 @@ set cursorline
 
 " inspired from https://dougblack.io/words/a-good-vimrc.html#colors
 set wildmenu            " visual autocomplete for command menu
-"set lazyredraw          " redraw only when we need to.
+set lazyredraw          " redraw only when we need to
 
 " fast escape of insert mode with esc his will break any sequences using escape in insert mode.
 :set esckeys
@@ -249,5 +229,9 @@ endfunction
 
 nnoremap <C-n> :call MyNerdToggle()<CR>
 
-" close vim if the only window left open is a NERDTree?
+" close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" set rip grep as default grep engine
+set grepprg=rg\ --vimgrep
+
