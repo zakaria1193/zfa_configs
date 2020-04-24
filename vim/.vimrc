@@ -66,6 +66,7 @@ nnoremap <C-f> :Rg<Cr>
 nnoremap <C-p> :GFiles<Cr>
 nnoremap <C-t> :Files<Cr>
 nnoremap <C-r> :Tags<Cr>
+nnoremap <C-b> :Buffers<Cr>
 
 Plugin 'chrisbra/csv.vim'
 
@@ -234,4 +235,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 " set rip grep as default grep engine
 set grepprg=rg\ --vimgrep
+
+" auto set buffer's dir as vim dir
+autocmd BufEnter * silent! lcd %:p:h
 
