@@ -144,7 +144,7 @@ bindsym Shift+Print --release exec "scrot -s /tmp/screenshot-$(date +%F_%T).png 
 ## i3 gaps specific
 for_window [class="^.*"] border pixel 1
 
-gaps inner 5
+gaps inner 10
 gaps outer 1
 
 # Only enable gaps on a workspace when there is at least one container

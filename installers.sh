@@ -219,28 +219,24 @@ function pull_vim_config
 }
 
 ################################################################################
-                                # urxvt #
+                                # alacritty #
 ################################################################################
-function install_urxvt
+function install_terminal_emul
 {
-  if is_installed urxvt; then
-    echo urxvt installed
+  if is_installed alacritty; then
+    echo alacritty installed
     return
   fi
 
-  sudo apt-get install rxvt-unicode
-  sudo update-alternatives --set x-terminal-emulator /usr/bin/urxvt
-
-  # prepare dir for plugins
-  mkdir ~/.urxvt/
-  mkdir ~/.urxvt/ext/
+  add-apt-repository ppa:mmstick76/alacritty
+  apt install alacritty
+  sudo update-alternatives --set x-terminal-emulator /usr/bin/alacritty
 }
 
-function pull_urxvt_config
+function pull_terminal_emul_config
 {
-  printf "\n>> Pulling urxvt from repo to system \n"
-  symbolic-link '.Xresources' $SHELL_CONFIGS "$HOME"
-  xrdb -merge ~/.Xresources
+  printf "\n>> Pulling alacritty from repo to system \n"
+  symbolic-link '.alacritty.yml' $SHELL_CONFIGS "$HOME"
 }
 
 ################################################################################
@@ -327,7 +323,7 @@ function main()
     install_i3
     install_sublime
     install_udev_rules
-    install_urxvt
+    install_terminal_emul
     install_wireshark
     install_gdb
     install_apps
@@ -339,7 +335,7 @@ function main()
   pull_git_config
   pull_sublime_config
   pull_vim_config
-  pull_urxvt_config
+  pull_terminal_emul_config
   pull_wireshark_config
   pull_gdb_config
 
