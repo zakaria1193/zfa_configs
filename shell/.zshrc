@@ -66,6 +66,7 @@ plugins=(
   wd
   forgit
   navi
+  poetry
 )
 
 plugins_completions=(

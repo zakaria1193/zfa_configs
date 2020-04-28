@@ -239,3 +239,9 @@ set grepprg=rg\ --vimgrep
 " auto set buffer's dir as vim dir
 autocmd BufEnter * silent! lcd %:p:h
 
+command WQ wq
+command Wq wq
+command W w
+command Q q
+
+

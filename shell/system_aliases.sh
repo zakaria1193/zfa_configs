@@ -50,6 +50,8 @@ function find_and_replace()
 alias swap="sudo swapoff /dev/sda5 && sync && sleep 5 && sudo swapon /dev/sda5"
 
 alias update="sudo apt update && sudo apt upgrade -y"
+alias update_pip="" # TODO
+alias update_pip3="" # TODO
 
 alias list="typeset -f" # show function implems
 

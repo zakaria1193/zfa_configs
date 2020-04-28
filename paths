@@ -95,7 +95,8 @@ SUBLIME_CONFIG_REPO="$MY_REPOS/zfa_sublime_text"
 ## paths in zfa work tools
 ZFA_WORK_TOOLS="$MY_REPOS/zfa_work_tools"
 export_dir_to_path $ZFA_WORK_TOOLS
-GDB_SCRIPT="$ZFA_WORK_TOOLS/gdb_scripts/main.gdb"
+GDB_CONFIG="$ZFA_WORK_TOOLS/gdb_scripts"
+GDB_SCRIPT="$ZFA_WORK_TOOLS/gdb_scripts/.gdbinit"
 #GDB_SCRIPT="$HOME/.gdbinit"
 WORK_SHELL="$ZFA_WORK_TOOLS/shell"
 
@@ -125,8 +126,10 @@ export_dir_to_path $GIT_BREATHER
 PREF_RENDEZ_VOUS="$PROJECTS/rendezvous-pref"
 export_dir_to_path $PREF_RENDEZ_VOUS
 
-WIRESHARK_KEYS=/home/zfadli/.wireshark/profiles/Zigbee\ \(copy\)\ \(copy\)\ \(copy\)\ \(copy\)\ \(copy\)\ \(copy\)\ \(copy\)\ \(copy\)/zigbee_pc_keys
+WIRESHARK_KEYS=/home/zfadli/.wireshark/profiles/Default/zigbee_pc_keys
 
+# poetry
+export_dir_to_path_recursively "$HOME/.poetry/bin"
 
 set +a
 

@@ -244,31 +244,58 @@ function pull_urxvt_config
 ################################################################################
                                 # wireshark #
 ################################################################################
+function install_wireshark
+{
+  sudo add-apt-repository ppa:wireshark-dev/stable -y
+  sudo apt install wireshark tshark -y
+}
+
 function pull_wireshark_config
 {
   # do not use symbolic link function since sudo is needed
-  printf "\n>> Pulling wireshark from repo to system \n"
+  # printf "\n>> Pulling wireshark from repo to system \n"
   # rm $HOME/.wireshark -r -f
   # ln -s $ZFA_WORK_TOOLS/.wireshark $HOME
+  true
 }
+
+################################################################################
+                                # gdb #
+################################################################################
+function install_gdb
+{
+  # GDB USES PYTHON 2
+  pip install --user gdbundle gdbundle-gdb-dashboard pygments gdbundle-PyCortexMDebug
+  pip install --user $GDB_CONFIG/*.whl
+} 
+
+function pull_gdb_config
+{
+  true
+}
+
+################################################################################
+                                # general #
+################################################################################
 
 function install_general
 {
   sudo apt update
   sudo apt install make scrot curl feh git tig libxml2-utils jq xclip xsel ascii -y
 
-  sudo add-apt-repository ppa:wireshark-dev/stable -y
-  sudo apt install wireshark tshark -y
   sudo apt install zathura -y
-  sudo apt install python3 python3-pip -y
+  sudo apt install python3 python-pip python3-pip  -y
   sudo apt install gcc g++ make nodejs -y
   sudo apt install minicom meld -y
+
+  # poetry for python packages
+  curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
 }
 
-function install_general
+function install_general_no_graphics
 {
   sudo apt update
-  sudo apt install make curl git tig jq xclip  ascii minicom -y
+  sudo apt install make curl git tig jq xclip ascii minicom -y
   sudo apt install gcc g++ make nodejs -y
 }
 
@@ -281,6 +308,10 @@ function install_apps
   wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   sudo dpkg -i google-chrome-stable_current_amd64.deb
 }
+
+################################################################################
+################################################################################
+################################################################################
 
 function main()
 {
@@ -295,6 +326,8 @@ function main()
     install_sublime
     install_udev_rules
     install_urxvt
+    install_wireshark
+    install_gdb
     install_apps
     # pull_repos
   fi
@@ -306,15 +339,18 @@ function main()
   pull_vim_config
   pull_urxvt_config
   pull_wireshark_config
+  pull_gdb_config
 
   if [[ $1 == '-i' ]]; then
     vim +PluginInstall +qall
   fi
 }
+################################################################################
 
 function main_no_graphics()
 {
   if [[ $1 == '-i' ]]; then
+    install_general_no_graphics
     install_zsh
     install_vim
     install_git
@@ -329,5 +365,9 @@ function main_no_graphics()
     vim +PluginInstall +qall
   fi
 }
+
+################################################################################
+################################################################################
+################################################################################
 
 main $@
