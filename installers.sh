@@ -115,12 +115,13 @@ function install_i3()
   # fi
 
   sudo apt remove dunst -y
-  sudo apt install i3 i3status -y
+  sudo apt install i3-gaps -y
   sudo apt install rofi -y # launcher
   sudo apt install acpi -y # battery reader
   sudo apt install lm-sensors -y # temperature reader
   sudo apt install compton -y # for transparency
 
+  sudo apt install i3status -y # default status bar but not used (i3 blocks instead)
   echo 'installing i3 blocks from submodule repo'
   sudo apt remove i3-blocks -y
   cd $I3BLOCKS_REPO
@@ -131,6 +132,7 @@ function install_i3()
   sudo make install
   cd -
 }
+
 function pull_i3_config()
 {
   printf "\n>> Pulling i3 config from repo to system \n"

@@ -19,8 +19,6 @@ workspace $workspace8 output DP2
 set $workspace9 "9. files"
 workspace $workspace9 output DP1
 
-exec --no-startup-id i3-msg "workspace $workspace1; layout tabbed"
-
 for_window [class="meld"] fullscreen enable
 for_window [class="^(?i)google-chrome"] border pixel 1
 
