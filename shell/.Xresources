@@ -8,7 +8,7 @@
 !stjerm.font: monaco 10
 
 URxvt.font:            xft:DejaVu Sans Mono:pixelsize=11:antialias=true:hinting=true
-URxvt.perl-ext-common:default,matcher,vtwheel
+URxvt.perl-ext-common:default,matcher,vtwheel,clipboard,url-select,keyboard-select
 !URxvt.depth: 32
 !URxvt.background: [40]#000000
 URxvt.foreground: #ffffff
@@ -19,7 +19,7 @@ URxvt.shading: 5
 URxvt.fading: 25
 
 urxvt.saveLines: 1000000
-urxvt.scrollBar: true
+urxvt.scrollBar: False
 
 URxvt.urlLauncher: google-chrome-stable
 URxvt.matcher.button: 3
@@ -66,7 +66,6 @@ URxvt.colorUL: #4682B4
 *.color15: #fdf6e3
 
 !! Copy Paste & Other Extensions
-URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select
 URxvt.copyCommand: xclip -i -selection clipboard
 URxvt.pasteCommand: xclip -o -selection clipboard
 URxvt.keysym.M-c: perl:clipboard:copy
