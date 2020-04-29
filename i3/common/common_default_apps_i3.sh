@@ -32,7 +32,8 @@ bindsym $mod+j exec $MONITORS_SCRIPT
 # exec at startup
 
 # exec --no-startup-id blueman-applet
-exec_always --no-startup-id nm-appplet
+exec_always --no-startup-id nm-applet
+exec_always --no-startup-id volumeicon
 exec_always  --no-startup-id yes | $WALLPAPER_SCRIPT
 # exec --no-startup-id /home/zfadli/my_scripts/ram_monitor.sh
 exec_always  --no-startup-id  compton # compton is needed for transparency

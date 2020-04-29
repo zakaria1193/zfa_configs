@@ -62,25 +62,22 @@ Plugin 'preservim/nerdtree'
 
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
-nnoremap <C-f> :Rg<Cr>
-nnoremap <C-p> :GFiles<Cr>
-nnoremap <C-t> :Files<Cr>
-nnoremap <C-r> :Tags<Cr>
-nnoremap <C-b> :Buffers<Cr>
+nnoremap <C-p> :Files<Cr>
 
 Plugin 'chrisbra/csv.vim'
 
-Plugin 'zxqfl/tabnine-vim'
+" Plugin 'zxqfl/tabnine-vim'
 
 Plugin 'airblade/vim-gitgutter'
 
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+" show all buffers on top
+let g:airline#extensions#tabline#enabled = 1
 
 Plugin 'godlygeek/tabular' " adds the Tabularize command for alignement forcing
 
 Plugin 'nathanaelkane/vim-indent-guides' " visual help to show indent guidelines
-
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -129,9 +126,6 @@ let mapleader = ","
 nnoremap ; :
 vnoremap ; :
 
-" So we don't have to reach for escape to leave insert mode.
-inoremap jf <esc>
-
 " create new vsplit, and switch to it.
 noremap <leader>v <C-w>v
 
@@ -142,8 +136,8 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " Use sane regex's when searching
-nnoremap / /\v
-vnoremap / /\v
+"nnoremap / /\v
+"vnoremap / /\v
 
 " Clear match highlighting
 noremap <leader><space> :noh<cr>:call clearmatches()<cr>
@@ -200,24 +194,24 @@ autocmd BufWinEnter *.* silent loadview"
 
 " Invisible characters
 set list
-set listchars=eol:¬,tab:··,trail:·,extends:>,precedes:<,space:·
+set listchars=eol:¬,tab:··,trail:·,extends:>,precedes:<
 highlight SpecialKey ctermfg=238
 highlight NonText ctermfg=238
 " Line numbers
 highlight LineNr ctermfg=8
-highlight CursorLineNr ctermfg=7
-highlight CursorLine ctermbg=235 cterm=NONE
-
 
 " Enable CursorLine
+highlight CursorLine ctermbg=235 cterm=NONE
+highlight CursorLineNr ctermfg=7
 set cursorline
+
+" Enable cursorcolumn
+highlight cursorcolumn ctermbg=100 cterm=NONE
+autocmd InsertEnter,InsertLeave * set cursorcolumn!
 
 " inspired from https://dougblack.io/words/a-good-vimrc.html#colors
 set wildmenu            " visual autocomplete for command menu
 set lazyredraw          " redraw only when we need to
-
-" fast escape of insert mode with esc his will break any sequences using escape in insert mode.
-:set esckeys
 
 " Nerd tree auto follow
 function MyNerdToggle()
@@ -237,11 +231,27 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 set grepprg=rg\ --vimgrep
 
 " auto set buffer's dir as vim dir
-autocmd BufEnter * silent! lcd %:p:h
+"autocmd BufEnter * silent! lcd %:p:h
 
+" Buffer switching like sublime
+nmap <C-PageUp> :bp<CR>
+nmap <C-PageDown> :bn<CR>
+" Buffer closing like sublime
+"nmap <C-w> :q
+
+" accept mistakes on wa commands
 command WQ wq
 command Wq wq
 command W w
 command Q q
 
+" fast escape of insert mode with esc his will break any sequences using escape in insert mode.
+":set noesckeys " BREAKS ARROW KEYS AND DOESNT FIX ESCAPE
+
+" So we don't have to reach for escape to leave insert mode.
+inoremap ;' <esc>
+
+set mouse=a
+inoremap <LeftMouse> <Esc><LeftMouse> 
+nnoremap <RightMouse><RightMouse> i
 
