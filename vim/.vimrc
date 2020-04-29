@@ -239,7 +239,7 @@ nnoremap <C-PageDown> :bn<CR>
 nnoremap <leader><leader> <c-^>
 
 " Buffer closing 
-nnoremap <C-q> :bd<CR>
+nnoremap <C-z> :bd<CR>
 
 " accept mistakes on wa commands
 command WQ wq
@@ -252,6 +252,7 @@ command Q q
 
 " So we don't have to reach for escape to leave insert mode.
 inoremap ;' <esc>
+set timeoutlen=1000 ttimeoutlen=0
 
 set ttymouse=sgr "without that you'll need to set TERM to TERM=xterm-256color
 set mouse=a
