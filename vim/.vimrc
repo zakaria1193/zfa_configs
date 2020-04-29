@@ -142,8 +142,6 @@ nnoremap <C-l> <C-w>l
 " Clear match highlighting
 noremap <leader><space> :noh<cr>:call clearmatches()<cr>
 
-" Quick buffer switching - like cmd-tab'ing
-nnoremap <leader><leader> <c-^>
 
 
 " Visual line nav, not real line nav
@@ -194,7 +192,7 @@ autocmd BufWinEnter *.* silent loadview"
 
 " Invisible characters
 set list
-set listchars=eol:¬,tab:··,trail:·,extends:>,precedes:<
+set listchars=eol:$,tab:··,trail:·,extends:>,precedes:<
 highlight SpecialKey ctermfg=238
 highlight NonText ctermfg=238
 " Line numbers
@@ -234,10 +232,14 @@ set grepprg=rg\ --vimgrep
 "autocmd BufEnter * silent! lcd %:p:h
 
 " Buffer switching like sublime
-nmap <C-PageUp> :bp<CR>
-nmap <C-PageDown> :bn<CR>
-" Buffer closing like sublime
-"nmap <C-w> :q
+nnoremap <C-PageUp> :bp<CR>
+nnoremap <C-PageDown> :bn<CR>
+
+" Quick buffer switching - like cmd-tab'ing
+nnoremap <leader><leader> <c-^>
+
+" Buffer closing 
+nnoremap <C-q> :bd<CR>
 
 " accept mistakes on wa commands
 command WQ wq
@@ -251,7 +253,7 @@ command Q q
 " So we don't have to reach for escape to leave insert mode.
 inoremap ;' <esc>
 
+set ttymouse=sgr "without that you'll need to set TERM to TERM=xterm-256color
 set mouse=a
 inoremap <LeftMouse> <Esc><LeftMouse> 
-nnoremap <RightMouse><RightMouse> i
 

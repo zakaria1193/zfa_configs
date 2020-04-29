@@ -193,7 +193,7 @@ function setemacs
   bindkey '^H' backward-kill-word
   bindkey '^[[3;5~' kill-word
 }
-setemacs
+#setemacs
 
 ###############################################################################
 # run fzf if found
@@ -201,6 +201,4 @@ setemacs
 # use ripgrep as default search engine
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
 
-
-TERM='rxvt-unicode'
-COLORTERM='rxvt-unicode-256color'
+TERM=xterm-256color # https://unix.stackexchange.com/questions/528323/what-uses-the-term-variable
