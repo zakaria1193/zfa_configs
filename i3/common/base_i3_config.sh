@@ -151,7 +151,7 @@ gaps outer 1
 smart_gaps on
 
 # Activate smart borders (always)
-smart_borders no_gaps
+smart_borders on
 
 # Hide edge borders only if there is one window with no gaps
 hide_edge_borders smart_no_gaps

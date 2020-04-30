@@ -79,6 +79,9 @@ Plugin 'godlygeek/tabular' " adds the Tabularize command for alignement forcing
 
 Plugin 'nathanaelkane/vim-indent-guides' " visual help to show indent guidelines
 
+
+Plugin 'ycm-core/YouCompleteMe' "Autocomplete
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -254,7 +257,13 @@ command Q q
 inoremap ;' <esc>
 set timeoutlen=1000 ttimeoutlen=0
 
+" enable mouse controls
 set ttymouse=sgr "without that you'll need to set TERM to TERM=xterm-256color
 set mouse=a
 inoremap <LeftMouse> <Esc><LeftMouse> 
 
+" keep cursor centered in middle of screen:wq
+:set scrolloff=20
+
+" Quickly insert an empty new line without entering insert mode
+nnoremap <Leader>o o<Esc>
