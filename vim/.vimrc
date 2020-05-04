@@ -44,11 +44,10 @@ call vundle#rc()
 " Let vundle manage itself:
 Bundle 'gmarik/vundle'
 
-" Just a shitload of color schemes.
-Plugin 'flazz/vim-colorschemes'
-colorscheme deep-space
+" color schemes.
+Bundle 'rainglow/vim'
+"colorscheme bold-contrast
 
-Plugin 'gmist/vim-palette'
 
 Plugin 'lilydjwg/colorizer'
 
@@ -79,39 +78,14 @@ let g:airline_powerline_fonts = 1
 
 Plugin 'godlygeek/tabular' " adds the Tabularize command for alignement forcing
 
-Plugin 'nathanaelkane/vim-indent-guides' " visual help to show indent guidelines
-let g:indent_guides_enable_on_vim_startup = 0 "disable by default do :IndentGuidesToggle
-
-
-"::::::::::::::::::  NAVIGATION TAGS AND SEARCH ::::::::::::::::::::::::::::::
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
-nnoremap <C-p> :GFiles<Cr>
-nnoremap g<C-p> :Files<Cr>
-nnoremap <leader>t :BTags<Cr>
-nnoremap <leader>gt :Tags<Cr>
 "Plugin 'ycm-core/YouCompleteMe' "Autocomplete
 "Plugin 'majutsushi/tagbar' "tagBar
 "Plugin 'zxqfl/tabnine-vim'
 
-" for dir navigation
-Plugin 'lingceng/z.vim'
-
-"Ctags alternative should be installed outside vim (universal ctags for
-"example)
+"Ctags alternative should be installed outside vim (universal ctags for example)
 Plugin 'ludovicchabant/vim-gutentags'
-let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/') " so no need to add
-"ctags ignore to all projects
-command! -nargs=0 GutentagsClearCache call system('rm ' . g:gutentags_cache_dir . '/*')
-let g:gutentags_generate_on_write = 1
-let g:gutentags_generate_on_new = 1
-let g:gutentags_generate_on_missing = 1
-let g:gutentags_generate_on_write = 1
-let g:gutentags_generate_on_empty_buffer = 0
-let g:gutentags_ctags_extra_args = [
-      \ '--tag-relative=yes',
-      \ '--fields=+ailmnS',
-      \ ]
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -158,12 +132,6 @@ vnoremap ; :
 
 " create new vsplit, and switch to it.
 noremap <leader>v <C-w>v
-
-" bindings for easy split nav
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
 
 " Use sane regex's when searching
 "nnoremap / /\v
@@ -218,15 +186,6 @@ vnoremap <Space> zf
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview"
 
-" go back to middle of parenthesis or quote
-inoremap <> <><Left>
-inoremap () ()<Left>
-inoremap {} {}<Left>
-inoremap [] []<Left>
-inoremap "" ""<Left>
-inoremap '' ''<Left>
-inoremap `` ``<Left>
-
 " Invisible characters
 set list
 set listchars=eol:$,tab:··,trail:·,extends:>,precedes:<
@@ -268,6 +227,7 @@ set grepprg=rg\ --vimgrep
 " auto set buffer's dir as vim dir
 "autocmd BufEnter * silent! lcd %:p:h
 
+""""""""""""""""""Buffers"""""""
 " Buffer switching like sublime
 nnoremap <C-PageUp> :bp<CR>
 nnoremap <C-PageDown> :bn<CR>
@@ -277,6 +237,7 @@ nnoremap <leader><leader> <c-^>
 
 " Buffer closing 
 nnoremap <leader>w :bd<CR>
+""""""""""""""""""""""""""""""
 
 " accept mistakes on wa commands
 command WQ wq
@@ -303,8 +264,27 @@ inoremap <LeftMouse> <Esc><LeftMouse>
 nnoremap <Leader>o o<Esc>
 
 " always list tags before jumping if too many
-nnoremap ^] g^]
+nnoremap <C-]> g<C-]>
 
+""""""""FZF"""""""
+nnoremap <C-p> :GFiles<Cr>
+nnoremap g<C-p> :Files<Cr>
+nnoremap <C-h> :History<Cr>
+nnoremap <leader>t :BTags<Cr>
+nnoremap <leader>gt :Tags<Cr>
+
+""""""""GUTENTAGS"""""""
+let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/') " so no need to add ctags ignore to all projects
+command! -nargs=0 GutentagsClearCache call system('rm ' . g:gutentags_cache_dir . '/*')
+let g:gutentags_generate_on_write = 1
+let g:gutentags_generate_on_new = 1
+let g:gutentags_generate_on_missing = 1
+let g:gutentags_generate_on_write = 1
+let g:gutentags_generate_on_empty_buffer = 0
+let g:gutentags_ctags_extra_args = [
+      \ '--tag-relative=yes',
+      \ '--fields=+ailmnS',
+      \ ]
 "Make gutentags faster
 let g:gutentags_ctags_exclude = [
       \ '*.git', '*.svg', '*.hg',
