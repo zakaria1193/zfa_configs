@@ -66,17 +66,10 @@ Bundle 'tpope/vim-markdown'
 
 Plugin 'preservim/nerdtree'
 
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-nnoremap <C-p> :GFiles<Cr>
-nnoremap g<C-p> :Files<Cr>
-nnoremap <leader>t :BTags<Cr>
-nnoremap <leader>gt :Tags<Cr>
-nnoremap <C-f> :Rg <cword><Cr> 
+
 
 Plugin 'chrisbra/csv.vim'
 
-" Plugin 'zxqfl/tabnine-vim'
 
 Plugin 'airblade/vim-gitgutter'
 
@@ -91,8 +84,17 @@ Plugin 'godlygeek/tabular' " adds the Tabularize command for alignement forcing
 Plugin 'nathanaelkane/vim-indent-guides' " visual help to show indent guidelines
 let g:indent_guides_enable_on_vim_startup = 0 "disable by default do :IndentGuidesToggle
 
+
+"::::::::::::::::::  NAVIGATION TAGS AND SEARCH ::::::::::::::::::::::::::::::
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+nnoremap <C-p> :GFiles<Cr>
+nnoremap g<C-p> :Files<Cr>
+nnoremap <leader>t :BTags<Cr>
+nnoremap <leader>gt :Tags<Cr>
 "Plugin 'ycm-core/YouCompleteMe' "Autocomplete
 "Plugin 'majutsushi/tagbar' "tagBar
+" Plugin 'zxqfl/tabnine-vim'
 
 "Ctags alternative should be installed outside vim (universal ctags for
 "example)
@@ -208,8 +210,8 @@ set incsearch
 set viminfo='100,<9999,s100
 
 " Map the <Space> key to toggle a selected fold opened/closed.
-"nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-"vnoremap <Space> zf
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
 
 " Automatically save and load folds
 autocmd BufWinLeave *.* mkview
@@ -223,6 +225,10 @@ inoremap [] []<Left>
 inoremap "" ""<Left>
 inoremap '' ''<Left>
 inoremap `` ``<Left>
+
+" Tab and shift tab to indent
+nnoremap <Tab>   >>
+nnoremap <S-Tab> <<
 
 " Invisible characters
 set list
@@ -286,7 +292,6 @@ command Q q
 
 " So we don't have to reach for escape to leave insert mode.
 inoremap ;' <esc>
-noremap `` <esc>
 set timeoutlen=1000 ttimeoutlen=0
 
 " enable mouse controls
@@ -299,15 +304,6 @@ inoremap <LeftMouse> <Esc><LeftMouse>
 
 " Quickly insert an empty new line without entering insert mode
 nnoremap <Leader>o o<Esc>
-
-"tags
-" when multiple tags, list all automatically instead of just first
-nnoremap <C-]> g<C-]>
-
-"Search for current word in current dir
-:nnoremap <C-f> :grep '\b<cword>\b' *<CR>
-:nnoremap g<C-f> :grep '\b<cword>\b' %:p:h/*<CR>
-
 
 "Make gutentags faster
 let g:gutentags_ctags_exclude = [
