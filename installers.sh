@@ -210,6 +210,9 @@ function install_vim
 
   sudo apt install vim
   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+  # uuniversal ctags install
+  curl -L https://github.com/zakaria1193/universal-ctags-installer/raw/master/universal_ctags_installer.sh | bash
 }
 
 function pull_vim_config
@@ -361,6 +364,8 @@ function main_no_graphics()
 
   if [[ $1 == '-i' ]]; then
     vim +PluginInstall +qall
+    cd ~/.vim/bundle/YouCompleteMe
+    python3 install.py --clangd-completer
   fi
 }
 

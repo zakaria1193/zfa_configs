@@ -29,6 +29,10 @@
 set nocompatible " Fuck VI... That's for grandpas.
 filetype off
 
+" leader is a key that allows you to have your own "namespace" of keybindings.
+" You'll see it a lot below as <leader>
+let mapleader = ","
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
@@ -46,6 +50,8 @@ colorscheme deep-space
 
 Plugin 'gmist/vim-palette'
 
+Plugin 'lilydjwg/colorizer'
+
 " Support for easily toggling comments.
 Plugin 'preservim/nerdcommenter' " use the ,c<space> command for commenting
 
@@ -62,7 +68,11 @@ Plugin 'preservim/nerdtree'
 
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
-nnoremap <C-p> :Files<Cr>
+nnoremap <C-p> :GFiles<Cr>
+nnoremap g<C-p> :Files<Cr>
+nnoremap <leader>t :BTags<Cr>
+nnoremap <leader>gt :Tags<Cr>
+nnoremap <C-f> :Rg <cword><Cr> 
 
 Plugin 'chrisbra/csv.vim'
 
@@ -74,13 +84,31 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 " show all buffers on top
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
 
 Plugin 'godlygeek/tabular' " adds the Tabularize command for alignement forcing
 
 Plugin 'nathanaelkane/vim-indent-guides' " visual help to show indent guidelines
+let g:indent_guides_enable_on_vim_startup = 0 "disable by default do :IndentGuidesToggle
 
+"Plugin 'ycm-core/YouCompleteMe' "Autocomplete
+"Plugin 'majutsushi/tagbar' "tagBar
 
-Plugin 'ycm-core/YouCompleteMe' "Autocomplete
+"Ctags alternative should be installed outside vim (universal ctags for
+"example)
+Plugin 'ludovicchabant/vim-gutentags'
+let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/') " so no need to add
+"ctags ignore to all projects
+command! -nargs=0 GutentagsClearCache call system('rm ' . g:gutentags_cache_dir . '/*')
+let g:gutentags_generate_on_write = 1
+let g:gutentags_generate_on_new = 1
+let g:gutentags_generate_on_missing = 1
+let g:gutentags_generate_on_write = 1
+let g:gutentags_generate_on_empty_buffer = 0
+let g:gutentags_ctags_extra_args = [
+      \ '--tag-relative=yes',
+      \ '--fields=+ailmnS',
+      \ ]
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -119,10 +147,6 @@ set gdefault " use the `g` flag by default.
 
 " allow the cursor to go anywhere in visual block mode.
 set virtualedit+=block
-
-" leader is a key that allows you to have your own "namespace" of keybindings.
-" You'll see it a lot below as <leader>
-let mapleader = ","
 
 
 " So we don't have to press shift when we want to get into command mode.
@@ -184,14 +208,21 @@ set incsearch
 set viminfo='100,<9999,s100
 
 " Map the <Space> key to toggle a selected fold opened/closed.
-nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-vnoremap <Space> zf
+"nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+"vnoremap <Space> zf
 
 " Automatically save and load folds
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview"
 
-
+" go back to middle of parenthesis or quote
+inoremap <> <><Left>
+inoremap () ()<Left>
+inoremap {} {}<Left>
+inoremap [] []<Left>
+inoremap "" ""<Left>
+inoremap '' ''<Left>
+inoremap `` ``<Left>
 
 " Invisible characters
 set list
@@ -255,6 +286,7 @@ command Q q
 
 " So we don't have to reach for escape to leave insert mode.
 inoremap ;' <esc>
+noremap `` <esc>
 set timeoutlen=1000 ttimeoutlen=0
 
 " enable mouse controls
@@ -267,3 +299,63 @@ inoremap <LeftMouse> <Esc><LeftMouse>
 
 " Quickly insert an empty new line without entering insert mode
 nnoremap <Leader>o o<Esc>
+
+"tags
+" when multiple tags, list all automatically instead of just first
+nnoremap <C-]> g<C-]>
+
+"Search for current word in current dir
+:nnoremap <C-f> :grep '\b<cword>\b' *<CR>
+:nnoremap g<C-f> :grep '\b<cword>\b' %:p:h/*<CR>
+
+
+"Make gutentags faster
+let g:gutentags_ctags_exclude = [
+      \ '*.git', '*.svg', '*.hg',
+      \ '*/tests/*',
+      \ 'build',
+      \ 'dist',
+      \ '*sites/*/files/*',
+      \ 'bin',
+      \ 'elf',
+      \ 'S',
+      \ 'node_modules',
+      \ 'bower_components',
+      \ 'cache',
+      \ 'compiled',
+      \ 'docs',
+      \ 'example',
+      \ 'bundle',
+      \ 'vendor',
+      \ '*.md',
+      \ '*-lock.json',
+      \ '*.lock',
+      \ '*bundle*.js',
+      \ '*build*.js',
+      \ '.*rc*',
+      \ '*.json',
+      \ '*.min.*',
+      \ '*.map',
+      \ '*.bak',
+      \ '*.zip',
+      \ '*.pyc',
+      \ '*.class',
+      \ '*.sln',
+      \ '*.Master',
+      \ '*.csproj',
+      \ '*.tmp',
+      \ '*.csproj.user',
+      \ '*.cache',
+      \ '*.pdb',
+      \ 'tags*',
+      \ 'cscope.*',
+      \ '*.css',
+      \ '*.less',
+      \ '*.scss',
+      \ '*.exe', '*.dll',
+      \ '*.mp3', '*.ogg', '*.flac',
+      \ '*.swp', '*.swo',
+      \ '*.bmp', '*.gif', '*.ico', '*.jpg', '*.png',
+      \ '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz', '*.tar.bz2',
+      \ '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx',
+      \ ]

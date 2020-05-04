@@ -212,10 +212,10 @@ color=#A4C2F4
 command=date '+%Y-%m-%d %H:%M:%S'
 interval=5
 
-[volume-pulseaudio]
-interval=1
-signal=10
-LONG_FORMAT="${SYMB}${VOL}%"
-SHORT_FORMAT="${SYMB}${VOL}%"
-DEFAULT_COLOR="#f3f4f5"
-USE_ALSA_NAME=1
+#[volume-pulseaudio]
+#interval=1
+#signal=10
+#LONG_FORMAT="${SYMB}${VOL}%"
+#SHORT_FORMAT="${SYMB}${VOL}%"
+#DEFAULT_COLOR="#f3f4f5"
+#USE_ALSA_NAME=1

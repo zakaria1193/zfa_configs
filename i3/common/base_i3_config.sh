@@ -114,7 +114,7 @@ popup_during_fullscreen smart
 workspace_auto_back_and_forth yes
 
 
-set $bg-color            #00004d
+set $bg-color            #500091
 set $inactive-bg-color   #2f343f
 set $text-color          #f3f4f5
 set $inactive-text-color #676E7D
@@ -142,7 +142,7 @@ bindsym Shift+Print --release exec "scrot -s /tmp/screenshot-$(date +%F_%T).png 
 
 
 ## i3 gaps specific
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 4
 
 gaps inner 10
 gaps outer 1
