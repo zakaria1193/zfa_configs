@@ -66,12 +66,10 @@ Bundle 'tpope/vim-markdown'
 
 Plugin 'preservim/nerdtree'
 
-
-
 Plugin 'chrisbra/csv.vim'
 
-
 Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
 
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -94,7 +92,10 @@ nnoremap <leader>t :BTags<Cr>
 nnoremap <leader>gt :Tags<Cr>
 "Plugin 'ycm-core/YouCompleteMe' "Autocomplete
 "Plugin 'majutsushi/tagbar' "tagBar
-" Plugin 'zxqfl/tabnine-vim'
+"Plugin 'zxqfl/tabnine-vim'
+
+" for dir navigation
+Plugin 'lingceng/z.vim'
 
 "Ctags alternative should be installed outside vim (universal ctags for
 "example)
@@ -226,10 +227,6 @@ inoremap "" ""<Left>
 inoremap '' ''<Left>
 inoremap `` ``<Left>
 
-" Tab and shift tab to indent
-nnoremap <Tab>   >>
-nnoremap <S-Tab> <<
-
 " Invisible characters
 set list
 set listchars=eol:$,tab:··,trail:·,extends:>,precedes:<
@@ -279,7 +276,7 @@ nnoremap <C-PageDown> :bn<CR>
 nnoremap <leader><leader> <c-^>
 
 " Buffer closing 
-nnoremap <C-z> :bd<CR>
+nnoremap <leader>w :bd<CR>
 
 " accept mistakes on wa commands
 command WQ wq
@@ -304,6 +301,9 @@ inoremap <LeftMouse> <Esc><LeftMouse>
 
 " Quickly insert an empty new line without entering insert mode
 nnoremap <Leader>o o<Esc>
+
+" always list tags before jumping if too many
+nnoremap ^] g^]
 
 "Make gutentags faster
 let g:gutentags_ctags_exclude = [
