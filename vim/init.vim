@@ -81,8 +81,6 @@ Plugin 'godlygeek/tabular' " adds the Tabularize command for alignement forcing
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 "Plugin 'ycm-core/YouCompleteMe' "Autocomplete
-"Plugin 'majutsushi/tagbar' "tagBar
-"Plugin 'zxqfl/tabnine-vim'
 
 "Ctags alternative should be installed outside vim (universal ctags for example)
 Plugin 'ludovicchabant/vim-gutentags'
@@ -104,6 +102,9 @@ set smarttab " let's tab key insert 'tab stops', and bksp deletes tabs.
 set shiftround " tab / shifting moves to closest tabstop.
 set autoindent " Match indents on new lines.
 set smartindent " Intellegently dedent / indent new lines based on rules.
+
+" spell check
+"set spell spelllang=en_us
 
 " We have VCS -- we don't need this stuff.
 set nobackup " We have vcs, we don't need backups.
@@ -199,13 +200,13 @@ highlight CursorLine ctermbg=235 cterm=NONE
 highlight CursorLineNr ctermfg=7
 set cursorline
 
-" Enable cursorcolumn
-highlight cursorcolumn ctermbg=100 cterm=NONE
-autocmd InsertEnter,InsertLeave * set cursorcolumn!
+" Enable cursorcolumn in insert mode
+:autocmd InsertEnter * set cuc
+:autocmd InsertLeave * set nocuc
 
 " inspired from https://dougblack.io/words/a-good-vimrc.html#colors
 set wildmenu            " visual autocomplete for command menu
-set lazyredraw          " redraw only when we need to
+"set lazyredraw          " redraw only when we need to
 
 " Nerd tree auto follow
 function MyNerdToggle()
@@ -263,17 +264,64 @@ inoremap <LeftMouse> <Esc><LeftMouse>
 " Quickly insert an empty new line without entering insert mode
 nnoremap <Leader>o o<Esc>
 
+" Quickly source vim
+nnoremap <Leader>ve :e $MYVIMRC<cr>
+nnoremap <Leader>vs :source $MYVIMRC<cr>
+
+"""""""Tags""""""""
+"search for tags file in parent dire too
+"set tags+=tags;/
+"no used since gutentags puts the tags file in his cache
+
 " always list tags before jumping if too many
 nnoremap <C-]> g<C-]>
+
+""""""" YOU COMPLETE ME """"""""""""""""""
+"let g:ycm_collect_identifiers_from_tags_files = 1
+""""""" Vim Omni completion """"""""""""""""""
+" Easier Tab completion
+function! Smart_TabComplete()
+  let line = getline('.')                         " current line
+
+  let substr = strpart(line, -1, col('.')+1)      " from the start of the current
+                                                  " line to one character right
+                                                  " of the cursor
+  let substr = matchstr(substr, "[^ \t]*$")       " word till cursor
+  if (strlen(substr)==0)                          " nothing to match on empty string
+    return "\<tab>"
+  endif
+  let has_period = match(substr, '\.') != -1      " position of period, if any
+  let has_slash = match(substr, '\/') != -1       " position of slash, if any
+  if (!has_period && !has_slash)
+    return "\<C-X>\<C-P>"                         " existing text matching
+  elseif ( has_slash )
+    return "\<C-X>\<C-F>"                         " file matching
+  else
+    return "\<C-X>\<C-O>"                         " plugin matching
+  endif
+endfunction
+inoremap <tab> <c-r>=Smart_TabComplete()<CR>
+inoremap <tab> Smart_TabComplete()
+" Easier use of completion drop down menu
+"inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+"inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+"inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+"inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+"inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 """"""""FZF"""""""
 nnoremap <C-p> :GFiles<Cr>
 nnoremap g<C-p> :Files<Cr>
 nnoremap <C-h> :History<Cr>
+nnoremap <C-f> :Rg<Cr>
+
 nnoremap <leader>t :BTags<Cr>
 nnoremap <leader>gt :Tags<Cr>
 
 """"""""GUTENTAGS"""""""
+set statusline+=%{gutentags#statusline()}
+
+let g:gutentags_trace=0
 let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/') " so no need to add ctags ignore to all projects
 command! -nargs=0 GutentagsClearCache call system('rm ' . g:gutentags_cache_dir . '/*')
 let g:gutentags_generate_on_write = 1
@@ -293,8 +341,9 @@ let g:gutentags_ctags_exclude = [
       \ 'dist',
       \ '*sites/*/files/*',
       \ 'bin',
-      \ 'elf',
-      \ 'S',
+      \ '*.bin',
+      \ '*.elf',
+      \ '*.S',
       \ 'node_modules',
       \ 'bower_components',
       \ 'cache',

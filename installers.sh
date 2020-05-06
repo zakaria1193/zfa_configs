@@ -203,13 +203,14 @@ function pull_sublime_config
 ################################################################################
 function install_vim
 {
-  if is_installed vim; then
+  if is_installed neovim; then
     echo vim installed installed
     return
   fi
 
-  sudo apt install vim
+  sudo apt install neovim
   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  mkdir $HOME/.config/nvim
 
   # uuniversal ctags install
   curl -L https://github.com/zakaria1193/universal-ctags-installer/raw/master/universal_ctags_installer.sh | bash
@@ -218,7 +219,7 @@ function install_vim
 function pull_vim_config
 {
   printf "\n>> Pulling sublime from repo to system \n"
-  symbolic-link '.vimrc' $VIM_CONFIGS "$HOME"
+  symbolic-link '.init.vim' $VIM_CONFIGS "$HOME/.config/init.vim"
 }
 
 ################################################################################
@@ -364,8 +365,6 @@ function main_no_graphics()
 
   if [[ $1 == '-i' ]]; then
     vim +PluginInstall +qall
-    cd ~/.vim/bundle/YouCompleteMe
-    python3 install.py --clangd-completer
   fi
 }
 

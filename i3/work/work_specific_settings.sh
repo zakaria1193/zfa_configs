@@ -20,7 +20,7 @@ set $workspace9 "9. files"
 workspace $workspace9 output DP1
 
 for_window [class="meld"] fullscreen enable
-for_window [class="^(?i)google-chrome"] border pixel 1
+for_window [class="^(?i)google-chrome"] border pixel 3
 
 assign [class="Wireshark"] → $workspace8
 assign [class="Nautilus"] → $workspace9

@@ -23,7 +23,8 @@ alias cd="cd -P"
 alias ls="exa"
 alias grep="rg"
 alias radar2="Cutter*"
-alias vimrc="vim ~/.vimrc"
+alias vim="nvim"
+alias vimrc="vim $VIM_CONFIGS/init.vim"
 
 alias make_path_arm="PATH=$PATH:$FIRMWARE_BITCLOUD/toolchain/arm-none-eabi/bin make"
 alias make_preproc='CFLAGS=-E make'
