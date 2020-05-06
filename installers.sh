@@ -219,7 +219,7 @@ function install_vim
 function pull_vim_config
 {
   printf "\n>> Pulling sublime from repo to system \n"
-  symbolic-link '.init.vim' $VIM_CONFIGS "$HOME/.config/init.vim"
+  symbolic-link 'init.vim' $VIM_CONFIGS "$HOME/.config/nvim/init.vim"
 }
 
 ################################################################################

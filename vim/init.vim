@@ -1,31 +1,9 @@
 " Beginners .vimrc
 " v0.1 2012-10-22 Philip Thrasher
 "
-" Important things for beginners:
-" * Start out small... Don't jam your vimrc full of things you're not ready to
-"   immediately use.
-" * Read other people's vimrc's.
-" * Use a plugin manager for christ's sake! (I highly recommend vundle)
-" * Spend time configuring your editor... It's important. Its the tool you
-"   spend 8 hours a day crafting your reputation.
-" * remap stupid things to new keys that make you more efficient.
-" * Don't listen to the haters that complain about using non-default
-"   key-bindings. Their argument is weak. I spend most of my time in the editor
-"   on my computer, not others, so I don't care if customizing vim means I'll
-"   have a harder time using remote vim.
-"
-" Below I've left some suggestions of good default settings to have in a bare
-" minimal vimrc. You only what you want to use, and nothing more. I've heavily
-" commented each, and these are what I consider bare necessities, my workflow
-" absolutely depends on these things.
-"
-" If you have any questions, email me at pthrash@me.com
-
 " Setup Vundle:
 " For this to work, you must install the vundle plugin manually.
 " https://github.com/gmarik/vundle
-" To install vundle, copy all the files from the repo into your respective
-" folders within ~/.vim
 set nocompatible " Fuck VI... That's for grandpas.
 filetype off
 
@@ -33,8 +11,8 @@ filetype off
 " You'll see it a lot below as <leader>
 let mapleader = ","
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#rc()
+set rtp+=~/.config/nvim/bundle/Vundle.vim
+call vundle#begin()
 
 " Vundle let's you specify a plugin in a number of formats, but my favorite
 " allows you to grab plugins straight off of github, just specify the bundle
@@ -254,7 +232,7 @@ inoremap ;' <esc>
 set timeoutlen=1000 ttimeoutlen=0
 
 " enable mouse controls
-set ttymouse=sgr "without that you'll need to set TERM to TERM=xterm-256color
+"set ttymouse=sgr "without that you'll need to set TERM to TERM=xterm-256colorm doesnt seem to work with nvim
 set mouse=a
 inoremap <LeftMouse> <Esc><LeftMouse> 
 
@@ -301,13 +279,12 @@ function! Smart_TabComplete()
   endif
 endfunction
 inoremap <tab> <c-r>=Smart_TabComplete()<CR>
-inoremap <tab> Smart_TabComplete()
 " Easier use of completion drop down menu
-"inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
-"inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-"inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-"inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
-"inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 """"""""FZF"""""""
 nnoremap <C-p> :GFiles<Cr>
