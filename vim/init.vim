@@ -26,6 +26,7 @@ Bundle 'gmarik/vundle'
 Bundle 'rainglow/vim'
 "colorscheme bold-contrast
 
+Plugin 'myusuf3/numbers.vim'
 
 Plugin 'lilydjwg/colorizer'
 
@@ -41,7 +42,8 @@ Bundle 'indenthtml.vim'
 " I write markdown a lot. This is a good syntax.
 Bundle 'tpope/vim-markdown'
 
-Plugin 'preservim/nerdtree'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 Plugin 'chrisbra/csv.vim'
 
@@ -53,20 +55,20 @@ Plugin 'vim-airline/vim-airline-themes'
 " show all buffers on top
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+let g:airline_section_b = '%-0.10{getcwd()}'
+let g:airline_section_c = '%t'
 
 Plugin 'godlygeek/tabular' " adds the Tabularize command for alignement forcing
 
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
-"Plugin 'ycm-core/YouCompleteMe' "Autocomplete
+"Plugin 'krzbe/fzf-git-submodules'
 
 "Ctags alternative should be installed outside vim (universal ctags for example)
 Plugin 'ludovicchabant/vim-gutentags'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-filetype plugin indent on    " required
-
 
 " We have to turn this stuff back on if we want all of our features.
 filetype plugin indent on " Filetype auto-detection
@@ -100,6 +102,7 @@ set incsearch " live incremental searching
 set showmatch " live match highlighting
 set hlsearch " highlight matches
 set gdefault " use the `g` flag by default.
+set nowrapscan " do not wrap around
 
 " allow the cursor to go anywhere in visual block mode.
 set virtualedit+=block
@@ -154,16 +157,16 @@ set hlsearch
 " Enable incremental search
 set incsearch
 
+" Wrapping
+set nowrap
+
 " Store info from no more than 100 files at a time, 9999 lines of text, 100kb of data. Useful for copying large amounts of data between files.
 set viminfo='100,<9999,s100
 
-" Map the <Space> key to toggle a selected fold opened/closed.
-nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-vnoremap <Space> zf
+" operator {Delete/change/yank..} inside next and last parenthesis 
+onoremap in( :<c-u>normal! f(vi(<cr>
+onoremap il( :<c-u>normal! F)vi(<cr>
 
-" Automatically save and load folds
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview"
 
 " Invisible characters
 set list
@@ -179,8 +182,8 @@ highlight CursorLineNr ctermfg=7
 set cursorline
 
 " Enable cursorcolumn in insert mode
-:autocmd InsertEnter * set cuc
-:autocmd InsertLeave * set nocuc
+":autocmd InsertEnter * set cuc
+":autocmd InsertLeave * set nocuc
 
 " inspired from https://dougblack.io/words/a-good-vimrc.html#colors
 set wildmenu            " visual autocomplete for command menu
@@ -224,20 +227,15 @@ command Wq wq
 command W w
 command Q q
 
-" fast escape of insert mode with esc his will break any sequences using escape in insert mode.
-":set noesckeys " BREAKS ARROW KEYS AND DOESNT FIX ESCAPE
-
 " So we don't have to reach for escape to leave insert mode.
 inoremap ;' <esc>
 set timeoutlen=1000 ttimeoutlen=0
 
 " enable mouse controls
-"set ttymouse=sgr "without that you'll need to set TERM to TERM=xterm-256colorm doesnt seem to work with nvim
 set mouse=a
-inoremap <LeftMouse> <Esc><LeftMouse> 
 
-" keep cursor centered in middle of screen:wq
-:set scrolloff=20
+" keep cursor centered in middle of screen
+set scrolloff=20
 
 " Quickly insert an empty new line without entering insert mode
 nnoremap <Leader>o o<Esc>
@@ -253,9 +251,9 @@ nnoremap <Leader>vs :source $MYVIMRC<cr>
 
 " always list tags before jumping if too many
 nnoremap <C-]> g<C-]>
+" same but uses fzf
+nnoremap <leader><C-]> :call fzf#vim#tags(expand('<cword>'))<CR>
 
-""""""" YOU COMPLETE ME """"""""""""""""""
-"let g:ycm_collect_identifiers_from_tags_files = 1
 """"""" Vim Omni completion """"""""""""""""""
 " Easier Tab completion
 function! Smart_TabComplete()
@@ -288,18 +286,22 @@ inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 """"""""FZF"""""""
 nnoremap <C-p> :GFiles<Cr>
-nnoremap g<C-p> :Files<Cr>
+nnoremap <Leader><C-p> :Files<Cr>
 nnoremap <C-h> :History<Cr>
 nnoremap <C-f> :Rg<Cr>
+nnoremap <leader>f :Rg <C-R><C-W><CR>
 
-nnoremap <leader>t :BTags<Cr>
-nnoremap <leader>gt :Tags<Cr>
+nnoremap <leader>tt :BTags<Cr>
+nnoremap <leader>tg :Tags<Cr>
 
 """"""""GUTENTAGS"""""""
 set statusline+=%{gutentags#statusline()}
 
-let g:gutentags_trace=0
-let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/') " so no need to add ctags ignore to all projects
+let g:gutentags_trace=1
+
+"let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/') " so no need to add ctags ignore to all projects
+" this is good but abandonned because other plugins can't find them with the custom names.
+
 command! -nargs=0 GutentagsClearCache call system('rm ' . g:gutentags_cache_dir . '/*')
 let g:gutentags_generate_on_write = 1
 let g:gutentags_generate_on_new = 1
@@ -324,8 +326,10 @@ let g:gutentags_ctags_exclude = [
       \ 'node_modules',
       \ 'bower_components',
       \ 'cache',
+      \ 'toolchain',
       \ 'compiled',
       \ 'docs',
+      \ 'Documentation',
       \ 'example',
       \ 'bundle',
       \ 'vendor',
@@ -360,4 +364,7 @@ let g:gutentags_ctags_exclude = [
       \ '*.bmp', '*.gif', '*.ico', '*.jpg', '*.png',
       \ '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz', '*.tar.bz2',
       \ '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx',
+      \ 'Evaluation*Tools',
       \ ]
+
+

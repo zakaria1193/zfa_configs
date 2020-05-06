@@ -64,6 +64,7 @@ plugins=(
   zsh-syntax-highlighting
   colored-man-pages
   z
+  k
   wd
   forgit
   navi
@@ -199,6 +200,6 @@ function setemacs
 # run fzf if found
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # use ripgrep as default search engine
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+export FZF_DEFAULT_COMMAND='rg --files --hidden'
 
 TERM=xterm-256color # https://unix.stackexchange.com/questions/528323/what-uses-the-term-variable
