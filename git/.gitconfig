@@ -5,7 +5,7 @@
     rebase = true
 [core]
     editor = vim
-    excludesfile = /home/zfadli/.gitignore
+	excludesfile = /home/zfadli/.gitignore_global
     pager = less -F -X
 [rebase]
     autosquash = true
