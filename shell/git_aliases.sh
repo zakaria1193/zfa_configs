@@ -114,9 +114,6 @@ git_purge_file_from_repo()
   echo -e "\e[31;47m you might need to 'git push -f origin' \e[m"
 }
 
-alias gita='python3 -m gita'
-alias gita-super-fetch='gita super fetch'
-
 alias tig='tig --submodule=diff'
 
 # bring given branch tag to HEAD
@@ -132,6 +129,11 @@ function gro
   git reset --hard origin/$(gcurrentbranch)
 }
 
+function g_cd_submodule_parent
+{
+  parent=$(git rev-parse --show-superproject-working-tree)
+  [[ -n $parent ]] && cd $parent; return
+}
 
 function tsrc_inhale
 {

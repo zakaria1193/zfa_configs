@@ -173,6 +173,7 @@ function install_git
 function pull_git_config
 {
   symbolic-link '.gitconfig' "$ZFA_CONFIGS/git" "$HOME"
+  symbolic-link '.gitignore_global' "$ZFA_CONFIGS/git" "$HOME"
 }
 ################################################################################
                                 # sumblime text #

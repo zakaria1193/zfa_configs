@@ -1,4 +1,4 @@
-" Beginners .vimrc
+"" Beginners .vimrc
 " v0.1 2012-10-22 Philip Thrasher
 "
 " Setup Vundle:
@@ -24,9 +24,7 @@ Bundle 'gmarik/vundle'
 
 " color schemes.
 Bundle 'rainglow/vim'
-"colorscheme bold-contrast
-
-Plugin 'myusuf3/numbers.vim'
+"colorscheme bold
 
 Plugin 'lilydjwg/colorizer'
 
@@ -47,9 +45,6 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 Plugin 'chrisbra/csv.vim'
 
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
-
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 " show all buffers on top
@@ -66,6 +61,27 @@ Plugin 'junegunn/fzf.vim'
 
 "Ctags alternative should be installed outside vim (universal ctags for example)
 Plugin 'ludovicchabant/vim-gutentags'
+
+"Tag bar
+Plugin 'majutsushi/tagbar'
+let g:tagbar_autofocus = 1
+let g:tagbar_autoclose = 0
+
+" for parenthesis management
+Plugin 'tpope/vim-surround' " STUDY
+
+" trailing whitespaces
+Plugin 'ntpeters/vim-better-whitespace'
+
+"Start screen
+Plugin 'mhinz/vim-startify'
+
+" Git show diff lines
+Plugin 'mhinz/vim-signify'
+
+" tig explorer
+Plugin 'iberianpig/tig-explorer.vim'
+Plugin 'rbgrouleff/bclose.vim' " dependecy for tig
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -122,8 +138,6 @@ noremap <leader>v <C-w>v
 " Clear match highlighting
 noremap <leader><space> :noh<cr>:call clearmatches()<cr>
 
-
-
 " Visual line nav, not real line nav
 " If you wrap lines, vim by default won't let you move down one line to the
 " wrapped portion. This fixes that.
@@ -166,7 +180,6 @@ set viminfo='100,<9999,s100
 " operator {Delete/change/yank..} inside next and last parenthesis 
 onoremap in( :<c-u>normal! f(vi(<cr>
 onoremap il( :<c-u>normal! F)vi(<cr>
-
 
 " Invisible characters
 set list
@@ -217,7 +230,7 @@ nnoremap <C-PageDown> :bn<CR>
 " Quick buffer switching - like cmd-tab'ing
 nnoremap <leader><leader> <c-^>
 
-" Buffer closing 
+" Buffer closing
 nnoremap <leader>w :bd<CR>
 """"""""""""""""""""""""""""""
 
@@ -253,6 +266,9 @@ nnoremap <Leader>vs :source $MYVIMRC<cr>
 nnoremap <C-]> g<C-]>
 " same but uses fzf
 nnoremap <leader><C-]> :call fzf#vim#tags(expand('<cword>'))<CR>
+" Same but uses tagBar
+
+nnoremap <leader><a-]> :TagbarCurrentTag<CR>
 
 """"""" Vim Omni completion """"""""""""""""""
 " Easier Tab completion
@@ -284,20 +300,11 @@ inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
 inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
 inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
-""""""""FZF"""""""
-nnoremap <C-p> :GFiles<Cr>
-nnoremap <Leader><C-p> :Files<Cr>
-nnoremap <C-h> :History<Cr>
-nnoremap <C-f> :Rg<Cr>
-nnoremap <leader>f :Rg <C-R><C-W><CR>
-
-nnoremap <leader>tt :BTags<Cr>
-nnoremap <leader>tg :Tags<Cr>
 
 """"""""GUTENTAGS"""""""
 set statusline+=%{gutentags#statusline()}
 
-let g:gutentags_trace=1
+let g:gutentags_trace=0
 
 "let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/') " so no need to add ctags ignore to all projects
 " this is good but abandonned because other plugins can't find them with the custom names.
@@ -366,5 +373,76 @@ let g:gutentags_ctags_exclude = [
       \ '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx',
       \ 'Evaluation*Tools',
       \ ]
+
+""""" Startify commands """""""""
+" returns all modified files of the current git repo
+" `2>/dev/null` makes the command fail quietly, so that when we are not
+" in a git repo, the list will be empty
+function! s:gitModified()
+    let files = systemlist('git ls-files -m 2>/dev/null')
+    return map(files, "{'line': v:val, 'path': v:val}")
+endfunction
+
+" same as above, but show untracked files, honouring .gitignore
+function! s:gitUntracked()
+    let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
+    return map(files, "{'line': v:val, 'path': v:val}")
+endfunction
+
+let g:startify_lists = [
+        \ { 'type': 'files',     'header': ['   MRU']            },
+        \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+        \ { 'type': 'sessions',  'header': ['   Sessions']       },
+        \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+        \ { 'type': function('s:gitModified'),  'header': ['   git modified']},
+        \ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
+        \ { 'type': 'commands',  'header': ['   Commands']       },
+        \ ]
+
+let g:startify_bookmarks = [ {'c': '~/.vimrc'}, {'m': '~/magellan'} ]
+let g:startify_session_persistence = 1
+
+""""""""""" TIG """"""""""""
+nnoremap <Leader>gb :TigBlame<CR>
+" open tig with current file
+nnoremap <Leader>gh :TigOpenCurrentFile<CR>
+" open tig with Project root path
+nnoremap <Leader>gH :TigOpenProjectRootDir<CR>
+
+"""""""""""" FZF """"""""""""
+nnoremap <C-p> :GFiles<Cr>
+nnoremap <Leader><C-p> :Files<Cr>
+nnoremap <C-h> :History<Cr>
+nnoremap <C-f> :Rg<Cr>
+nnoremap <leader>f :Rg <C-R><C-W><CR>
+
+nnoremap <leader>tt :BTags<Cr>
+nnoremap <leader>tg :Tags<Cr>
+nnoremap <leader>tb :Tagbar<Cr>
+
+function! s:cd(path)
+    execute 'cd ' a:path
+    echo a:path
+endfunction
+
+function! GSubmodules()
+  return fzf#run(fzf#wrap({
+  \ 'source':  "git submodule | awk '{ print $2 }' | sort -u",
+  \ 'sink': function('s:cd'),
+  \ 'options': ['-m', '--header-lines', !empty(expand('%')), '--prompt', 'Submodules> '],
+  \}))
+endfunction
+command! -bar -bang Submodules                         call GSubmodules()
+
+nnoremap <leader>gs :Submodules<CR>
+
+function Cd_to_submodule_parent()
+  let l:parent_repo = system("git rev-parse --show-superproject-working-tree")
+  echom l:parent_repo
+  if strlen(l:parent_repo) != 0
+    execute 'cd ' l:parent_repo
+  endif
+endfunction
+nnoremap <leader>gp :call Cd_to_submodule_parent()<CR>
 
 

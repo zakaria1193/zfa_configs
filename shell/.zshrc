@@ -159,43 +159,6 @@ export PAGER="less -F -X"
 #     _wanted files expl 'local files' _files
 # }
 
-
-############################### VIM INPUT ######################################r
-function set_vim
-{
-    # Activate vim mode. (from https://dougblack.io/words/zsh-vi-mode.html)
-    bindkey -v
-
-    # Remove mode switching delay.
-    KEYTIMEOUT=1
-
-    # needed to not break fzf buttons
-    set -o vi
-
-    # show vi mode
-    # Updates editor information when the keymap changes.
-    function zle-line-init zle-keymap-select {
-        VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]% %{$reset_color%}"
-        RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
-        zle reset-prompt
-    }
-
-    zle -N zle-line-init
-    zle -N zle-keymap-select
-
-    bindkey '^[[A' up-line-or-search
-    bindkey '^[[B' down-line-or-search
-}
-
-function setemacs
-{
-  bindkey -v
-  set -o emacs
-  bindkey '^H' backward-kill-word
-  bindkey '^[[3;5~' kill-word
-}
-#setemacs
-
 ###############################################################################
 # run fzf if found
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -203,3 +166,4 @@ function setemacs
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 
 TERM=xterm-256color # https://unix.stackexchange.com/questions/528323/what-uses-the-term-variable
+
