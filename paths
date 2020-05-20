@@ -97,6 +97,7 @@ ZFA_WORK_TOOLS="$MY_REPOS/zfa_work_tools"
 export_dir_to_path $ZFA_WORK_TOOLS
 GDB_CONFIG="$ZFA_WORK_TOOLS/gdb_scripts"
 GDB_SCRIPT="$ZFA_WORK_TOOLS/gdb_scripts/.gdbinit"
+export_dir_to_path $GDB_CONFIG
 #GDB_SCRIPT="$HOME/.gdbinit"
 WORK_SHELL="$ZFA_WORK_TOOLS/shell"
 

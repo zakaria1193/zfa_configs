@@ -37,6 +37,8 @@ alias opacity="gconftool-2 --set /apps/gnome-terminal/profiles/Default/backgroun
 
 alias cat="bat"
 
+alias dmesg="dmesg -wH"
+
 function backup
 {
   cp $1 $1_backup

@@ -23,9 +23,12 @@ call vundle#begin()
 Bundle 'gmarik/vundle'
 
 " color schemes.
-Bundle 'rainglow/vim'
-"colorscheme bold
-
+Bundle 'rafalbromirski/vim-aurora'
+set termguicolors
+set background=dark
+"colorscheme aurora
+"
+" hilight hex color codes
 Plugin 'lilydjwg/colorizer'
 
 " Support for easily toggling comments.
@@ -57,7 +60,7 @@ Plugin 'godlygeek/tabular' " adds the Tabularize command for alignement forcing
 
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
-"Plugin 'krzbe/fzf-git-submodules'
+Plugin 'zackhsi/fzf-tags'
 
 "Ctags alternative should be installed outside vim (universal ctags for example)
 Plugin 'ludovicchabant/vim-gutentags'
@@ -66,6 +69,7 @@ Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'majutsushi/tagbar'
 let g:tagbar_autofocus = 1
 let g:tagbar_autoclose = 0
+nnoremap <silent> <F9> :TagbarToggle<CR>
 
 " for parenthesis management
 Plugin 'tpope/vim-surround' " STUDY
@@ -123,13 +127,13 @@ set nowrapscan " do not wrap around
 " allow the cursor to go anywhere in visual block mode.
 set virtualedit+=block
 
+" enable clipboard
+set clipboard+=unnamedplus
+
 
 " So we don't have to press shift when we want to get into command mode.
 nnoremap ; :
 vnoremap ; :
-
-" create new vsplit, and switch to it.
-noremap <leader>v <C-w>v
 
 " Use sane regex's when searching
 "nnoremap / /\v
@@ -246,6 +250,8 @@ set timeoutlen=1000 ttimeoutlen=0
 
 " enable mouse controls
 set mouse=a
+" search for word under cursoir on couble clik
+nnoremap <silent> <2-leftMouse> :exe 'highlight DoubleClick ctermbg=green guibg=green<bar>match DoubleClick /\V\<'.escape(expand('<cword>'), '\').'\>/'<cr>
 
 " keep cursor centered in middle of screen
 set scrolloff=20
@@ -263,12 +269,14 @@ nnoremap <Leader>vs :source $MYVIMRC<cr>
 "no used since gutentags puts the tags file in his cache
 
 " always list tags before jumping if too many
-nnoremap <C-]> g<C-]>
-" same but uses fzf
-nnoremap <leader><C-]> :call fzf#vim#tags(expand('<cword>'))<CR>
-" Same but uses tagBar
+nnoremap <a-]> g<C-]>
 
-nnoremap <leader><a-]> :TagbarCurrentTag<CR>
+" use fzf-tags plugin
+nmap <C-]> <Plug>(fzf_tags)
+
+" same but uses fzf (fzf seach in the tags file)
+nnoremap <F11> :Tags<CR>
+nnoremap <F10> :BTags<CR>
 
 """"""" Vim Omni completion """"""""""""""""""
 " Easier Tab completion
@@ -292,13 +300,13 @@ function! Smart_TabComplete()
     return "\<C-X>\<C-O>"                         " plugin matching
   endif
 endfunction
-inoremap <tab> <c-r>=Smart_TabComplete()<CR>
-" Easier use of completion drop down menu
-inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
-inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
-inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+""inoremap <tab> <c-r>=Smart_TabComplete()<CR>
+"" Easier use of completion drop down menu
+"inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+"inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+"inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+"inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+"inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 
 """"""""GUTENTAGS"""""""
@@ -402,6 +410,8 @@ let g:startify_lists = [
 let g:startify_bookmarks = [ {'c': '~/.vimrc'}, {'m': '~/magellan'} ]
 let g:startify_session_persistence = 1
 
+nnoremap <c-s> :Startify<CR>
+
 """"""""""" TIG """"""""""""
 nnoremap <Leader>gb :TigBlame<CR>
 " open tig with current file
@@ -411,14 +421,9 @@ nnoremap <Leader>gH :TigOpenProjectRootDir<CR>
 
 """""""""""" FZF """"""""""""
 nnoremap <C-p> :GFiles<Cr>
-nnoremap <Leader><C-p> :Files<Cr>
 nnoremap <C-h> :History<Cr>
 nnoremap <C-f> :Rg<Cr>
 nnoremap <leader>f :Rg <C-R><C-W><CR>
-
-nnoremap <leader>tt :BTags<Cr>
-nnoremap <leader>tg :Tags<Cr>
-nnoremap <leader>tb :Tagbar<Cr>
 
 function! s:cd(path)
     execute 'cd ' a:path
@@ -441,8 +446,9 @@ function Cd_to_submodule_parent()
   echom l:parent_repo
   if strlen(l:parent_repo) != 0
     execute 'cd ' l:parent_repo
+  else
+    cd %:h | cd `git rev-parse --show-toplevel`
   endif
 endfunction
 nnoremap <leader>gp :call Cd_to_submodule_parent()<CR>
-
-
+nnoremap <F8> :call Cd_to_submodule_parent() <bar> :Files<Cr>

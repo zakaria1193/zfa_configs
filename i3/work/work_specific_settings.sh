@@ -26,6 +26,8 @@ assign [class="Wireshark"] → $workspace8
 assign [class="Nautilus"] → $workspace9
 assign [class="Filezilla"] → $workspace9
 
+for_window [title="Microsoft Teams Notification"] floating enable
+
 exec_always xautolock -time 5 -locker fuzzy_lock -notify 20 -notifier 'xset dpms force off && $LOCK_SCRIPT' &
 
 

@@ -158,12 +158,15 @@ export PAGER="less -F -X"
 # __git_files () {
 #     _wanted files expl 'local files' _files
 # }
+#
 
 ###############################################################################
 # run fzf if found
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # use ripgrep as default search engine
-export FZF_DEFAULT_COMMAND='rg --files --hidden'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --no-ignore-vcs'
 
 TERM=xterm-256color # https://unix.stackexchange.com/questions/528323/what-uses-the-term-variable
 
+EDITOR=/usr/bin/nvim
+export EDITOR
