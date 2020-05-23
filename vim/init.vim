@@ -1,9 +1,6 @@
 "" Beginners .vimrc
 " v0.1 2012-10-22 Philip Thrasher
 "
-" Setup Vundle:
-" For this to work, you must install the vundle plugin manually.
-" https://github.com/gmarik/vundle
 set nocompatible " Fuck VI... That's for grandpas.
 filetype off
 
@@ -11,84 +8,68 @@ filetype off
 " You'll see it a lot below as <leader>
 let mapleader = ","
 
-set rtp+=~/.config/nvim/bundle/Vundle.vim
-call vundle#begin()
-
-" Vundle let's you specify a plugin in a number of formats, but my favorite
-" allows you to grab plugins straight off of github, just specify the bundle
-" in the following format:
-" Bundle 'githubUsername/repoName'
-
-" Let vundle manage itself:
-Bundle 'gmarik/vundle'
+call plug#begin('~/.vim/plugged')
 
 " color schemes.
-Bundle 'rafalbromirski/vim-aurora'
+Plug 'rafalbromirski/vim-aurora'
 set termguicolors
 set background=dark
 "colorscheme aurora
 "
 " hilight hex color codes
-Plugin 'lilydjwg/colorizer'
+Plug 'lilydjwg/colorizer'
 
 " Support for easily toggling comments.
-Plugin 'preservim/nerdcommenter' " use the ,c<space> command for commenting
+Plug 'preservim/nerdcommenter' " use the ,c<space> command for commenting
 
-" Proper JSON filetype detection, and support.
-Bundle 'leshill/vim-json'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
-" vim indents HTML very poorly on it's own. This fixes a lot of that.
-Bundle 'indenthtml.vim'
 
-" I write markdown a lot. This is a good syntax.
-Bundle 'tpope/vim-markdown'
-
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-
-Plugin 'chrisbra/csv.vim'
-
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " show all buffers on top
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_section_b = '%-0.10{getcwd()}'
 let g:airline_section_c = '%t'
 
-Plugin 'godlygeek/tabular' " adds the Tabularize command for alignement forcing
+Plug 'godlygeek/tabular' " adds the Tabularize command for alignement forcing
 
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-Plugin 'zackhsi/fzf-tags'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'zackhsi/fzf-tags'
 
 "Ctags alternative should be installed outside vim (universal ctags for example)
-Plugin 'ludovicchabant/vim-gutentags'
+Plug 'ludovicchabant/vim-gutentags'
 
 "Tag bar
-Plugin 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 let g:tagbar_autofocus = 1
 let g:tagbar_autoclose = 0
 nnoremap <silent> <F9> :TagbarToggle<CR>
 
 " for parenthesis management
-Plugin 'tpope/vim-surround' " STUDY
+Plug 'tpope/vim-surround' " STUDY
 
 " trailing whitespaces
-Plugin 'ntpeters/vim-better-whitespace'
+Plug 'ntpeters/vim-better-whitespace'
 
 "Start screen
-Plugin 'mhinz/vim-startify'
+Plug 'mhinz/vim-startify'
 
 " Git show diff lines
-Plugin 'mhinz/vim-signify'
+Plug 'mhinz/vim-signify'
 
 " tig explorer
-Plugin 'iberianpig/tig-explorer.vim'
-Plugin 'rbgrouleff/bclose.vim' " dependecy for tig
+Plug 'iberianpig/tig-explorer.vim'
+Plug 'rbgrouleff/bclose.vim' " dependecy for tig
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+" coc
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+
+" All of your Plugs must be added before the following line
+call plug#end()            " required
 
 " We have to turn this stuff back on if we want all of our features.
 filetype plugin indent on " Filetype auto-detection
@@ -452,3 +433,6 @@ function Cd_to_submodule_parent()
 endfunction
 nnoremap <leader>gp :call Cd_to_submodule_parent()<CR>
 nnoremap <F8> :call Cd_to_submodule_parent() <bar> :Files<Cr>
+
+""""""""""" coc nvim """""""""""""""""'
+

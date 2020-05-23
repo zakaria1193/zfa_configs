@@ -170,3 +170,5 @@ TERM=xterm-256color # https://unix.stackexchange.com/questions/528323/what-uses-
 
 EDITOR=/usr/bin/nvim
 export EDITOR
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
