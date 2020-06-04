@@ -249,7 +249,7 @@ nnoremap <Leader>ve :e $MYVIMRC<cr>
 nnoremap <Leader>vs :source $MYVIMRC<cr>
 
 """""""Tags""""""""
-set tags=tags
+set tags=tags,./tags
 
 " always list tags before jumping if too many
 nnoremap <c-]> g<C-]>

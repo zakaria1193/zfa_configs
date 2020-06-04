@@ -1,0 +1,7 @@
+tags
+tags.lock
+tags.temp
+.vim/
+.clangd/
+compile_commands.json
+
