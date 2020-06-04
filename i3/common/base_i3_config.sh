@@ -114,9 +114,9 @@ popup_during_fullscreen smart
 workspace_auto_back_and_forth yes
 
 
-set $bg-color            #500091
+set $bg-color            #446fff
 set $inactive-bg-color   #2f343f
-set $text-color          #f3f4f5
+set $text-color          #044000
 set $inactive-text-color #676E7D
 set $urgent-bg-color     #E53935
 set $bar-bg-color        #00000f

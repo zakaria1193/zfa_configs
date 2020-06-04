@@ -11,10 +11,9 @@ let mapleader = ","
 call plug#begin('~/.vim/plugged')
 
 " color schemes.
-Plug 'rafalbromirski/vim-aurora'
-set termguicolors
-set background=dark
-"colorscheme aurora
+"set background=dark
+Plug 'vim-scripts/ScrollColors'
+colorscheme koehler
 "
 " hilight hex color codes
 Plug 'lilydjwg/colorizer'
@@ -49,9 +48,6 @@ let g:tagbar_autofocus = 1
 let g:tagbar_autoclose = 0
 nnoremap <silent> <F9> :TagbarToggle<CR>
 
-" for parenthesis management
-Plug 'tpope/vim-surround' " STUDY
-
 " trailing whitespaces
 Plug 'ntpeters/vim-better-whitespace'
 
@@ -66,7 +62,8 @@ Plug 'iberianpig/tig-explorer.vim'
 Plug 'rbgrouleff/bclose.vim' " dependecy for tig
 
 " coc
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'antoinemadec/coc-fzf'
 
 " All of your Plugs must be added before the following line
 call plug#end()            " required
@@ -171,6 +168,9 @@ set list
 set listchars=eol:$,tab:··,trail:·,extends:>,precedes:<
 highlight SpecialKey ctermfg=238
 highlight NonText ctermfg=238
+
+hi Visual  guifg=#000000 guibg=#FFFFFF gui=none
+
 " Line numbers
 highlight LineNr ctermfg=8
 
@@ -200,6 +200,7 @@ nnoremap <C-n> :call MyNerdToggle()<CR>
 
 " close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 
 " set rip grep as default grep engine
 set grepprg=rg\ --vimgrep
@@ -232,65 +233,68 @@ set timeoutlen=1000 ttimeoutlen=0
 " enable mouse controls
 set mouse=a
 " search for word under cursoir on couble clik
-nnoremap <silent> <2-leftMouse> :exe 'highlight DoubleClick ctermbg=green guibg=green<bar>match DoubleClick /\V\<'.escape(expand('<cword>'), '\').'\>/'<cr>
+nnoremap <silent> <2-leftMouse> *
+inoremap <silent> <2-leftMouse> <c-o>*
+nnoremap <c-h>  ':%s/\<'.expand('<cword>').'\>/<&>/g<CR>'
 
 " keep cursor centered in middle of screen
 set scrolloff=20
 
 " Quickly insert an empty new line without entering insert mode
 nnoremap <Leader>o o<Esc>
+nnoremap <Leader>O O<Esc>
 
 " Quickly source vim
 nnoremap <Leader>ve :e $MYVIMRC<cr>
 nnoremap <Leader>vs :source $MYVIMRC<cr>
 
 """""""Tags""""""""
-"search for tags file in parent dire too
-"set tags+=tags;/
-"no used since gutentags puts the tags file in his cache
+set tags=tags
 
 " always list tags before jumping if too many
-nnoremap <a-]> g<C-]>
+nnoremap <c-]> g<C-]>
 
 " use fzf-tags plugin
-nmap <C-]> <Plug>(fzf_tags)
+nmap <a-]> <Plug>(fzf_tags)
 
 " same but uses fzf (fzf seach in the tags file)
 nnoremap <F11> :Tags<CR>
 nnoremap <F10> :BTags<CR>
+nnoremap <F8>  :History<CR>
 
-""""""" Vim Omni completion """"""""""""""""""
-" Easier Tab completion
-function! Smart_TabComplete()
-  let line = getline('.')                         " current line
+""""""" Vim Omni completion """""""""""""""""" REPLACED BY COC COMPLETION
+"" Easier Tab completion
+"function! Smart_TabComplete()
+  "let line = getline('.')                         " current line
 
-  let substr = strpart(line, -1, col('.')+1)      " from the start of the current
-                                                  " line to one character right
-                                                  " of the cursor
-  let substr = matchstr(substr, "[^ \t]*$")       " word till cursor
-  if (strlen(substr)==0)                          " nothing to match on empty string
-    return "\<tab>"
-  endif
-  let has_period = match(substr, '\.') != -1      " position of period, if any
-  let has_slash = match(substr, '\/') != -1       " position of slash, if any
-  if (!has_period && !has_slash)
-    return "\<C-X>\<C-P>"                         " existing text matching
-  elseif ( has_slash )
-    return "\<C-X>\<C-F>"                         " file matching
-  else
-    return "\<C-X>\<C-O>"                         " plugin matching
-  endif
-endfunction
-""inoremap <tab> <c-r>=Smart_TabComplete()<CR>
-"" Easier use of completion drop down menu
-"inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
-"inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-"inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-"inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
-"inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
-
+  "let substr = strpart(line, -1, col('.')+1)      " from the start of the current
+                                                  "" line to one character right
+                                                  "" of the cursor
+  "let substr = matchstr(substr, "[^ \t]*$")       " word till cursor
+  "if (strlen(substr)==0)                          " nothing to match on empty string
+    "return "\<tab>"
+  "endif
+  "let has_period = match(substr, '\.') != -1      " position of period, if any
+  "let has_slash = match(substr, '\/') != -1       " position of slash, if any
+  "if (!has_period && !has_slash)
+    "return "\<C-X>\<C-P>"                         " existing text matching
+  "elseif ( has_slash )
+    "return "\<C-X>\<C-F>"                         " file matching
+  "else
+    "return "\<C-X>\<C-O>"                         " plugin matching
+  "endif
+"endfunction
+"""inoremap <tab> <c-r>=Smart_TabComplete()<CR>
+""" Easier use of completion drop down menu
+""inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+""inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+""inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+""inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+""inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 """"""""GUTENTAGS"""""""
+" the last semicolon is the key here. when vim tries to locate the 'tags' file, it first looks at the current directory, then the parent directory, then the parent of the parent, and so on. this setting works nicely with 'set autochdir', because then vim's current directory is the same as the directory of the file. 
+
 set statusline+=%{gutentags#statusline()}
 
 let g:gutentags_trace=0
@@ -298,7 +302,11 @@ let g:gutentags_trace=0
 "let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/') " so no need to add ctags ignore to all projects
 " this is good but abandonned because other plugins can't find them with the custom names.
 
-command! -nargs=0 GutentagsClearCache call system('rm ' . g:gutentags_cache_dir . '/*')
+
+"let g:gutentags_add_default_project_roots = 0
+"let g:gutentags_project_root = ['package.json', '.git']
+"" tags are generated on all detected root files. vim should select the appropriate tag file
+
 let g:gutentags_generate_on_write = 1
 let g:gutentags_generate_on_new = 1
 let g:gutentags_generate_on_missing = 1
@@ -379,7 +387,6 @@ function! s:gitUntracked()
 endfunction
 
 let g:startify_lists = [
-        \ { 'type': 'files',     'header': ['   MRU']            },
         \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
         \ { 'type': 'sessions',  'header': ['   Sessions']       },
         \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
@@ -388,7 +395,7 @@ let g:startify_lists = [
         \ { 'type': 'commands',  'header': ['   Commands']       },
         \ ]
 
-let g:startify_bookmarks = [ {'c': '~/.vimrc'}, {'m': '~/magellan'} ]
+let g:startify_bookmarks = [ {'e': '~/repos/embedded/elk'}, {'m': '~/magellan'} ]
 let g:startify_session_persistence = 1
 
 nnoremap <c-s> :Startify<CR>
@@ -401,8 +408,7 @@ nnoremap <Leader>gh :TigOpenCurrentFile<CR>
 nnoremap <Leader>gH :TigOpenProjectRootDir<CR>
 
 """""""""""" FZF """"""""""""
-nnoremap <C-p> :GFiles<Cr>
-nnoremap <C-h> :History<Cr>
+nnoremap <a-p> :GFiles<Cr>
 nnoremap <C-f> :Rg<Cr>
 nnoremap <leader>f :Rg <C-R><C-W><CR>
 
@@ -425,14 +431,172 @@ nnoremap <leader>gs :Submodules<CR>
 function Cd_to_submodule_parent()
   let l:parent_repo = system("git rev-parse --show-superproject-working-tree")
   echom l:parent_repo
-  if strlen(l:parent_repo) != 0
-    execute 'cd ' l:parent_repo
+  if strlen(l:parent_repo) == 0
+    echo "already in parent repo"
+    cd `git rev-parse --show-toplevel`
   else
-    cd %:h | cd `git rev-parse --show-toplevel`
+    execute 'cd ' l:parent_repo
   endif
 endfunction
 nnoremap <leader>gp :call Cd_to_submodule_parent()<CR>
-nnoremap <F8> :call Cd_to_submodule_parent() <bar> :Files<Cr>
+nnoremap <c-p> :call Cd_to_submodule_parent() <bar> :Files<Cr>
+
+"""""""""""" make on vim """""""""""""""""""""""""""
+nnoremap ]e :cnext<CR>
+nnoremap [e :cprevious<CR>
 
 """"""""""" coc nvim """""""""""""""""'
+let g:coc_global_extensions = [
+      \ 'coc-snippets',
+      \ 'coc-html',
+      \ 'coc-css',
+      \ 'coc-clangd',
+      \ 'coc-python',
+      \ 'coc-yaml',
+      \ 'coc-json',
+      \ 'coc-emmet',
+      \ 'coc-docker',
+      \ ]
+
+" Give more space for displaying messages.
+set cmdheight=2
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+highlight Pmenu ctermbg=gray guibg=gray
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
+" Use `[l` and `]l` to navigate diagnostics LINTING
+nmap <silent> [l <Plug>(coc-diagnostic-prev)
+nmap <silent> ]l <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap \d <Plug>(coc-definition)
+nmap \y <Plug>(coc-type-definition)
+nmap \i <Plug>(coc-implementation)
+nmap \r <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <a-f>  <Plug>(coc-format-selected)
+nmap <a-f>  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Map function and class text objects
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
+" Use CTRL-S for selections ranges.
+" Requires 'textDocument/selectionRange' support of LS, ex: coc-tsserver
+nmap <silent> <a-s> <Plug>(coc-range-select)
+xmap <silent> <a-s> <Plug>(coc-range-select)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Add (Neo)Vim's native statusline support.
+" NOTE: Please see `:h coc-status` for integrations with external plugins that
+" provide custom statusline: lightline.vim, vim-airline.
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" Mappings using CoCList:
+" Show all diagnostics.
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands.
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document.
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols.
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>n  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>p  :<C-u>CocPrev<CR>
 
