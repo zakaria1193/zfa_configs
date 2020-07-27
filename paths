@@ -33,8 +33,14 @@ FIRMWARE="$EMBEDDED/firmware"
 MAGELLAN="$EMBEDDED/magellan"
 M=$MAGELLAN
 alias magellan=$MAGELLAN
+VELUX="$EMBEDDED/velux"
+V=$VELUX
+alias velux=$V
+
 export_dir_to_path "$MAGELLAN/apps/user/nlg-stm32/model_parser"
 export_dir_to_path_recursively "$MAGELLAN/scripts"
+
+export_dir_to_path_recursively "$VELUX/python/bin"
 
 FIRMWARE_BITCLOUD="$EMBEDDED/firmware-bitcloud"
 alias firmware-bitcloud=$FIRMWARE_BITCLOUD
@@ -55,6 +61,7 @@ alias magellan-releases=$MAGELLAN_RELEASES
 EMBEDDED_TOOLS="$CORE/embedded-tools"
 export_dir_to_path_recursively "$EMBEDDED_TOOLS/Linux"
 export_dir_to_path_recursively "$EMBEDDED_TOOLS/generic-embedded/stm32_dfu"
+export_dir_to_path_recursively "$EMBEDDED_TOOLS/generic-embedded/stm32_sbm"
 
 PYTHON_EMBEDDED_TOOLS="$CORE/python-emb-tools"
 alias python-emb-tools=$PYTHON_EMBEDDED_TOOLS

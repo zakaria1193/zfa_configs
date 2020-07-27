@@ -11,10 +11,8 @@ let mapleader = ","
 call plug#begin('~/.vim/plugged')
 
 " color schemes.
-"set background=dark
-Plug 'vim-scripts/ScrollColors'
-colorscheme koehler
-"
+Plug 'ayu-theme/ayu-vim' " or other package manager
+
 " hilight hex color codes
 Plug 'lilydjwg/colorizer'
 
@@ -31,7 +29,6 @@ Plug 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_section_b = '%-0.10{getcwd()}'
-let g:airline_section_c = '%t'
 
 Plug 'godlygeek/tabular' " adds the Tabularize command for alignement forcing
 
@@ -46,7 +43,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
 let g:tagbar_autofocus = 1
 let g:tagbar_autoclose = 0
-nnoremap <silent> <F9> :TagbarToggle<CR>
+nnoremap <F9> :TagbarToggle<CR>
 
 " trailing whitespaces
 Plug 'ntpeters/vim-better-whitespace'
@@ -64,6 +61,12 @@ Plug 'rbgrouleff/bclose.vim' " dependecy for tig
 " coc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'antoinemadec/coc-fzf'
+
+" close all buffers but current
+Plug 'vim-scripts/BufOnly.vim'
+
+" open file:line format
+Plug 'bogado/file-line'
 
 " All of your Plugs must be added before the following line
 call plug#end()            " required
@@ -169,7 +172,6 @@ set listchars=eol:$,tab:··,trail:·,extends:>,precedes:<
 highlight SpecialKey ctermfg=238
 highlight NonText ctermfg=238
 
-hi Visual  guifg=#000000 guibg=#FFFFFF gui=none
 
 " Line numbers
 highlight LineNr ctermfg=8
@@ -185,7 +187,13 @@ set cursorline
 
 " inspired from https://dougblack.io/words/a-good-vimrc.html#colors
 set wildmenu            " visual autocomplete for command menu
-"set lazyredraw          " redraw only when we need to
+set lazyredraw          " redraw only when we need to
+
+" easy window changing
+nmap <A-Up> :wincmd k<CR>
+nmap <A-Down> :wincmd j<CR>
+nmap <A-Left> :wincmd h<CR>
+nmap <A-Right> :wincmd l<CR>
 
 " Nerd tree auto follow
 function MyNerdToggle()
@@ -218,6 +226,7 @@ nnoremap <leader><leader> <c-^>
 
 " Buffer closing
 nnoremap <leader>w :bd<CR>
+nnoremap <leader><s-w> :BufOnly<CR>
 """"""""""""""""""""""""""""""
 
 " accept mistakes on wa commands
@@ -249,10 +258,11 @@ nnoremap <Leader>ve :e $MYVIMRC<cr>
 nnoremap <Leader>vs :source $MYVIMRC<cr>
 
 """""""Tags""""""""
-set tags=tags,./tags
-
 " always list tags before jumping if too many
-nnoremap <c-]> g<C-]>
+"nnoremap <c-]> g<C-]>
+" use the default <c-]> behavior (see first one)
+nnoremap ]t :tn<cr>
+nnoremap [t :tp<cr>
 
 " use fzf-tags plugin
 nmap <a-]> <Plug>(fzf_tags)
@@ -327,6 +337,7 @@ let g:gutentags_ctags_exclude = [
       \ '*.bin',
       \ '*.elf',
       \ '*.S',
+      \ '*.idx',
       \ 'node_modules',
       \ 'bower_components',
       \ 'cache',
@@ -395,7 +406,7 @@ let g:startify_lists = [
         \ { 'type': 'commands',  'header': ['   Commands']       },
         \ ]
 
-let g:startify_bookmarks = [ {'e': '~/repos/embedded/elk'}, {'m': '~/magellan'} ]
+let g:startify_bookmarks = [ {'v': '~/repos/embedded/velux'}, {'k': '~/repos/embedded/elk'}, {'m': '~/magellan'}, {'c': '~/my_repos'} ]
 let g:startify_session_persistence = 1
 
 nnoremap <c-s> :Startify<CR>
@@ -411,6 +422,8 @@ nnoremap <Leader>gH :TigOpenProjectRootDir<CR>
 nnoremap <a-p> :GFiles<Cr>
 nnoremap <C-f> :Rg<Cr>
 nnoremap <leader>f :Rg <C-R><C-W><CR>
+
+let g:fzf_preview_window = 'up'
 
 function! s:cd(path)
     execute 'cd ' a:path
@@ -429,6 +442,7 @@ command! -bar -bang Submodules                         call GSubmodules()
 nnoremap <leader>gs :Submodules<CR>
 
 function Cd_to_submodule_parent()
+
   let l:parent_repo = system("git rev-parse --show-superproject-working-tree")
   echom l:parent_repo
   if strlen(l:parent_repo) == 0
@@ -599,4 +613,16 @@ nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
 nnoremap <silent> <space>n  :<C-u>CocNext<CR>
 " Do default action for previous item.
 nnoremap <silent> <space>p  :<C-u>CocPrev<CR>
+
+
+nnoremap <leader>s :CocCommand clangd.switchSourceHeader<cr>
+
+""" Color scheme setter
+"...
+set termguicolors     " enable true colors support
+"let ayucolor="light"  " for light version of theme
+let ayucolor="mirage" " for mirage version of theme
+let ayucolor="dark"   " for dark version of theme
+colorscheme ayu
+
 

@@ -135,6 +135,33 @@ function g_cd_submodule_parent
   [[ -n $parent ]] && cd $parent; return
 }
 
+function g_release_contains_commit
+{
+  product=$2
+  commit=$1
+  git tag --contains $commit | grep $product
+}
+
+
+function g_release_contains_merge_request
+{
+  echo "merge request should be in this format 'magellan!233'"
+  echo "if no filtering by product wanted give '.'"
+  MR="$1"
+  product=$2
+
+  #debug // list of merge requests found
+  #git log --grep="$MR"
+
+  merge_commits=($(git log --grep="$MR" --format='%H'))
+  for i in $merge_commits
+  do
+    echo treating merge commit $i
+    git show -q $i
+    g_release_contains_commit $i $product
+  done
+}
+
 function tsrc_inhale
 {
   [[ -z $1 ]] && echo give worktree && return
@@ -166,3 +193,5 @@ function tscr_pull_cfg
 alias t_work_init="tscr_pull_cfg $REPOS"
 alias t_perso_init="tscr_pull_cfg $MY_REPOS"
 alias t_perso_perso_init="tscr_pull_cfg $MY_REPOS perso"
+
+

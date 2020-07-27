@@ -164,7 +164,6 @@ export PAGER="less -F -X"
 # run fzf if found
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # use ripgrep as default search engine
-#export FZF_DEFAULT_COMMAND='rg --files --hidden --no-ignore-vcs'
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 
 TERM=xterm-256color # https://unix.stackexchange.com/questions/528323/what-uses-the-term-variable
