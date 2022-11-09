@@ -42,6 +42,7 @@ import sys
 print("Python version in GDB :", sys.version)
 
 # Useful python vars
+# These directories MUST be defined as env vars
 configs_dir = os.environ["GDB_CONFIGS_DIR"]
 work_configs_dir = os.environ["GDB_WORK_CONFIGS_DIR"]
 gdb_init_path = os.environ["GDB_SCRIPT"]
@@ -95,11 +96,10 @@ define cn
   connect
 end
 
-define svd
+define svd_load_plugin
 python
 import os
 gdb.execute('source ', configs_dir + '/PyCortexMDebug'+ '/scripts' +'/gdb.py')
-gdb.execute('svd_load' + configs_dir + '/svds'+ '/ATSAMR21E18A.svd')
 end
 end
 
@@ -109,10 +109,11 @@ define resource
 end
 
 python
+# List scripts to load from GDB_SCRIPT_DIR
 scripts_to_load = []
+# List scripts to load from GDB_WORK_CONFIGS_DIR
 work_scripts_to_load = ['samr21.gdb']
 
-# Load other scripts in ZFA_CONFIGS
 print("Loading GDB scripts from ", configs_dir)
 if os.path.exists(configs_dir):
   for x in scripts_to_load:
@@ -129,7 +130,6 @@ else:
   print(work_configs_dir, " does not exist.")
 
 end
-
 
 
 # Source target 
