@@ -33,7 +33,6 @@ set filename-display relative
 
 # Values print (Hex = 16 / Dec = 10)
 set output-radix 10
-# set output-radix 16
 
 python
 import os
@@ -130,6 +129,3 @@ else:
   print(work_configs_dir, " does not exist.")
 
 end
-
-
-# Source target 
