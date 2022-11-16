@@ -8,6 +8,13 @@ set -a
 source ../paths
 set +a
 
+rm common/i3_config_env_vars
+while IFS='=' read -r -d '' n v; do
+    line=$(printf "set $%s '%s'" "$n" "$v" | tr '\n' ' ')
+    echo $line >> common/i3_config_env_vars
+    # echo $line
+done < <(env -0)
+
 work_list=(
 common/i3_config_env_vars
 common/common_i3_config.sh
@@ -31,12 +38,6 @@ else
   list=${work_list[@]}
 fi
 
-rm common/i3_config_env_vars
-while IFS='=' read -r -d '' n v; do
-    line=$(printf "set $%s '%s'" "$n" "$v" | tr '\n' ' ')
-    echo $line >> common/i3_config_env_vars
-    # echo $line
-done < <(env -0)
 
 
 rm config
