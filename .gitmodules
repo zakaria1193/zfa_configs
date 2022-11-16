@@ -64,3 +64,6 @@
 [submodule "vimlua/zfa_nvim"]
 	path = vimlua/zfa_nvim
 	url = git@github.com:zakaria1193/zfa_nvim.git
+[submodule "gdb/PyCortexMDebug"]
+	path = gdb/PyCortexMDebug
+	url = https://github.com/bnahill/PyCortexMDebug.git
