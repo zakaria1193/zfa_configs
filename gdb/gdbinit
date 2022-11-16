@@ -98,7 +98,12 @@ end
 define svd_load_plugin
 python
 import os
-gdb.execute('source ', configs_dir + '/PyCortexMDebug'+ '/scripts' +'/gdb.py')
+plugin_path = configs_dir + '/PyCortexMDebug'+ '/scripts' +'/gdb.py'
+if os.path.exists(configs_dir):
+  print('Loading plugin: ', plugin_path)
+  gdb.execute('source ', plugin_path)
+else:
+  print(configs_dir, " does not exist")
 end
 end
 
