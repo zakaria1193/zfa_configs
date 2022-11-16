@@ -273,7 +273,7 @@ let g:startify_lists = [
         \ { 'type': 'commands',  'header': ['   Commands']       },
         \ ]
 
-let g:startify_bookmarks = [ {'v': '~/repos/embedded/velux'}, {'w': '~/repos/embedded/weather'}, {'m': '~/repos/embedded/magellan'}, {'c': '~/my_repos'},  {'i': '~/repos/core/ci-tools'}, ]
+let g:startify_bookmarks = [ ]
 let g:startify_session_persistence = 1
 
 nnoremap <c-s> :Startify<CR>
