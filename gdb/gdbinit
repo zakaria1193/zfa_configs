@@ -116,7 +116,11 @@ python
 # List scripts to load from GDB_SCRIPT_DIR
 scripts_to_load = []
 # List scripts to load from GDB_WORK_CONFIGS_DIR
-work_scripts_to_load = ['samr21.gdb']
+target = os.environ["GDB_TARGET"]
+if target == 'nlg-linux':
+  work_scripts_to_load = ['nlg-linux.gdb']
+elif target == 'samr21':
+  work_scripts_to_load = ['samr21.gdb']
 
 print("Loading GDB scripts from ", configs_dir)
 if os.path.exists(configs_dir):
