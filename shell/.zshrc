@@ -122,7 +122,7 @@ setopt    incappendhistory  #Immediately append to the history file, not just wh
 
 #Choose the default pager
 export PAGER="less -F"
-export LESS="-X"
+export LESS="-X -R"
 
 # GIT completion # make it faster # see this
 # https://stackoverflow.com/questions/9810327/zsh-auto-completion-for-git-takes-significant-amount-of-time-can-i-turn-it-off/9810485#9810485
