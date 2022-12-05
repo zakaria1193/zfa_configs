@@ -76,6 +76,7 @@ end
 # Remote target specific
 define l
   shell rm -f ~/.gdb_breaks_temp.txt
+If you find you are working out of a lot of different directories, you could map or cabbev something to pull up the file.
   save breakpoints ~/.gdb_breaks_temp.txt
   mon reset
   load
@@ -116,10 +117,11 @@ python
 # List scripts to load from GDB_SCRIPT_DIR
 scripts_to_load = []
 # List scripts to load from GDB_WORK_CONFIGS_DIR
-target = os.environ["GDB_TARGET"]
-if target == 'nlg-linux':
+target_ = os.environ["GDB_TARGET"]
+print(target_)
+if target_ == 'nlg-linux':
   work_scripts_to_load = ['nlg-linux.gdb']
-elif target == 'samr21':
+elif target_ == 'samr21':
   work_scripts_to_load = ['samr21.gdb']
 
 print("Loading GDB scripts from ", configs_dir)
