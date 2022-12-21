@@ -76,7 +76,6 @@ end
 # Remote target specific
 define l
   shell rm -f ~/.gdb_breaks_temp.txt
-If you find you are working out of a lot of different directories, you could map or cabbev something to pull up the file.
   save breakpoints ~/.gdb_breaks_temp.txt
   mon reset
   load
