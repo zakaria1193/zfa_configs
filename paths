@@ -93,6 +93,9 @@ export_dir_to_path $GDB_CONFIGS_DIR
 GDB_WORK_CONFIGS_DIR="$ZFA_WORK_TOOLS/gdb_work"
 WIRESHARK_KEYS=/home/zfadli/.wireshark/profiles/Default/zigbee_pc_keys
 
+# Export to path files installed in cargo
+export_dir_to_path ~/.cargo/bin
+
 # Stop exporting all new variables
 set +a
 
