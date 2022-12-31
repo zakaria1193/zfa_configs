@@ -39,18 +39,16 @@ alias cd="cd -P"
 
 [[ $(uname -m) == "x86_64" ]] && alias ls="exa"
 [[ $(uname -m) == "x86_64" ]] && alias diff="difft"
+
+function vim_prehooks 
+{
+  if [[ -z $OPENAI_API_KEY ]]; then
+    export OPENAI_API_KEY="$(pass OPENAI_API_KEY)"
+  fi
+}
+
 alias grep="rg"
-alias vim="nvim"
-alias vimrc="vim $VIM_CONFIGS/init.vim"
-
-alias make_path_arm="PATH=$PATH:$FIRMWARE_BITCLOUD/toolchain/arm-none-eabi/bin make"
-alias make_preproc='CFLAGS=-E make'
-MAKE_ERROR_PIPE='2>&1 | ccze -A | rg '\.c' | rg "error" | rg -v "pragma"'
-
-alias t="task"
-alias ta="task add"
-
-alias opacity="gconftool-2 --set /apps/gnome-terminal/profiles/Default/background_darkness --type=float" # then a float btw 0 and 1
+alias vim="vim_prehooks; nvim"
 
 alias cat="bat"
 alias catcat="command cat"
@@ -73,16 +71,14 @@ function find_and_replace()
 alias swap="sudo swapoff /dev/sda5 && sync && sleep 5 && sudo swapon /dev/sda5"
 
 alias update="sudo apt update && sudo apt upgrade -y"
-alias update_pip="" # TODO
-alias update_pip3="" # TODO
 
 alias list="typeset -f" # show function implems
 
 alias path='echo -e ${PATH//:/\\n}'
 alias path_len="expr length $PATH"
 
-
 alias xautolock='xautolock -time 10 -locker "systemctl suspend" &'
+
 function xautolock_sleep
 {
   time_s=$1
@@ -128,7 +124,6 @@ function backlightset
 
 alias rotate_left="xrandr --output DP-2 --rotate left"
 alias rotate_normal="xrandr --output DP-2 --rotate normal"
-
 
 
 kill_port(){
