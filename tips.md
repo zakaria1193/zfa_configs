@@ -41,6 +41,7 @@ CTRL-R 2 > Insert the content of register 2
 ## Marks
 :marks   - list of marks
 ma       - set current position for mark A
+:delm a  - delete mark A
 `a       - jump to position of mark A
 y`a      - yank text to position of mark A
 `0       - go to the position where Vim was previously exited
