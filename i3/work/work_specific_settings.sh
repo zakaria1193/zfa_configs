@@ -3,7 +3,7 @@ for_window [class="meld"] fullscreen enable
 assign [class="Wireshark"] → workspace number 8
 assign [class="Nautilus"] → workspace number 9
 
-exec_always xautolock -time 20 -locker fuzzy_lock -notify 20 -notifier 'xset dpms force off && $LOCK_SCRIPT' &
+exec_always xautolock -time 20 -locker fuzzy_lock -notify 20 -notifier '$LOCK_SCRIPT' &
 
 bindsym $mod+F1  exec playerctl play
 bindsym $mod+F2  exec playerctl pause
