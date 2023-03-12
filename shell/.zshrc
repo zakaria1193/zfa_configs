@@ -108,8 +108,6 @@ else
   echo "$SHELL_CONFIGS/custom.zshrc wasn't found  (SHELL_CONFIGS = $SHELL_CONFIGS)"
 fi
 
-
-
 ##############################################################################
 # History Configuration
 ##############################################################################
