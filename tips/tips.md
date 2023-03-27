@@ -189,4 +189,16 @@ g? - opens help
 f - live filtering
 F - Clear live filter
 
+## Copilot
 
+#### Insert mode
+accept = "<M-a>",
+accept_word = "<M-w>",
+accept_line = "<M-$>",
+next = "<M-n>",
+prev = "<M-p>",
+dismiss = "<C-]>",
+panel = "<M-CR>", or "<leader>cp" in normal mode
+
+# Search
+\<bar\> matches bar but neither foobar nor barbaz nor foobarbaz.
