@@ -27,7 +27,7 @@ function init()
 {
   $BOARD_INIT;
 
-  "$HOME/.screenlayout/$1.sh"
+  autorandr $1
 
   yes | wallpaper.sh 0;
 
