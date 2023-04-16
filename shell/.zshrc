@@ -74,6 +74,7 @@ plugins_completions=(
   pip
   common-aliases
   zsh-autosuggestions # broken with zsh vi mode (FIXME)
+  gitfast # git completion faster
 )
 
 plugins_tools=(
