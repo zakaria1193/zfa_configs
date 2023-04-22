@@ -50,8 +50,7 @@ function vim_prehooks
 alias grep="rg"
 alias vim="vim_prehooks; nvim"
 
-alias cat="bat"
-alias catcat="command cat"
+alias bat="batcat"
 
 alias dmesg="dmesg -wH"
 
