@@ -65,6 +65,7 @@ plugins=(
   zsh-syntax-highlighting
   colored-man-pages
   z
+  gitignore
   #zsh-vi-mode
 )
 
