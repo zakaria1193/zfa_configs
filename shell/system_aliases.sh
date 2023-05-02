@@ -50,7 +50,11 @@ function vim_prehooks
 alias grep="rg"
 alias vim="vim_prehooks; nvim"
 
-alias bat="batcat"
+# if batcat exists use it instead of bat
+if command -v batcat &> /dev/null
+then
+  alias bat="batcat"
+fi
 
 alias dmesg="dmesg -wH"
 
