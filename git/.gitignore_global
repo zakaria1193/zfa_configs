@@ -5,5 +5,10 @@ tags.temp
 .clangd/
 compile_commands.json
 .git/
-.ccls-cache
+.cache/
 .vscode/
+
+# Clang
+*.clang-format
+*.clang-tidy
+*.clangd/
