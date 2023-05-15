@@ -73,3 +73,9 @@
   # differently from the usual removed/added lines. If you have activated this feature in Git, then Delta
   # will automatically detect such differently-styled lines, and display them unchanged, i.e. with the raw
   # colors it receives from Git.
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
