@@ -30,7 +30,7 @@
 # Settting for difftool
 
 [diff]
-  tool = meld
+  tool = difft
 [difftool]
   prompt = false
 [difftool "difft"]
