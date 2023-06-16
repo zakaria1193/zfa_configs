@@ -177,8 +177,9 @@ function install_git
   sudo npm install -g rebase-editor
   git config --global sequence.editor "rebase-editor -s -c -m '> ' --no-alternate-screen"
 
-  # FIXME install difft (The configured difftool in the global git config)
-  # install git-delta
+  # Github / Gitlab tool
+  sudo apt install gh
+  sudo snap install glab
 
 }
 
