@@ -120,9 +120,8 @@ function install_window_manager()
   #   echo i3 installed
   #   return
   # fi
-  sudo add-apt-repository ppa:regolith-linux/release
   sudo apt-get update
-  sudo apt install i3-gaps -y
+  sudo apt install i3 -y
   sudo apt install rofi -y # launcher
   sudo apt install acpi -y # battery reader
   sudo apt install lm-sensors -y # temperature reader
