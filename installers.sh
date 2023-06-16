@@ -121,21 +121,19 @@ function install_window_manager()
   #   return
   # fi
   sudo apt-get update
-  sudo apt install i3 -y
+  install_i3
   sudo apt install rofi -y # launcher
   sudo apt install acpi -y # battery reader
   sudo apt install lm-sensors -y # temperature reader
   sudo apt install compton -y # for transparency
   sudo apt install imagemagick -y # for transparency
   sudo apt install nmtui -y
-  # ppa purge
-  sudo add-apt-repository --remove ppa:regolith-linux/release
-
 
   sudo apt install i3status -y # default status bar but not used (i3 blocks instead)
   echo 'installing i3 blocks from submodule repo'
   sudo apt remove i3blocks -y
   cd $I3BLOCKS_REPO
+  git checkout master
   sudo apt install autoconf -y
   ./autogen.sh
   ./configure
