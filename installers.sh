@@ -323,6 +323,7 @@ function install_general
   sudo apt install minicom meld -y
   sudo apt install ccache -y
   sudo apt install ncdu -y
+  sudo apt install htop -y
   sudo apt install docker docker-compose -y
   sudo apt install pass -y
   sudo apt install libssl-dev -y
