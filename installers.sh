@@ -336,8 +336,8 @@ function install_general
   sudo groupadd docker
   sudo usermod -aG docker $USER
 
-  # Install node 17 (highest acceptable by Vim Copilot)
-  curl -fsSL https://deb.nodesource.com/setup_17.x | command sudo -E bash -
+  # Install node 16 (16 highest acceptable stable by Vim Copilot)
+  curl -fsSL https://deb.nodesource.com/setup_16.x | command sudo -E bash -
   sudo apt install nodejs
   sudo apt install npm yarn -y
 }
