@@ -380,7 +380,8 @@ function update()
   git add .
   git commit -m "Submodules Update"
 
-  nvim +PlugUpdate +qall
+  nvim +PackerSync
+  nvim +TSUpdate
 }
 ################################################################################
 
