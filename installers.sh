@@ -220,7 +220,7 @@ function install_vim
   sudo npm install -g vscode-langservers-extracted # html
   sudo npm install -g typescript typescript-language-server # JS TS
   pip install cmake-language-server
-  sudo apt install -y ccls bear
+  sudo apt install -y bear cppcheck
 }
 
 function install_vscode
