@@ -277,6 +277,9 @@ function install_wireshark
 {
   sudo add-apt-repository ppa:wireshark-dev/stable -y
   sudo apt install wireshark tshark -y
+
+  # Sniffer tools
+  pip3 install pyserial pyspinel
 }
 
 function pull_wireshark_config
