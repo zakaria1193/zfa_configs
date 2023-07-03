@@ -278,6 +278,10 @@ function install_wireshark
   sudo add-apt-repository ppa:wireshark-dev/stable -y
   sudo apt install wireshark tshark -y
 
+  # Be able to run wireshark as non root
+  sudo dpkg-reconfigure wireshark-common
+  sudo chmod +x /usr/bin/dumpcap
+
   # Sniffer tools
   pip3 install pyserial pyspinel
 }
