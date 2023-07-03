@@ -182,7 +182,7 @@ bindsym $mod+l exec $LOCK_SCRIPT
 # exec --no-startup-id blueman-applet
 exec_always --no-startup-id nm-applet blueman-applet
 exec_always  --no-startup-id yes | $WALLPAPER_SCRIPT
-exec_always  --no-startup-id  compton # compton is needed for transparency
+# exec_always  --no-startup-id  compton # compton is needed for transparency
 
 # always remove dunst (keep default notifications)
 # for always remove appmenu-qt5 (keep barre de menu)
