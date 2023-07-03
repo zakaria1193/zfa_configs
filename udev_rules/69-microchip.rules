@@ -9,6 +9,6 @@ ACTION!="add|change", GOTO="microchip_rules_end"
 SUBSYSTEM!="usb|tty|hidraw|hiddev|usb-serial|usb_device|usbmisc", GOTO="microchip_rules_end"
 
 # UART USB dongle for factory tests
-KERNEL=="ttyACM[0-9]", ATTRS{idVendor}=="04d8", MODE="0666"
+KERNEL=="ttyACM[0-9]*", ATTRS{idVendor}=="04d8", MODE="0666"
 
 LABEL="microchip_rules_end"

@@ -83,6 +83,8 @@ ATTRS{idProduct}=="0108", ATTRS{idVendor}=="1366", TAG+="uaccess", TAG+="udev-ac
 # 0x101d: CDC    + J_LINK + MSD    + HID
 # 0x101e: RNDIS  + CDC    + J_LINK + HID
 # 0x101f: RNDIS  + CDC    + J_LINK + MSD + HID
+# 0x1051: CDC    + J_LINK + MSD
+
 #
 # 0x1001 - 0x100f not added yet
 #
@@ -102,6 +104,8 @@ ATTRS{idProduct}=="101C", ATTRS{idVendor}=="1366", TAG+="uaccess", TAG+="udev-ac
 ATTRS{idProduct}=="101D", ATTRS{idVendor}=="1366", TAG+="uaccess", TAG+="udev-acl"
 ATTRS{idProduct}=="101E", ATTRS{idVendor}=="1366", TAG+="uaccess", TAG+="udev-acl"
 ATTRS{idProduct}=="101F", ATTRS{idVendor}=="1366", TAG+="uaccess", TAG+="udev-acl"
+ATTRS{idProduct}=="1051", ATTRS{idVendor}=="1366", TAG+="uaccess", TAG+="udev-acl"
+
 #
 # End of list
 #
