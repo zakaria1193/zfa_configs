@@ -70,9 +70,8 @@ function find_and_replace()
   echo $1 $2
   rg -l $from | xargs sed -i s/$from/$to/g
 }
-
-alias swap="sudo swapoff /dev/sda5 && sync && sleep 5 && sudo swapon /dev/sda5"
-
+SWAP="/dev/mapper/vgubuntu-swap_1"
+alias swap="sudo swapoff $SWAP && sync && sleep 5 && sudo swapon $SWAP"
 alias update="sudo apt update && sudo apt upgrade -y"
 
 alias list="typeset -f" # show function implems
