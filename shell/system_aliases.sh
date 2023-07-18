@@ -42,9 +42,9 @@ alias cd="cd -P"
 
 function vim_prehooks 
 {
-  if [[ -z $OPENAI_API_KEY ]]; then
-    export OPENAI_API_KEY="$(pass OPENAI_API_KEY)"
-  fi
+  # if [[ -z $OPENAI_API_KEY ]]; then
+  #   export OPENAI_API_KEY="$(pass OPENAI_API_KEY)"
+  # fi
 }
 
 alias grep="rg"
