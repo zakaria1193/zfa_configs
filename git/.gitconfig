@@ -80,9 +80,6 @@
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
 
-[user]
-  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGZls1eU2p5k1a7BGXV0b8Q2iU8g9tkPGd67ruznGSsp
-
 [gpg]
   format = ssh
 
