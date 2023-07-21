@@ -11,4 +11,8 @@ bindsym $mod+F3  exec playerctl next
 bindsym $mod+F4  exec playerctl previous
 
 # Set monitor to laptop layout on ctrl + j
-bindsym $mod+j exec $HOME/.screenlayout/laptop.sh
+bindsym $mod+j exec autorandr laptop
+
+# Set monitor to work layout on ctrl + k
+bindsym $mod+w exec autorandr work
+
