@@ -12,3 +12,6 @@ compile_commands.json
 *.clang-format
 *.clang-tidy
 *.clangd/
+
+# Null LS
+.null-ls*
