@@ -65,6 +65,13 @@ function backup
   cp $1 $1_backup
 }
 
+function tips()
+{
+  pushd "$ZFA_CONFIGS/tips" || return
+  cat tips.md tips.sh
+  popd || return
+}
+
 function find_and_replace()
 {
   from=$1
