@@ -148,3 +148,6 @@ ZVM_VI_EDITOR=$EDITOR # For vv command in normal vi mode
 export PATH="$HOME/.poetry/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Set default keyboard layout
+setxkbmap us_qwerty-fr

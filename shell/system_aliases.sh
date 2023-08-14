@@ -30,9 +30,6 @@ function init()
   autorandr $1
 
   yes | wallpaper.sh 0;
-
-  setxkbmap us_qwerty-fr
-
 }
 
 alias cd="cd -P"
@@ -45,10 +42,12 @@ function vim_prehooks
   # if [[ -z $OPENAI_API_KEY ]]; then
   #   export OPENAI_API_KEY="$(pass OPENAI_API_KEY)"
   # fi
+
 }
 
 alias grep="rg"
 alias vim="vim_prehooks; nvim"
+alias v="vim"
 
 # if batcat exists use it instead of bat
 if command -v batcat &> /dev/null
