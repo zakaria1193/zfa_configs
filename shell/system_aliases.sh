@@ -55,6 +55,9 @@ then
   alias bat="batcat"
 fi
 
+alias ccat="cat"
+alias cat="bat"
+
 alias dmesg="dmesg -wH"
 
 function backup
