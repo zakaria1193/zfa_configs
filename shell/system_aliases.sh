@@ -42,7 +42,7 @@ function vim_prehooks
   # if [[ -z $OPENAI_API_KEY ]]; then
   #   export OPENAI_API_KEY="$(pass OPENAI_API_KEY)"
   # fi
-
+  return
 }
 
 alias grep="rg"
@@ -117,7 +117,7 @@ function backlightset
     fi
 
    max=$(cat /sys/class/backlight/intel_backlight/max_brightness)
-   brightness=$(($max*$percent/100))
+   brightness=$((max*percent/100))
 
 
    echo $brightness | tee /sys/class/backlight/intel_backlight/brightness
@@ -134,4 +134,11 @@ kill_port(){
         exit 1
     fi
     fuser -k $1/tcp
+}
+
+function nvm_init()
+{
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 }
