@@ -221,6 +221,14 @@ function install_vim
   sudo npm install -g typescript typescript-language-server # JS TS
   pip install cmake-language-server
   sudo apt install -y bear cppcheck
+
+  install_vim_plugins
+}
+
+function install_vim_plugins
+{
+  nvim +PackerSync
+  nvim +TSUpdate
 }
 
 function install_vscode
@@ -387,8 +395,7 @@ function update()
   git add .
   git commit -m "Submodules Update"
 
-  nvim +PackerSync
-  nvim +TSUpdate
+  install_vim_plugins
 }
 ################################################################################
 
@@ -419,10 +426,6 @@ function main()
   pull_terminal_emul_config
   pull_wireshark_config
   pull_gdb_config
-
-  if [[ $1 == '-i' ]]; then
-    nvim +PlugInstall +qall
-  fi
 
   if [[ $1 == '-u' ]]; then
     update
