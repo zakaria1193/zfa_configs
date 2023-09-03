@@ -151,3 +151,6 @@ export PATH="$HOME/.poetry/bin:$PATH"
 
 # Set default keyboard layout
 setxkbmap us_qwerty-fr
+
+# Set ipdb as default debugger
+export PYTHONBREAKPOINT=ipdb.set_trace
