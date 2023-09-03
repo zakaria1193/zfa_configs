@@ -15,3 +15,6 @@ compile_commands.json
 
 # Null LS
 .null-ls*
+
+# Lua LSP
+.luarc.json
