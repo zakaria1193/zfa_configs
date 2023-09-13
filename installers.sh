@@ -343,6 +343,7 @@ function install_general
   sudo apt install pass -y
   sudo apt install libssl-dev -y
   sudo apt install libfuse2 -y
+  sudo apt install except -y
 
   sudo apt install network-manager bmon -y # for network monitor
 
@@ -365,6 +366,7 @@ function install_general_no_graphics
   sudo apt install ripgrep fd-find -y
   sudo apt install gcc g++ make nodejs -y
   sudo apt install ccache -y
+  sudo apt install except -y
 }
 
 function install_apps
