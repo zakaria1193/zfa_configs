@@ -126,7 +126,6 @@ function install_window_manager()
   sudo apt install acpi -y # battery reader
   sudo apt install lm-sensors -y # temperature reader
   sudo apt install compton -y # for transparency
-  sudo apt install imagemagick -y # for transparency
   sudo apt install nmtui -y
 
   sudo apt install i3status -y # default status bar but not used (i3 blocks instead)
