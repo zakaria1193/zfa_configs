@@ -122,6 +122,7 @@ if target_ == 'nlg-linux':
   work_scripts_to_load = ['nlg-linux.gdb']
 elif target_ == 'samr21':
   work_scripts_to_load = ['samr21.gdb']
+  work_scripts_to_load += ['pretty_printers.py']
 
 print("Loading GDB scripts from ", configs_dir)
 if os.path.exists(configs_dir):
