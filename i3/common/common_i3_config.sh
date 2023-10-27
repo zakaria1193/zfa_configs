@@ -156,10 +156,9 @@ bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -R
 bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
 
-
-# Sreen brightness controls
-bindsym XF86MonBrightnessUp   exec xbacklight -inc 3 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 3 # decrease screen brightness
+# Brightness
+bindsym XF86MonBrightnessUp exec light -A 20
+bindsym XF86MonBrightnessDown exec light -U 20
 
 # Media player controls
 bindsym XF86AudioPlay  exec playerctl play

@@ -65,16 +65,8 @@ function install_tools()
 
   sudo apt install shellcheck -y
 
-  sudo apt install xbacklight -y
-
-  # given host name choose config (fall back to a default config)
-  if [[ $device_name == 'HP Notebook' ]]; then
-    echo "install monitor backlight control (will work after reboot)"
-    sudo mkdir /usr/share/X11/xorg.conf.d
-    sudo ln -s $I3_CONFIGS/backlight_intel_hp/20-intel.conf /usr/share/X11/xorg.conf.d
-    sudo mkdir /etc/share/X11/xorg.conf.d
-    sudo ln -s $I3_CONFIGS/backlight_intel_hp/20-intel.conf /etc/share/X11/xorg.conf.d
-  fi
+  # Backlight control
+  sudo apt install light -y
 
   sudo dpkg -i $ZFA_CONFIGS/tools/*.deb
 }
