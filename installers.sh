@@ -358,6 +358,8 @@ function install_general_no_graphics
   sudo apt install gcc g++ make nodejs -y
   sudo apt install ccache -y
   sudo apt install except -y
+
+  sudo sysctl -w kernel.dmesg_restrict=0
 }
 
 function install_apps
