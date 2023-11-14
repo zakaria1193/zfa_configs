@@ -73,6 +73,17 @@ alias grebim="refresh_main; git rebase -i --autosquash  --keep-empty master"
 alias grebm="refresh_main; git rebase --autosquash  --keep-empty master"
 alias gautofixup-on-master="refresh_main; git-autofixup master && grebim"
 alias gautofixup='git-autofixup'
+function gautofixup
+{
+  # Disable hooks
+  git config core.hooksPath /dev/null
+
+  git-autofixup $1
+
+  # Re-enable hooks
+  git config --unset core.hooksPath
+}
+
 
 alias gc='git rebase --continue'
 alias gsk='git rebase --skip'
