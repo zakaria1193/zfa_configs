@@ -71,8 +71,6 @@ alias gf='git fetch --prune --all --tags --force'
 alias grebi='git rebase -i  --autosquash --keep-empty'
 alias grebim="refresh_main; git rebase -i --autosquash  --keep-empty master"
 alias grebm="refresh_main; git rebase --autosquash  --keep-empty master"
-alias gautofixup-on-master="refresh_main; git-autofixup master && grebim"
-alias gautofixup='git-autofixup'
 function gautofixup
 {
   # Disable hooks
