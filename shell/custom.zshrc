@@ -44,6 +44,7 @@ files_to_source=(
   $SCRIPT_DIR/git_aliases.sh
   $SCRIPT_DIR/remote_aliases.sh
   $WORK_SHELL/*_aliases.sh
+  $WORK_SHELL/work_env.sh
   $ZFA_WORK_TOOLS/api/api_helpers.sh
 )
 for F in ${files_to_source[@]} ; do
