@@ -203,16 +203,6 @@ function install_vim
   # FIXME skip for small devices
   curl -L https://github.com/zakaria1193/universal-ctags-installer/raw/master/universal_ctags_installer.sh | bash
 
-  # LSP
-  sudo npm install -g dockerfile-language-server-nodejs
-  sudo npm install -g pyright
-  sudo npm install -g bash-language-server
-  sudo npm install -g vscode-css-languageserver-bin
-  sudo npm install -g vscode-langservers-extracted # html
-  sudo npm install -g typescript typescript-language-server # JS TS
-  pip install cmake-language-server
-  sudo apt install -y bear cppcheck
-
   install_vim_plugins
 }
 
@@ -220,6 +210,7 @@ function install_vim_plugins
 {
   nvim +PackerSync
   nvim +TSUpdate
+  nvim +TSUpdateSync
 }
 
 function install_vscode
