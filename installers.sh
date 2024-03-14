@@ -339,6 +339,9 @@ function install_general
   curl -fsSL https://deb.nodesource.com/setup_16.x | command sudo -E bash -
   sudo apt install nodejs
   sudo apt install npm yarn -y
+
+  # install golang
+  sudo apt install golang -y
 }
 
 function install_general_no_graphics
