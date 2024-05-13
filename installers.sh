@@ -160,13 +160,13 @@ function install_git
   git config --global user.email "zakaria.fadli@netatmo.com"
   git config --global user.name "Zakaria Fadli"
 
+  pip3 install --user gitpython sh
 
-  pip3 install --user tsrc==0.9.2 gitpython sh
+  # git
+  sudo apt install git -y
 
-  # rebase editor installer
-  sudo apt-get update && sudo apt-get install npm yarn
-  sudo npm install -g rebase-editor
-  git config --global sequence.editor "rebase-editor -s -c -m '> ' --no-alternate-screen"
+  # git diff tool
+  cargo install git-delta
 
   # Github / Gitlab tool
   sudo apt install gh
@@ -349,6 +349,9 @@ function install_general
 
   # install golang
   sudo apt install golang -y
+
+  # install rust
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 }
 
 function install_general_no_graphics
