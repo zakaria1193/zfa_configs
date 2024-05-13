@@ -252,12 +252,19 @@ function install_terminal_emul
   sudo apt install alacritty -y
   sudo update-alternatives --set x-terminal-emulator /usr/bin/alacritty
   sudo add-apt-repository --remove ppa:aslatter/ppa -y
+
+  # Clone themes
+  mkdir -p "$HOME"/.config/alacritty
+  git clone https://github.com/alacritty/alacritty-theme "$HOME"/.config/alacritty/themes
 }
 
 function pull_terminal_emul_config
 {
   printf "\n>> Pulling alacritty from repo to system \n"
   symlink '.alacritty.toml' $SHELL_CONFIGS "$HOME"
+
+  # remove old config system (yml)
+  rm "$HOME/.alacritty.yml" -f
 }
 
 ################################################################################
