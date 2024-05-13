@@ -200,8 +200,12 @@ function install_vim
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
   # Universal ctags install
-  # FIXME skip for small devices
-  curl -L https://github.com/zakaria1193/universal-ctags-installer/raw/master/universal_ctags_installer.sh | bash
+  # skip if ctags executable is found
+  if [[ -x $(command -v ctags) ]]; then
+    echo "ctags already installed"
+  else
+    curl -L https://github.com/zakaria1193/universal-ctags-installer/raw/master/universal_ctags_installer.sh | bash
+  fi
 
   install_vim_plugins
 }
