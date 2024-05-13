@@ -56,14 +56,14 @@ function install_tools()
   echo "installing fuzzy seach"
   $ZFA_CONFIGS_TOOLS/fzf/install
 
-  echo "installing bat"
+  echo "installing bat & rg"
   # https://askubuntu.com/questions/1290262/unable-to-install-bat-error-trying-to-overwrite-usr-crates2-json-which
   sudo apt install -o Dpkg::Options::="--force-overwrite" bat ripgrep
 
+  echo "installing sg"
+  cargo install ast-grep --locked
 
   sudo apt install ranger -y
-
-  sudo apt install shellcheck -y
 
   # Backlight control
   sudo apt install light -y

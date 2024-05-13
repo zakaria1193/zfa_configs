@@ -48,6 +48,7 @@ function vim_prehooks
 }
 
 alias grep="rg"
+alias sg="ast-grep"
 alias vim="vim_prehooks; nvim"
 alias v="vim"
 
