@@ -3,8 +3,8 @@
 # and (neo)vim. Either run it from a shell or add a keybinding
 # in tmux / alacritty
 
-VIMLIGHTTHEME="catppuccin-latte"
-VIMDARKTHEME="catppuccin-mocha"
+VIMLIGHTTHEME="background='light'"
+VIMDARKTHEME="background='dark'"
 VIMCONF="${VIM_CONFIGS}/lua/user/colorscheme.lua"
 
 ALACRITTYLIGHTTHEME="github_light"
