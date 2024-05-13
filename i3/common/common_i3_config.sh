@@ -253,3 +253,5 @@ exec --no-startup-id i3-msg "workspace 1; layout tabbed"
 
 bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name for this workspace: '
 
+# Start compton
+exec --no-startup-id compton -b
