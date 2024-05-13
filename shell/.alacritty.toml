@@ -7,10 +7,8 @@
 
 # Import additional configuration files
 import = [
-  # Chose theme https://github.com/alacritty/alacritty-theme
-  # "~/.config/alacritty/themes/themes/catppuccin_latte.toml"
-  "~/.config/alacritty/themes/themes/github_light.toml" # preferred light theme
-  # "~/.config/alacritty/themes/themes/google.toml"
+  "~/.config/alacritty/themes/themes/google.toml"
+  # must keep google or change in toggle.sh script to switch from dark mode them to light
 ]
 
 # Shell program and its arguments
