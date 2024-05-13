@@ -257,7 +257,7 @@ function install_terminal_emul
 function pull_terminal_emul_config
 {
   printf "\n>> Pulling alacritty from repo to system \n"
-  symlink '.alacritty.yml' $SHELL_CONFIGS "$HOME"
+  symlink '.alacritty.toml' $SHELL_CONFIGS "$HOME"
 }
 
 ################################################################################
