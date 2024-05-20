@@ -212,9 +212,10 @@ function install_vim
 
 function install_vim_plugins
 {
-  nvim +PackerSync
-  nvim +TSUpdate
-  nvim +TSUpdateSync
+  nvim +PackerSync +qall
+  nvim +MasonUpdate +qall
+  nvim +TSUpdate +qall
+  nvim +TSUpdateSync +qall
 }
 
 function install_vscode
