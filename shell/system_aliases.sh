@@ -52,6 +52,10 @@ alias sg="ast-grep"
 alias vim="vim_prehooks; nvim"
 alias v="vim"
 
+mkdir -p $HOME/notes
+alias vt="vim $HOME/notes/todo.md"
+alias vp="vim $ZFA_CONFIGS/tips/tips.md"
+
 # if batcat exists use it instead of bat
 if command -v batcat &> /dev/null
 then
