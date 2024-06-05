@@ -22,6 +22,9 @@ ALACRITTYCONF="${HOME}/.alacritty.toml"
 if [ "$CURRENT_MODE_USER" = "'light'" ]; then
   echo "Switching to light mode"
 
+  # Kill compton
+  pkill -f "compton"
+
   echo "Changing alacritty theme to $ALACRITTYLIGHTTHEME"
   sed -i 's/'$ALACRITTYDARKTHEME'/'$ALACRITTYLIGHTTHEME'/' "$ALACRITTYCONF"
 
