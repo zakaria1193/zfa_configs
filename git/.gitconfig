@@ -13,7 +13,7 @@
 	excludesfile = /home/zfadli/.gitignore_global
 
 [status]
-  submoduleSummary = false
+	submoduleSummary = 1
 
 [alias]
   yolo = !git commit -m \"$(curl -s whatthecommit.com/index.txt)\"
@@ -25,7 +25,7 @@
 [sequence]
 	editor = rebase-editor -s -c -m '> ' --no-alternate-screen
 [rebase]
-  autosquash = true
+	autosquash = true
 
 # Settting for difftool
 
@@ -87,3 +87,7 @@
 	sort = version:refname
 [versionsort]
 	suffix = -rc
+[fetch]
+	prune = true
+[log]
+	follow = true
