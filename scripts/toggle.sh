@@ -8,7 +8,7 @@ VIMDARKTHEME="background='dark'"
 VIMCONF="${VIM_CONFIGS}/lua/user/colorscheme.lua"
 
 ALACRITTYLIGHTTHEME="github_light"
-ALACRITTYDARKTHEME="google"
+ALACRITTYDARKTHEME="github_dark"
 ALACRITTYCONF="${HOME}/.alacritty.toml"
 
 # Git delta pager
