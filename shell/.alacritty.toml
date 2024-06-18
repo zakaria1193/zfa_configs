@@ -8,7 +8,7 @@
 # Import additional configuration files
 import = [
   "~/.config/alacritty/themes/themes/github_dark.toml"
-  # must keep google or change in toggle.sh script to switch from dark mode them to light
+  # must keep github_dark or change in toggle.sh script to switch from dark mode them to light
 ]
 
 # Shell program and its arguments
@@ -245,7 +245,7 @@ command = "None"  # Default: "None"
 [selection]
 
 # Characters that are used as separators for "semantic words" in Alacritty
-semantic_escape_chars = ",│`|:\"' ()[]{}<>\\t"  # Default: ",│`|:\"' ()[]{}<>\\t"
+semantic_escape_chars = ",│`|:\"' ()[]{}<>"  # Default: ",│`|:\"' ()[]{}<>\\t"
 
 # When set to true, selected text will be copied to the primary clipboard
 save_to_clipboard = false  # Default: false
