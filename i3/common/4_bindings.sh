@@ -71,6 +71,9 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
+# Rename workspace
+bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name for this workspace: '
+
 ############################################
 # Screen Outputs
 ############################################
@@ -96,7 +99,7 @@ bindsym $mod+l exec $LOCK_SCRIPT
 bindsym $mod+j exec autorandr laptop
 
 # Logout i3 (logs you out of your X session)
-bindsym $mod+Shift+l exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+l exec "i3-nagbar -t warning -m 'Logout?' -b 'Yes' 'i3-msg exit'"
 
 ############################################
 ### Media keys
@@ -110,6 +113,11 @@ bindsym XF86AudioPlay  exec playerctl play
 bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext  exec playerctl next
 bindsym XF86AudioPrev  exec playerctl previous
+
+# Volume
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
+bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
+bindsym XF86AudioMute exec amixer -q set Master toggle
 
 # Caps lock and num lock to status bar
 bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
