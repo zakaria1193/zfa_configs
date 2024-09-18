@@ -54,7 +54,9 @@ alias v="vim"
 
 mkdir -p $HOME/notes
 alias vt="vim $HOME/notes/todo.md"
+alias vn="vim $HOME/notes/"
 alias vp="vim $ZFA_CONFIGS/tips/tips.md"
+
 
 # if batcat exists use it instead of bat
 if command -v batcat &> /dev/null
