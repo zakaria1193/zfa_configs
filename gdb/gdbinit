@@ -123,6 +123,10 @@ if target_ == 'nlg-linux':
 elif target_ == 'samr21':
   work_scripts_to_load = ['samr21.gdb']
   work_scripts_to_load += ['pretty_printers.py']
+elif target_ == 'efr32':
+  work_scripts_to_load = ['efr32.gdb']
+else:
+  work_scripts_to_load = []
 
 print("Loading GDB scripts from ", configs_dir)
 if os.path.exists(configs_dir):
