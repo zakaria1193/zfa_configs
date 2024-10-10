@@ -66,7 +66,7 @@ plugins=(
   colored-man-pages
   z
   gitignore
-  #zsh-vi-mode
+  zsh-vi-mode
 )
 
 plugins_completions=(
@@ -143,11 +143,15 @@ TERM=xterm-256color # https://unix.stackexchange.com/questions/528323/what-uses-
 
 EDITOR=/usr/local/bin/nvim
 export EDITOR
-ZVM_VI_EDITOR=$EDITOR # For vv command in normal vi mode
 
-export PATH="$HOME/.poetry/bin:$PATH"
+# ZSH VI MODE
+export ZVM_VI_EDITOR=/bin/vi # For vi
+# Always starting with insert mode for each command line
+export ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# FZF config
+# vi mode plugin breaks fzf's CTRL+R, so fzf should be left after plugins init
+zvm_after_init_commands+=('[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh')
 
 # Set default keyboard layout
 setxkbmap us_qwerty-fr
