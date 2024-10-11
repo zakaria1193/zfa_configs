@@ -51,6 +51,7 @@ alias grep="rg"
 alias sg="ast-grep"
 alias vim="vim_prehooks; nvim"
 alias v="vim"
+alias vc="vim --clean"
 
 mkdir -p $HOME/notes
 alias vt="vim $HOME/notes/todo.md"
