@@ -100,6 +100,8 @@ alias path_len="expr length $PATH"
 
 alias xautolock='xautolock -time 10 -locker "systemctl suspend" &'
 
+alias wifi_scan='nmcli radio wifi off ; sleep 1; nmcli radio wifi on; sleep 4; nmcli dev wifi list '
+
 function xautolock_sleep
 {
   time_s=$1
