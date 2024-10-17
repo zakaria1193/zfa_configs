@@ -122,7 +122,7 @@ if target_ == 'nlg-linux':
   work_scripts_to_load = ['nlg-linux.gdb']
 elif target_ == 'samr21':
   work_scripts_to_load = ['samr21.gdb']
-  work_scripts_to_load += ['pretty_printers.py']
+  work_scripts_to_load += ['samr21_pretty_printers.py']
 elif target_ == 'efr32':
   work_scripts_to_load = ['efr32.gdb']
 else:
