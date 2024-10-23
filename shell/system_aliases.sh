@@ -37,19 +37,10 @@ alias cd="cd -P"
 [[ $(uname -m) == "x86_64" ]] && alias ls="exa"
 [[ $(uname -m) == "x86_64" ]] && alias diff="difft"
 
-function vim_prehooks 
-{
-  if [[ -z $OPENAI_API_KEY ]]; then
-    echo "Loading pass ..."
-    OPENAI_API_KEY="$(pass OPENAI_API_KEY)"
-    export OPENAI_API_KEY
-  fi
-  return
-}
 
 alias grep="rg"
 alias sg="ast-grep"
-alias vim="vim_prehooks; nvim"
+alias vim="nvim"
 alias v="vim"
 alias vc="vim --clean"
 
