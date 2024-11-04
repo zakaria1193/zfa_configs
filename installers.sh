@@ -1,12 +1,13 @@
-#!/bin/bash
+#
+!/bin/bash
 
 if [[ -z $ZFA_CONFIGS ]]; then
-	echo $ZFA_CONFIGS path not set from paths file.
+	echo "$ZFA_CONFIGS" path not set from paths file.
 	echo if this is the first time its normal.
 	echo if not there is a problem in zshrc
 	source ~/my_repos/zfa_configs/paths
 else
-  source $ZFA_CONFIGS/paths
+  source "$ZFA_CONFIGS"/paths
 fi
 
 device_name=$(cat /sys/devices/virtual/dmi/id/product_name)
@@ -16,17 +17,16 @@ function symlink()
   local file_=$1
   local from=$2
   local to=$3
-  rm $to/$file_ -r -f
-  echo ln -s $from/$file_ $to
-  ln -s $from/$file_ $to
+  rm "$to"/"$file_" -r -f
+  echo ln -s "$from"/"$file_" "$to"
+  ln -s "$from"/"$file_" "$to"
   echo "symbolic link of $file_ from $from/$file_ to $to/$file_"
 }
 
 function is_installed()
 {
   local program=$1
-  # return $(command -v $program >/dev/null)
-  return 1
+  return $(command -v "$program" >/dev/null)
 }
 
 
@@ -42,19 +42,20 @@ function install_zsh()
   sudo apt-get install zsh -y
   # set zsh as default shell
   echo "setting zshs default shell"
-  chsh -s $(which zsh)
+  chsh -s "$(command -v zsh)"
+
   echo ">>> Logout and login to your ubuntu session"
 
   echo "installing oh my zsh"
-  zsh $ZFA_CONFIGS/shell/ohmyzsh/tools/install.sh
+  zsh "$ZFA_CONFIGS"/shell/ohmyzsh/tools/install.sh
 
-  git clone https://github.com/zakaria1193/zfa_work_tools.git $ZFA_WORK_TOOLS
+  git clone https://github.com/zakaria1193/zfa_work_tools.git "$ZFA_WORK_TOOLS"
 }
 
 function install_tools()
 {
   echo "installing fuzzy seach"
-  $ZFA_CONFIGS_TOOLS/fzf/install
+  "$ZFA_CONFIGS_TOOLS"/fzf/install
 
   echo "installing bat & rg"
   # https://askubuntu.com/questions/1290262/unable-to-install-bat-error-trying-to-overwrite-usr-crates2-json-which
@@ -68,14 +69,14 @@ function install_tools()
   # Backlight control
   sudo apt install light -y
 
-  sudo dpkg -i $ZFA_CONFIGS/tools/*.deb
+  sudo dpkg -i "$ZFA_CONFIGS"/tools/*.deb
 }
 
 function pull_zsh_config()
 {
   printf ">> Pulling zsh config from repo to system \n"
-  echo "SHELL_CONFIGS=$SHELL_CONFIGS" > $HOME/.zshrc_paths
-  symlink '.zshrc'     $SHELL_CONFIGS           $HOME
+  echo "SHELL_CONFIGS=$SHELL_CONFIGS" > "$HOME"/.zshrc_paths
+  symlink '.zshrc'     "$SHELL_CONFIGS"           "$HOME"
 }
 
 ################################################################################
@@ -84,13 +85,7 @@ function pull_zsh_config()
 function install_udev_rules
 {
   echo "copying user udev rules"
-  sudo ln -sf $UDEV_RULES/*.rules /etc/udev/rules.d
-
-
-  # find and replace for paths
-  from='\$\$MY_UDEV_NOTIFY_SH\$\$'
-  to='$MY_UDEV_NOTIFY_SH'
-  sudo sed -i s/$from/$to/g /etc/udev/rules.d/my-udev-notify.rules
+  sudo ln -sf "$UDEV_RULES"/*.rules /etc/udev/rules.d
 
   # RELOAD UDEV RULES
   sudo udevadm control --reload-rules && sudo udevadm trigger
@@ -204,7 +199,7 @@ function install_vim
   if [[ -x $(command -v ctags) ]]; then
     echo "ctags already installed"
   else
-    curl -L https://github.com/zakaria1193/universal-ctags-installer/raw/master/universal_ctags_installer.sh | bash
+    curl -L https://github.com/thombashi/universal-ctags-installer/raw/master/universal_ctags_installer.sh | sudo bash
   fi
 
   install_vim_plugins
