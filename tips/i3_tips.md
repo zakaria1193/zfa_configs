@@ -6,4 +6,3 @@ No desktop with nautilus: gsettings set org.gnome.desktop.background show-deskto
 xmodmap -pke
 OR
 xev
-
