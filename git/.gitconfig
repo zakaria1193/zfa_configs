@@ -16,10 +16,22 @@
 	submoduleSummary = 1
 
 [alias]
-  yolo = !git commit -m \"$(curl -s whatthecommit.com/index.txt)\"
-  cof = !git for-each-ref --format='%(refname:short)' refs/heads | fzf | xargs git checkout
+  yolo = '!git commit -m \"$(curl -s whatthecommit.com/index.txt)\"'
+  cof = '!git for-each-ref --format='%(refname:short)' refs/heads | fzf | xargs git checkout'
   find-merge = "!sh -c 'commit=$0 && branch=${1:-HEAD} && (git rev-list $commit..$branch --ancestry-path | cat -n; git rev-list $commit..$branch --first-parent | cat -n) | sort -k2 -s | uniq -f1 -d | sort -n | tail -1 | cut -f2'"
   show-merge = "!sh -c 'merge=$(git find-merge $0 $1) && [ -n \"$merge\" ] && git show $merge'"
+
+  # Create and push a tag to origin (use -f for force)
+  # Usage: git release [-f] <tag-name>
+  # Example: git release v1.0.0
+  #          git release -f v1.0.0
+  release = "!f() { \
+    if [ \"$1\" = \"-f\" ]; then \
+        git tag -f \"$2\" && git push -f origin \"$2\"; \
+    else \
+        git tag \"$1\" && git push origin \"$1\"; \
+    fi; \
+    }; f"
 
 # Settings for rebase
 [sequence]
@@ -71,10 +83,10 @@
   # will automatically detect such differently-styled lines, and display them unchanged, i.e. with the raw
   # colors it receives from Git.
 [credential "https://github.com"]
-	helper = 
+	helper =
 	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
+	helper =
 	helper = !/usr/bin/gh auth git-credential
 
 [gpg]
