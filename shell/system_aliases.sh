@@ -40,18 +40,17 @@ alias cd="cd -P"
 
 alias grep="rg"
 alias sg="ast-grep"
-function vim {
+function neovide {
   nohup neovide "$@" &
 }
-alias v="vim"
-alias vi="vim"
+alias vim=nvim
+alias vi=nvim
+alias v="neovide"
 alias vc="nvim --clean"
 
-mkdir -p "$HOME/notes"
-alias vt="nvim $HOME/notes/todo.md"
-alias vn="neovide $HOME/notes/"
+alias vt="vc $HOME/notes/tasks.md"
+alias vn="nvim $HOME/notes/"
 alias vp="nvim $ZFA_CONFIGS/tips/tips.md"
-
 
 # if batcat exists use it instead of bat
 if command -v batcat &> /dev/null
