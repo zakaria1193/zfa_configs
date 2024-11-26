@@ -1,6 +1,5 @@
 [user]
 	name = Zakaria Fadli
-	email = zakaria.fadli@legrand.com
 
 [pull]
   rebase = true

@@ -67,6 +67,7 @@ I3BLOCKS_CONFIG="$I3_CONFIGS/i3blocks"
 I3BLOCKS_REPO="$I3BLOCKS_CONFIG/i3blocks" # submodule
 I3BLOCKS_SCRIPTS_DIR="$I3BLOCKS_CONFIG/i3blocks-contrib" # submodule
 export_dir_to_path_recursively "$I3BLOCKS_SCRIPTS_DIR"
+# Compton config is repo root
 COMPTON_CONFIG=$ZFA_CONFIGS
 
 # Scripts
