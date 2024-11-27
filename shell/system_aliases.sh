@@ -41,7 +41,7 @@ alias cd="cd -P"
 alias grep="rg"
 alias sg="ast-grep"
 function neovide {
-  nohup neovide "$@" &
+  nohup neovide "$@" > ~/neovim.out &
 }
 alias vim=nvim
 alias vi=nvim
