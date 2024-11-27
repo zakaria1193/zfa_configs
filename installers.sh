@@ -174,6 +174,7 @@ function pull_git_config
   printf "\n>> Pulling git config from repo to system \n"
   symlink '.gitconfig' "$ZFA_CONFIGS/git" "$HOME"
   symlink '.gitignore_global' "$ZFA_CONFIGS/git" "$HOME"
+  symlink '.gitconfig_work' "$ZFA_CONFIGS/git" "$HOME"
 }
 
 

@@ -1,5 +1,9 @@
 [user]
 	name = Zakaria Fadli
+  email = zakaria1193@gmail.com
+
+[includeIf "gitDir: ~/work/"]
+  path = ~/.gitconfig_work
 
 [pull]
   rebase = true
