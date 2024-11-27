@@ -2,6 +2,7 @@ tags
 tags.lock
 tags.temp
 tags.files
+nohup.out
 .vim/
 .clangd/
 compile_commands.json
