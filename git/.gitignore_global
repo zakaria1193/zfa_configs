@@ -1,6 +1,7 @@
 tags
 tags.lock
 tags.temp
+tags.files
 .vim/
 .clangd/
 compile_commands.json
