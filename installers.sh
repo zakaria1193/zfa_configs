@@ -1,5 +1,4 @@
-#
-!/bin/bash
+#!/bin/bash
 
 if [[ -z $ZFA_CONFIGS ]]; then
 	echo "$ZFA_CONFIGS" path not set from paths file.
