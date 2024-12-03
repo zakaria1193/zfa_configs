@@ -3,10 +3,11 @@
 	excludesfile = /home/zfadli/.gitignore_global
 
 [user]
-	name = Zakaria Fadli
+  name = Zakaria Fadli
+  email = zakaria1193@gmail.com
 
 [includeIf "gitdir:/home/zfadli/work/"]
-path = ~/.gitconfig_work
+  path = ~/.gitconfig_work
 
 [pull]
   rebase = true
