@@ -5,8 +5,8 @@
 [user]
 	name = Zakaria Fadli
 
-[includeIf "gitDir:~/work"]
-  path = ~/.gitconfig_work
+[includeIf "gitdir:/home/zfadli/work/"]
+path = ~/.gitconfig_work
 
 [pull]
   rebase = true
