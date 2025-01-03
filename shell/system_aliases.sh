@@ -49,6 +49,7 @@ alias v="neovide"
 alias vc="nvim --clean"
 
 alias vt="vc $HOME/notes/tasks.md"
+alias vj="vc $HOME/notes/journal.md"
 alias vn="nvim $HOME/notes/"
 alias vp="nvim $ZFA_CONFIGS/tips/tips.md"
 
