@@ -2,6 +2,8 @@
 # Expectes the following env vars to be defined:
 # GDB_TARGET -> Target name, e.g. samr21, efr32, nlg-linux etc.
 # leave empty to run classic gdb on host with my custom options
+# Those specific targets will load specific scripts hidden from my public repo.
+# Define your own if you're reusing this file.
 
 set auto-load safe-path /
 
