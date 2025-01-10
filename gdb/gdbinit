@@ -1,3 +1,8 @@
+# GDB Configuration file (Embedded and on Host debugging)
+# Expectes the following env vars to be defined:
+# GDB_TARGET -> Target name, e.g. samr21, efr32, nlg-linux etc.
+# leave empty to run classic gdb on host with my custom options
+
 set auto-load safe-path /
 
 # GDB Generic Configuration file (Embedded and on Host)
