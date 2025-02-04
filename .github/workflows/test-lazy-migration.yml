@@ -1,0 +1,31 @@
+name: Test Lazy.nvim Migration
+
+on:
+  push:
+    branches: [ "feature/lazy-nvim-migration" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test-lazy-migration:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y ninja-build gettext cmake unzip curl git
+
+    - name: Install latest Neovim
+      run: |
+        git clone https://github.com/neovim/neovim
+        cd neovim
+        git checkout stable
+        make CMAKE_BUILD_TYPE=RelWithDebInfo
+        sudo make install
+        cd ..
+
+    - name: Run Neovim config tests
+      run: ./scripts/test-nvim-config.sh
