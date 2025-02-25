@@ -67,3 +67,6 @@
 [submodule "gdb/PyCortexMDebug"]
 	path = gdb/PyCortexMDebug
 	url = https://github.com/bnahill/PyCortexMDebug.git
+[submodule "vimlua/zfa_nvim_lazy"]
+	path = vimlua/zfa_nvim_lazy
+	url = https://github.com/zakaria1193/zfa_nvim_lazy

@@ -207,7 +207,7 @@ function install_vim
 
 function install_vim_plugins
 {
-  nvim +PackerSync +qall
+  nvim '+Lazy! sync' +qall
   nvim +MasonUpdate +qall
   nvim +TSUpdate +qall
   nvim +TSUpdateSync +qall
