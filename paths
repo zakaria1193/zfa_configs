@@ -42,7 +42,7 @@ ZFA_GIT_ALIASES="$ZFA_CONFIGS/shell/git_aliases.sh"
 UDEV_RULES="$ZFA_CONFIGS/udev_rules"
 
 # Vim config
-VIM_CONFIGS="$ZFA_CONFIGS/vimlua/zfa_nvim_lua"
+VIM_CONFIGS="$ZFA_CONFIGS/vimlua/zfa_nvim_lazy"
 VIM_CONFIGS_FILE="$VIM_CONFIGS/init.lua"
 
 # Legacy vimscript based NVIM config
