@@ -28,11 +28,10 @@ workspace_auto_back_and_forth yes
 
 ### GAPS configuration ###
 ## sway gaps specific
-gaps inner 2
-gaps outer 2
+gaps inner 10
+gaps outer 1
 
 # Only enable gaps on a workspace when there is at least one container
 smart_gaps on
+smart_borders no_gaps
 #########################
-
-
