@@ -67,9 +67,9 @@ export_dir_to_path "$I3_CONFIGS"
 COMPILE_I3_CONFIG_SCRIPT="$I3_CONFIGS/compile-i3-configs.sh"
 
 # Sway
-SWAY_CONFIGS="$ZFA_CONFIGS/i3"
+SWAY_CONFIGS="$ZFA_CONFIGS/sway"
 export_dir_to_path "$SWAY_CONFIGS"
-COMPILE_SWAY_CONFIG_SCRIPT="$SWAY_CONFIGS/compile-i3-configs.sh"
+COMPILE_SWAY_CONFIG_SCRIPT="$SWAY_CONFIGS/compile-sway-configs.sh"
 
 I3BLOCKS_CONFIG="$I3_CONFIGS/i3blocks"
 I3BLOCKS_REPO="$I3BLOCKS_CONFIG/i3blocks" # submodule
