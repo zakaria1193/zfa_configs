@@ -72,7 +72,7 @@ mode "resize" {
 }
 
 # Rename workspace
-bindsym $mod+n exec sway-input -F 'rename workspace to "%s"' -P 'New name for this workspace: '
+bindsym $mod+n exec echo "" | dmenu -b -p "New name for this workspace" | xargs -r swaymsg rename workspace to
 
 ############################################
 # Screen Outputs
@@ -99,7 +99,7 @@ bindsym $mod+l exec $LOCK_SCRIPT
 bindsym $mod+j exec autorandr laptop
 
 # Logout sway (logs you out of your X session)
-bindsym $mod+Shift+l exec "sway-nagbar -t warning -m 'Logout?' -b 'Yes' 'sway-msg exit'"
+bindsym $mod+Shift+l exec "swaynag -t warning -m 'Logout?' -b 'Yes' 'swaymsg exit'"
 
 ############################################
 ### Media keys
