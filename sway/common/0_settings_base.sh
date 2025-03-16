@@ -1,6 +1,5 @@
-# i3 config file (v4)
+# sway config file
 #
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
 
@@ -8,7 +7,7 @@ set $mod Mod4
 # is used in the bar {} block below.
 font pango:System San Fransisco Display 9
 
-# Before i3 v4.8, we used to recommend this one as the default:
+# Before sway v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
 # clear in small sizes. However, its unicode glyph coverage is limited, the old
@@ -28,7 +27,7 @@ popup_during_fullscreen smart
 workspace_auto_back_and_forth yes
 
 ### GAPS configuration ###
-## i3 gaps specific
+## sway gaps specific
 gaps inner 2
 gaps outer 2
 

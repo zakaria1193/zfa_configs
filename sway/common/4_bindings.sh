@@ -43,7 +43,7 @@ bindsym $mod+q focus parent
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3) (might take two)
+# restart sway inplace (preserves your layout/session, can be used to upgrade sway) (might take two)
 bindsym $mod+Shift+r exec $COMPILE_I3_CONFIG_SCRIPT; restart
 
 # windows fun actions
@@ -72,7 +72,7 @@ mode "resize" {
 }
 
 # Rename workspace
-bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name for this workspace: '
+bindsym $mod+n exec sway-input -F 'rename workspace to "%s"' -P 'New name for this workspace: '
 
 ############################################
 # Screen Outputs
@@ -98,8 +98,8 @@ bindsym $mod+l exec $LOCK_SCRIPT
 # Set monitor to laptop layout on ctrl + j
 bindsym $mod+j exec autorandr laptop
 
-# Logout i3 (logs you out of your X session)
-bindsym $mod+Shift+l exec "i3-nagbar -t warning -m 'Logout?' -b 'Yes' 'i3-msg exit'"
+# Logout sway (logs you out of your X session)
+bindsym $mod+Shift+l exec "sway-nagbar -t warning -m 'Logout?' -b 'Yes' 'sway-msg exit'"
 
 ############################################
 ### Media keys

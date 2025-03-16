@@ -2,7 +2,7 @@
 exec  --no-startup-id setxkbmap -option keypad:pointerkeys
 
 # Initial layout
-exec --no-startup-id i3-msg "workspace 1; layout tabbed"
+exec --no-startup-id sway-msg "workspace 1; layout tabbed"
 
 # Start applications
 exec_always --no-startup-id yes | $WALLPAPER_SCRIPT
