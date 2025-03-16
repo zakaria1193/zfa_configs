@@ -43,8 +43,8 @@ bindsym $mod+q focus parent
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
-# restart sway inplace (preserves your layout/session, can be used to upgrade sway) (might take two)
-bindsym $mod+Shift+r exec $COMPILE_SWAY_CONFIG_SCRIPT; restart
+# reload sway inplace (preserves your layout/session, can be used to upgrade sway) (might take two)
+bindsym $mod+Shift+r exec $COMPILE_SWAY_CONFIG_SCRIPT; reload
 
 # windows fun actions
 bindsym $mod+Shift+f floating toggle
