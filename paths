@@ -100,6 +100,14 @@ export_dir_to_path ~/.cargo/bin
 # Export zscaler bin directory
 export_dir_to_path /opt/zscaler/bin
 
+# Source the keys file (not committed)
+[[ -f ~/.keys ]] && source ~/.keys
+# If it doesn't exist, print a warning
+[[ ! -f ~/.keys ]] && echo "zfa_configs: No ~/.keys file found"
+# Expected keys list:
+# OPENAI_API_KEY
+# OPENAI_MODEL = "gpt-4"
+
 # Stop exporting all new variables
 set +a
 
