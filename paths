@@ -60,9 +60,15 @@ export_dir_to_path "$ZFA_CONFIGS_TOOLS"
 export_dir_to_path "$ZFA_CONFIGS_TOOLS/git-autofixup"
 export_dir_to_path "$ZFA_CONFIGS_TOOLS/flake8_autofix/"
 
-# I3 config
+# Window Manager
+## I3 config (legacy, using sway opr new i3)
 I3_CONFIGS="$ZFA_CONFIGS/i3"
 export_dir_to_path "$I3_CONFIGS"
+
+# Sway
+SWAY_CONFIGS="$ZFA_CONFIGS/i3"
+export_dir_to_path "$SWAY_CONFIGS"
+
 I3BLOCKS_CONFIG="$I3_CONFIGS/i3blocks"
 I3BLOCKS_REPO="$I3BLOCKS_CONFIG/i3blocks" # submodule
 I3BLOCKS_SCRIPTS_DIR="$I3BLOCKS_CONFIG/i3blocks-contrib" # submodule

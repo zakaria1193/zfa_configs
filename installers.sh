@@ -92,22 +92,24 @@ function install_i3() {
   sudo apt update
   sudo apt install i3
 }
+function install_sway() {
+  sudo apt update
+  sudo apt install sway
+}
 function install_window_manager() {
   # if is_installed i3; then
   #   echo i3 installed
   #   return
   # fi
   sudo apt-get update
-  install_i3
+  install_sway
   sudo apt install rofi -y       # launcher
   sudo apt install acpi -y       # battery reader
   sudo apt install lm-sensors -y # temperature reader
   sudo apt install compton -y    # for transparency
   sudo apt install nmtui -y
 
-  sudo apt install i3status -y # default status bar but not used (i3 blocks instead)
   echo 'installing i3 blocks from submodule repo'
-  sudo apt remove i3blocks -y
   cd $I3BLOCKS_REPO
   git checkout master
   sudo apt install autoconf -y
@@ -134,6 +136,25 @@ function pull_i3_config() {
   printf "\n>> Pulling compton config from repo to system \n"
   symlink 'compton.conf' $COMPTON_CONFIG "$HOME/.config"
 }
+
+function pull_sway_config() {
+  printf "\n>> Pulling sway config from repo to system \n"
+  $SWAY_CONFIGS/compile-sway-configs.sh
+  mkdir -p $HOME/.config/sway
+  symlink 'config' $SWAY_CONFIGS "$HOME/.config/sway"
+  #remove sway config if in home folder
+  if [[ -f "$HOME/.sway/config" ]]; then
+    mv $HOME/.sway/config $HOME/.sway/config_deleted_$(date +%Y%M%d%H%m%S)
+  fi
+
+  mkdir -p $HOME/.config/i3blocks
+  symlink 'config' $I3BLOCKS_CONFIG "$HOME/.config/i3blocks"
+
+  printf "\n>> Pulling compton config from repo to system \n"
+  symlink 'compton.conf' $COMPTON_CONFIG "$HOME/.config"
+}
+
+
 
 ################################################################################
 # git tools #
@@ -399,7 +420,7 @@ function main() {
   fi
 
   pull_zsh_config
-  pull_i3_config
+  pull_sway_config
   pull_git_config
   pull_vim_config
   pull_terminal_emul_config
