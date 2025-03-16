@@ -64,10 +64,12 @@ export_dir_to_path "$ZFA_CONFIGS_TOOLS/flake8_autofix/"
 ## I3 config (legacy, using sway opr new i3)
 I3_CONFIGS="$ZFA_CONFIGS/i3"
 export_dir_to_path "$I3_CONFIGS"
+COMPILE_I3_CONFIG_SCRIPT="$I3_CONFIGS/compile-i3-configs.sh"
 
 # Sway
 SWAY_CONFIGS="$ZFA_CONFIGS/i3"
 export_dir_to_path "$SWAY_CONFIGS"
+COMPILE_SWAY_CONFIG_SCRIPT="$SWAY_CONFIGS/compile-i3-configs.sh"
 
 I3BLOCKS_CONFIG="$I3_CONFIGS/i3blocks"
 I3BLOCKS_REPO="$I3BLOCKS_CONFIG/i3blocks" # submodule
@@ -83,7 +85,6 @@ export_dir_to_path_recursively "$ZFA_CONFIGS/scripts/"
 LOCK_SCRIPT="$ZFA_CONFIGS_SCRIPTS/lock.sh"
 WALLPAPER_SCRIPT="$ZFA_CONFIGS_SCRIPTS/wallpaper.sh"
 MONITORS_SCRIPT="$ZFA_CONFIGS_SCRIPTS/monitor.sh"
-COMPILE_I3_CONFIG_SCRIPT="$I3_CONFIGS/compile-i3-configs.sh"
 
 # GDB Helpers
 GDB_CONFIGS_DIR="$ZFA_CONFIGS/gdb"
