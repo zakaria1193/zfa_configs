@@ -19,7 +19,7 @@ floating_modifier $mod
 floating_minimum_size 75 x 50
 
 # Stay within output boundaries
-force_focus_wrapping no
+focus_wrapping no
 
 # Misc settings
 focus_follows_mouse yes
