@@ -16,4 +16,3 @@ COPY . /home/zfadli/my_repos/zfa_configs/
 # Set working directory
 WORKDIR /home/zfadli/my_repos/zfa_configs
 
-CMD ["/home/zfadli/my_repos/zfa_configs/installers.sh.sh -i"]

@@ -4,9 +4,15 @@ if [[ -z $ZFA_CONFIGS ]]; then
   echo "$ZFA_CONFIGS" path not set from paths file.
   echo if this is the first time its normal.
   echo if not there is a problem in zshrc
-  source ~/my_repos/zfa_configs/paths
+  source /home/zfadli/my_repos/zfa_configs/paths
 else
   source "$ZFA_CONFIGS"/paths
+fi
+
+if [[ -z $ZFA_CONFIGS ]]; then
+  # Error and exit
+  echo "$ZFA_CONFIGS" path not set from paths file.
+  exit 1
 fi
 
 device_name=$(cat /sys/devices/virtual/dmi/id/product_name)
@@ -48,6 +54,8 @@ function install_zsh() {
 }
 
 function install_tools() {
+  [[-z $ZFA_CONFIGS_TOOLS ]] && echo "ZFA_CONFIGS_TOOLS not set" && return
+
   echo "installing fuzzy seach"
   "$ZFA_CONFIGS_TOOLS"/fzf/install
 
@@ -91,11 +99,26 @@ function install_i3() {
   echo "deb http://debian.sur5r.net/i3/ $(grep '^DISTRIB_CODENAME=' /etc/lsb-release | cut -f2 -d=) universe" | sudo tee /etc/apt/sources.list.d/sur5r-i3.list
   sudo apt update
   sudo apt install i3
+
 }
+
 function install_sway() {
   sudo apt update
-  sudo apt install sway
+  sudo apt install sway -y
 }
+
+function install_i3blocks() {
+  echo 'installing i3 blocks from submodule repo'
+  cd $I3BLOCKS_REPO
+  git checkout master
+  sudo apt install autoconf -y
+  ./autogen.sh
+  ./configure
+  make
+  sudo make install
+  cd -
+}
+
 function install_window_manager() {
   # if is_installed i3; then
   #   echo i3 installed
@@ -107,17 +130,9 @@ function install_window_manager() {
   sudo apt install acpi -y       # battery reader
   sudo apt install lm-sensors -y # temperature reader
   sudo apt install compton -y    # for transparency
-  sudo apt install nmtui -y
+  sudo apt install nmtui -y      # network manager ui
 
-  echo 'installing i3 blocks from submodule repo'
-  cd $I3BLOCKS_REPO
-  git checkout master
-  sudo apt install autoconf -y
-  ./autogen.sh
-  ./configure
-  make
-  sudo make install
-  cd -
+  install_i3blocks
 }
 
 function pull_i3_config() {
@@ -154,16 +169,12 @@ function pull_sway_config() {
   symlink 'compton.conf' $COMPTON_CONFIG "$HOME/.config"
 }
 
-
-
 ################################################################################
 # git tools #
 ################################################################################
 function install_git {
   git config --global user.email "zakaria.fadli@netatmo.com"
   git config --global user.name "Zakaria Fadli"
-
-  pip3 install --user gitpython sh
 
   # git
   sudo apt install git -y
@@ -174,7 +185,6 @@ function install_git {
   # Github / Gitlab tool
   sudo apt install gh
   sudo snap install glab
-
 }
 
 function pull_git_config {
@@ -194,7 +204,7 @@ function install_vim {
   else
     curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
     chmod u+x nvim.appimage
-    sudo mv nvim.appimage /usr/local/bin/nvim
+    sudo mv nvim.appimage /bin/nvim
   fi
 
   # Universal ctags install
@@ -313,44 +323,50 @@ function pull_gdb_config {
 ################################################################################
 # general #
 ################################################################################
-
 function install_general {
   sudo apt update
-  sudo apt install make curl feh git tig libxml2-utils jq xclip xsel ascii ripgrep arandr wget gpg -y
-  sudo apt-get install software-properties-common -y
 
-  sudo apt install zathura -y
-  sudo apt install python3 python3-pip ipython3 python3-dev python-is-python3 -y
-  sudo apt install gcc g++ make -y
-  sudo apt install clangd llvm -y
-  sudo apt install minicom meld -y
-  sudo apt install ccache -y
-  sudo apt install ncdu -y
-  sudo apt install htop -y
-  sudo apt install docker docker-compose -y
-  sudo apt install pass -y
-  sudo apt install libssl-dev -y
-  sudo apt install libfuse2 -y
-  sudo apt install except -y
+  declare -A pkgs=(
+    [development]="build-essential gcc g++ cmake clangd llvm libxml2-utils libssl-dev libfuse2 python3-dev"
+    [cli_tools]="make curl feh git tig jq xclip xsel ascii ripgrep arandr wget gpg"
+    [python]="python3 python3-pip ipython3 python-is-python3"
+    [network]="network-manager bmon ncdu htop"
+    [utilities]="minicom meld ccache expect scrot viewnior zathura snapd"
+    [package_managers]="nodejs npm yarn golang"
+  )
 
-  sudo apt install network-manager bmon -y # for network monitor
+  installed=()
+  missing=()
 
-  sudo apt install scrot viewnior -y # for capture
+  for category in "${!pkgs[@]}"; do
+    for pkg in ${pkgs[$category]}; do
+      if apt-cache show "$pkg" >/dev/null 2>&1; then
+        if sudo apt install -y "$pkg"; then
+          installed+=("$pkg")
+        else
+          missing+=("$pkg")
+        fi
+      else
+        missing+=("$pkg")
+      fi
+    done
+  done
 
-  # no sudo for docker
-  sudo groupadd docker
-  sudo usermod -aG docker $USER
+  # Node 18 setup
+  curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+  sudo apt install -y nodejs yarn # Install npm
 
-  # Install node 18 (min needed for copilot)
-  curl -fsSL https://deb.nodesource.com/setup_18.x | command sudo -E bash -
-  sudo apt install nodejs
-  sudo apt install npm yarn -y
+  # Rust (only if not already installed)
+  if ! command -v rustc >/dev/null; then
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+  fi
 
-  # install golang
-  sudo apt install golang -y
+  # Snap
+  sudo snap install typst
 
-  # install rust
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  echo
+  echo "✅ Installed: ${installed[*]}"
+  [[ ${#missing[@]} -gt 0 ]] && echo "❌ Missing (could not locate): ${missing[*]}"
 }
 
 function install_general_no_graphics {
@@ -371,6 +387,27 @@ function install_apps {
   curl -L https://dl.google.com/linux/direct/$TARGET -o $TARGET
   sudo dpkg -i $TARGET
   rm $TARGET
+}
+
+function install_docker {
+  # Add Docker's official GPG key:
+  sudo apt-get update
+  sudo apt-get install ca-certificates curl
+  sudo install -m 0755 -d /etc/apt/keyrings
+  sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+  sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+  # Add the repository to Apt sources:
+  echo \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" |
+    sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
+  sudo apt-get update
+
+  sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+  sudo groupadd docker
+  sudo usermod -aG docker $USER
 }
 
 ################################################################################
@@ -411,7 +448,7 @@ function main() {
     install_vim
     install_nerdfonts
     install_apps
-    # pull_repos
+    install_docker
   fi
 
   pull_zsh_config
