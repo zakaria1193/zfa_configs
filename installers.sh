@@ -321,10 +321,8 @@ function install_general {
 
   sudo apt install zathura -y
   sudo apt install python3 python3-pip ipython3 python3-dev python-is-python3 -y
-  sudo apt install python2 python2-dev -y
   sudo apt install gcc g++ make -y
-  sudo apt install cargo -y
-  sudo apt install clangd clangd-12 llvm -y
+  sudo apt install clangd llvm -y
   sudo apt install minicom meld -y
   sudo apt install ccache -y
   sudo apt install ncdu -y
