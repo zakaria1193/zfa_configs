@@ -197,9 +197,6 @@ function install_vim {
     sudo mv nvim.appimage /usr/local/bin/nvim
   fi
 
-  sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-
   # Universal ctags install
   # skip if ctags executable is found
   if [[ -x $(command -v ctags) ]]; then
