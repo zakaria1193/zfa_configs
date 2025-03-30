@@ -202,9 +202,9 @@ function install_vim {
   if is_installed neovim; then
     echo vim installed installed
   else
-    curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
-    chmod u+x nvim.appimage
-    sudo mv nvim.appimage /bin/nvim
+    curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim-linux-x86_64.appimage
+    chmod u+x nvim-linux-x86_64.appimage 
+    sudo mv nvim-linux-x86_64.appimage /bin/nvim
   fi
 
   # Universal ctags install
@@ -338,6 +338,9 @@ function install_general {
   installed=()
   missing=()
 
+  # Pre-install nodejs 20
+  curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+
   for category in "${!pkgs[@]}"; do
     for pkg in ${pkgs[$category]}; do
       if apt-cache show "$pkg" >/dev/null 2>&1; then
@@ -351,10 +354,6 @@ function install_general {
       fi
     done
   done
-
-  # Node 18 setup
-  curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-  sudo apt install -y nodejs yarn # Install npm
 
   # Rust (only if not already installed)
   if ! command -v rustc >/dev/null; then
@@ -373,7 +372,7 @@ function install_general_no_graphics {
   sudo apt update
   sudo apt install make curl git tig jq xclip ascii minicom -y
   sudo apt install ripgrep fd-find -y
-  sudo apt install gcc g++ make nodejs -y
+  sudo apt install gcc g++ make -y
   sudo apt install ccache -y
   sudo apt install except -y
 
