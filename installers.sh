@@ -339,7 +339,7 @@ function install_general {
   missing=()
 
   # Pre-install nodejs 20
-  curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+  curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash -
 
   for category in "${!pkgs[@]}"; do
     for pkg in ${pkgs[$category]}; do
