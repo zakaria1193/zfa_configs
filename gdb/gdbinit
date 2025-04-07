@@ -125,9 +125,7 @@ scripts_to_load = []
 # List scripts to load from GDB_WORK_CONFIGS_DIR
 target_ = os.environ["GDB_TARGET"]
 print(target_)
-if target_ == 'nlg-linux':
-  work_scripts_to_load = ['nlg-linux.gdb']
-elif target_ == 'samr21':
+if target_ == 'samr21':
   work_scripts_to_load = ['samr21.gdb']
   work_scripts_to_load += ['samr21_pretty_printers.py']
 elif target_ == 'efr32':
